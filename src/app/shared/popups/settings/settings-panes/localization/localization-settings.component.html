@@ -1,0 +1,18 @@
+<div class="search">
+  <swc-icon-input [(value)]="searchFilterString" #searchElement icon="search"></swc-icon-input>
+</div>
+<div class="languages">
+  @for (lang of filteredLanguages(); track lang) {
+    <div class="language" [class.selected]="selectedLanguage().name == lang.name" (click)="onSelectLanguage(lang)">
+      <div class="flag">
+        <img [src]="localizationService.getLanguageIcon(lang)" alt="{{ lang.name }} Flag" />
+      </div>
+      <div class="name">{{ lang.name }}</div>
+      <div class="selected">
+        @if (selectedLanguage().name == lang.name) {
+          <swc-maskable-icon icon="thin/checked"></swc-maskable-icon>
+        }
+      </div>
+    </div>
+  }
+</div>

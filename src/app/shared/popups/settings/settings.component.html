@@ -1,0 +1,18 @@
+<div class="toc">
+  @for (panel of panels(); track panel.name) {
+    <div class="item" [class.active]="panel.id == selectedPanel().id" (click)="onSelectSettings(panel)">
+      <swc-maskable-icon [icon]="panel.icon"></swc-maskable-icon>
+      <div>{{ panel.name }}</div>
+    </div>
+  }
+</div>
+
+<div class="content">
+  <swc-settings-header [name]="selectedPanel().name"></swc-settings-header>
+
+  <swc-settings-content>
+    @if (selectedPanel(); as settingPanel) {
+      <ng-container *ngComponentOutlet="settingPanel.component"></ng-container>
+    }
+  </swc-settings-content>
+</div>

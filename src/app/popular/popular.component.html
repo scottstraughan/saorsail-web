@@ -1,0 +1,25 @@
+@if (loading() && apps().length == 0) {
+  <div class="loading">
+    <swc-loading-indicator></swc-loading-indicator>
+  </div>
+} @else {
+  <div class="panel first">
+    <div class="title">
+      <div>
+        <h1>Popular Apps</h1>
+        <h2>Browse the most popular apps on the marketplace.</h2>
+      </div>
+    </div>
+    <div class="screenshot">
+
+    </div>
+  </div>
+
+  <div class="panels">
+    @for (app of apps(); track app.namespace) {
+      <swc-application-widget [application]="app"></swc-application-widget>
+    }
+  </div>
+
+  <swc-show-more-button [loading]="loading()" (click)="onShowMore()"></swc-show-more-button>
+}

@@ -1,0 +1,31 @@
+@use '../../../../../mixins' as *;
+
+:host {
+  background-color: var(--ui-bg-color-tierary);
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 800px) {
+    max-height: 600px;
+    max-width: 400px;
+  }
+
+  header {
+    background-color: var(--hint-color);
+    color: var(--color-white);
+    padding: 2rem;
+    display: flex;
+    gap: .5rem;
+
+    .icon,
+    .title {
+      @include flex-center(false);
+    }
+  }
+
+  .container {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+  }
+}

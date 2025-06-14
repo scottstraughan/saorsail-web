@@ -1,0 +1,20 @@
+:host {
+  swc-maskable-icon {
+    height: auto;
+    width: 100%;
+
+    &.loading {
+      animation: rotate 1s infinite reverse linear;
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

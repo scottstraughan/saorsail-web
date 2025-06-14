@@ -1,0 +1,28 @@
+<swc-settings-block-item title="Notifications" subTitle="Enable or disable notificaitons">
+  <div>
+    @if (notificationsState() == UserNotificationState.NOT_SPECIFIED) {
+      <div class="state">
+        You have not yet provided permission (or denied) notifications. Click the "Change Permission" button to provide
+        permission.
+      </div>
+
+      <swc-icon-button
+          label="Change Permission"
+          (click)="onAskPermission()"></swc-icon-button>
+    } @else if (notificationsState() == UserNotificationState.GRANTED) {
+      <div class="state granted">
+        <swc-maskable-icon icon="thin/checked"></swc-maskable-icon>
+        You have granted permission for alerts to be shown.
+      </div>
+
+      <swc-icon-button
+          label="Send Test Notificaiton"
+          (click)="onSendTestNotification()"></swc-icon-button>
+    } @else if (notificationsState() == UserNotificationState.DENIED) {
+      <div class="state denied">
+        <swc-maskable-icon icon="thin/off"></swc-maskable-icon>
+        You have denied permission for alerts to be shown. To change, check your browser settings.
+      </div>
+    }
+  </div>
+</swc-settings-block-item>

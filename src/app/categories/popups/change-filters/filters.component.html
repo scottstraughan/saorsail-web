@@ -1,0 +1,51 @@
+<header>
+  <div class="icon">
+    <swc-maskable-icon class="icon" icon="thin/filter"></swc-maskable-icon>
+  </div>
+  <div class="title">
+    Filter Results
+  </div>
+</header>
+
+<div class="container">
+  <div class="filter-group">
+    <h1>Category</h1>
+    <div class="filter">
+      <select
+          name="category"
+          [ngModel]="selectedCategory()"
+          (ngModelChange)="onCategoryChanged($event)"
+          [compareWith]="compareCategory">
+        @for (category of categories(); track category.id) {
+          <option [ngValue]="category">
+            {{ localizationService.getLocalized(category.name) | async }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <h1>Order</h1>
+    <div class="filter">
+      <select
+          name="order"
+          [ngModel]="selectedOrder()"
+          (ngModelChange)="onOrderChanged($event)"
+          [compareWith]="compareOrder">
+        @for (order of orders(); track order) {
+          <option [ngValue]="order">
+            {{ getFriendlyOrder(order) | titlecase }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <swc-icon-button
+      icon="thin/checked"
+      label="Apply Filters"
+      (click)="onApplyFilters()"></swc-icon-button>
+</div>

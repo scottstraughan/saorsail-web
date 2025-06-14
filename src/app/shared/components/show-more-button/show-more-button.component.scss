@@ -1,0 +1,20 @@
+@use '../../../../mixins' as *;
+
+:host {
+  @include flex-center;
+  @include hoverable-item;
+
+  background-color: rgba(255, 255, 255, .2);
+  border-radius: var(--border-radius-large);
+  cursor: pointer;
+  padding: 2rem;
+  width: 100%;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, .5);
+  }
+
+  swc-maskable-icon {
+    margin-right: .5rem;
+  }
+}

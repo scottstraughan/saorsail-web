@@ -1,0 +1,58 @@
+@use '../../../../mixins' as *;
+@use '../../../../variables' as *;
+
+:host {
+  @media screen and (min-width: $mobile-breakpoint) {
+    max-height: 500px !important;
+    max-width: 500px !important;
+  }
+
+  .versions {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem;
+
+    .version {
+      display: flex;
+      background-color: var(--ui-bg-color-secondary);
+      border-radius: var(--border-radius-medium);
+      overflow: hidden;
+
+      h1,
+      h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 1.1rem;
+      }
+
+      h2 {
+        font-weight: normal;
+        font-size: 1rem;
+        margin-top: .5rem;
+      }
+
+      .name,
+      .actions {
+        @include flex-center(false);
+
+        padding: 1.5rem;
+        transition: var(--transition);
+      }
+
+      .name {
+        flex: 1;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--ui-bg-color-primary);
+        }
+      }
+
+      .actions {
+        background-color: var(--ui-bg-color-secondary);
+      }
+    }
+  }
+}

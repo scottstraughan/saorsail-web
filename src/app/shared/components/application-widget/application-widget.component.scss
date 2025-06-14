@@ -1,0 +1,100 @@
+@use '../../../../mixins' as *;
+
+:host {
+  container: package-container / inline-size;
+
+  .container {
+    @include hoverable-item;
+
+    background-color: var(--ui-bg-color-primary);
+    border-radius: var(--border-radius-medium);
+    color: rgba(var(--text-color-rgb));
+    cursor: default;
+    display: flex;
+    min-height: 130px;
+    overflow: hidden;
+
+    .body {
+      display: flex;
+      flex: 1;
+      position: relative;
+
+      .stars {
+        background-color: #fff7db;
+        border-radius: 0 0 6px 6px;
+        color: #ffb600;
+        font-size: .7rem;
+        left: 1rem;
+        padding: .2rem .5rem;
+        position: absolute;
+        top: 0;
+        transition: var(--transition);
+
+        &:hover {
+          background-color: #ffb600;
+        }
+
+        .star-icon {
+          vertical-align: middle;
+          width: 20px;
+        }
+      }
+    }
+
+    .icon,
+    .details,
+    .actions {
+      @include flex-center(false);
+    }
+
+    .icon {
+      @include flex-center;
+
+      padding: 0 0 0 1rem;
+      --icon-size: 50px;
+
+      .wrapper {
+        display: inline-flex;
+
+        img {
+          height: var(--icon-size) !important;
+          width: var(--icon-size) !important;
+        }
+      }
+    }
+
+    .details {
+      flex: 1;
+      padding: 1rem;
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 1rem;
+      }
+
+      h2 {
+        font-size: .8rem;
+        font-weight: normal;
+        margin-top: .3rem;
+        opacity: .4;
+      }
+    }
+
+    .actions {
+      background-color: #eef6ff;
+      border-left: var(--ui-border);
+      padding: 1rem;
+    }
+  }
+}
+
+:host-context(.theme-dark) {
+  .actions {
+    background-color: #263447 !important;
+  }
+}

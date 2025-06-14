@@ -1,0 +1,18 @@
+:host {
+  background-color: var(--hint-color);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  width: 100%;
+
+  @media screen and (min-width: 800px) {
+    max-width: 440px;
+    max-height: 500px;
+  }
+
+  .icon {
+    height: 70px;
+    width: 70px;
+  }
+}

@@ -1,0 +1,35 @@
+<header>
+  <div class="icon">
+    <swc-maskable-icon class="icon" icon="search"></swc-maskable-icon>
+  </div>
+  <div class="title">
+    Default Download Method
+  </div>
+</header>
+
+<div class="container">
+  <div class="methods">
+    @for (method of methods(); track method) {
+      <div class="method" (click)="onSelectDownloadMethod(method)" [class.selected]="selectedMethod().name == method.name">
+        <div class="status">
+          @if (selectedMethod().name == method.name) {
+            <swc-maskable-icon icon="thin/checked"></swc-maskable-icon>
+          }
+        </div>
+        <div class="icon-container">
+          <swc-maskable-icon class="icon" [icon]="method.icon"></swc-maskable-icon>
+        </div>
+        <div class="label">
+          {{ method.name }}
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<div class="actions">
+  <swc-icon-button
+      icon="thin/add"
+      label="Add New Paired Device"
+      (click)="onAddPairedDevice()"></swc-icon-button>
+</div>

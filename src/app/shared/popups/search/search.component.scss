@@ -1,0 +1,29 @@
+:host {
+  background-color: var(--ui-bg-color-secondary);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media screen and (min-width: 800px) {
+    max-width: 900px;
+    max-height: 700px;
+  }
+
+  header {
+    background-color: var(--hint-color);
+    padding: 1rem;
+  }
+
+  .results-container {
+    height: 100%;
+    overflow: auto;
+
+    .results {
+      display: grid;
+      flex: 1;
+      grid-gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+      padding: 1rem;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@use '../../../../mixins' as *;
+
+:host {
+  --swc-link-button-bg-color-focused: var(--ui-bg-color-primary);
+  --swc-link-button-bg-color-unfocused: var(--ui-bg-color-secondary);
+  --swc-link-button-box-shadow-focused: var(--box-shadow-heavier);
+  --swc-link-button-box-shadow-unfocused: var(--box-shadow-normal);
+  --swc-link-button-default-border: var(--ui-border-color) 1px solid;
+  --swc-link-button-disabled-color: red;
+  --swc-link-button-transition: var(--transition);
+
+  display: block;
+  user-select: none;
+
+  > a {
+    @include flex-center;
+
+    background-color: var(--swc-link-button-bg-color-unfocused);
+    border: var(--swc-link-button-default-border);
+    border-radius: 6px;
+    box-shadow: var(--swc-link-button-box-shadow-unfocused);
+    display: flex;
+    gap: .5rem;
+    height: 100%;
+    opacity: .7;
+    padding: 1rem;
+    transition: var(--swc-link-button-transition);
+
+    &:not(.disabled) {
+      cursor: pointer;
+    }
+
+    &.active,
+    &:not(.disabled):hover {
+      background-color: var(--swc-link-button-bg-color-focused);
+      box-shadow: var(--swc-link-button-box-shadow-focused);
+      opacity: 1;
+    }
+
+    &.disabled {
+      background-color: var(--swc-link-button-bg-color-unfocused);
+      cursor: not-allowed;
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    swc-maskable-icon {
+      height: 26px;
+      width: 26px;
+    }
+  }
+}

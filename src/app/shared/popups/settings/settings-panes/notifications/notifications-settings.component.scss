@@ -1,0 +1,21 @@
+@use '../../../../../../mixins' as *;
+
+.state {
+  background-color: var(--ui-bg-color-secondary);
+  border-radius: var(--border-radius-medium);
+  margin-bottom: 1rem;
+  padding: 2rem;
+  text-align: center;
+
+  swc-maskable-icon {
+    vertical-align: middle;
+  }
+
+  &.granted {
+    color: var(--color-green);
+  }
+
+  &.denied {
+    color: var(--color-red);
+  }
+}

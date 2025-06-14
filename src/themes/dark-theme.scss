@@ -1,0 +1,23 @@
+@mixin dark-theme {
+  --color-white: #efefef;
+  --color-green: #8ab000;
+  --color-blue: #1876d2;
+  --text-color-rgb: 240, 240, 240;
+
+  --transition: .3s all;
+
+  --border-radius-small: 8px;
+  --border-radius-medium: 12px;
+  --border-radius-large: 20px;
+
+  --box-shadow-normal: 2px 2px 5px 0px rgba(0, 0, 0, .1);
+  --box-shadow-heavier: 2px 2px 5px 0px rgba(0, 0, 0, .2);
+
+  --ui-bg-color-primary: #21242e;
+  --ui-bg-color-secondary: #12141c;
+  --ui-bg-color-tierary: #0f1014;
+
+  --ui-border-color: rgba(255, 255, 255, .1);
+
+  --content-container-max-width: 1000px;
+}

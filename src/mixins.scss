@@ -1,0 +1,37 @@
+@use 'variables' as *;
+
+@mixin hoverable-item($minimalScale: false) {
+  $scale: 1.05;
+
+  @if $minimalScale {
+    $scale: 1.01;
+  }
+
+  box-shadow: var(--box-shadow-normal);
+  transform: scale(1);
+  transition: var(--transition);
+  cursor: pointer;
+
+  &:hover {
+    @include hoverable-item-hovered($scale)
+  }
+}
+
+@mixin hoverable-item-hovered($scale: false) {
+  box-shadow: var(--box-shadow-heavier);
+  transform: scale($scale);
+}
+
+@mixin content-container {
+  max-width: $content-container-max-width;
+  margin: 0 auto;
+}
+
+@mixin flex-center($justify: true) {
+  display: flex;
+  align-items: center;
+
+  @if $justify {
+    justify-content: center;
+  }
+}

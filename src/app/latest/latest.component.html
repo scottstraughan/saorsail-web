@@ -1,0 +1,30 @@
+@if (loading() && apps().length == 0) {
+  <div class="loading">
+    <swc-loading-indicator></swc-loading-indicator>
+  </div>
+} @else {
+  @if (firstApp(); as firstApp) {
+    <div class="panel first">
+      <div class="title">
+        <div>
+          <h1>{{ localizationService.getLocalized(firstApp.metadata.name) | async }}</h1>
+          <h2>{{ localizationService.getLocalized(firstApp.metadata.summary) | async }}</h2>
+          <swc-install-button
+              [application]="firstApp"
+              [version]="applicationService.getLatestVersion(firstApp)"></swc-install-button>
+        </div>
+      </div>
+      <div class="screenshot">
+        <img [src]="getFirstAppScreenshot(firstApp) | async" alt="Screenshot of {{ firstApp.namespace }}" >
+      </div>
+    </div>
+  }
+
+  <div class="panels">
+    @for (app of apps(); track app.namespace) {
+      <swc-application-widget [application]="app"></swc-application-widget>
+    }
+  </div>
+
+  <swc-show-more-button [loading]="loading()" (click)="onShowMore()"></swc-show-more-button>
+}

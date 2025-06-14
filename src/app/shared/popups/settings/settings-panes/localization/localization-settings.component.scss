@@ -1,0 +1,43 @@
+@use '../../../../../../mixins' as *;
+
+.languages {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  height: 100%;
+  padding: 1rem 0;
+  position: relative;
+
+  .language {
+    @include hoverable-item(1.02);
+
+    background-color: var(--ui-bg-color-primary);
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    display: flex;
+    gap: .5rem;
+    overflow: visible;
+    padding: 1rem;
+    position: relative;
+
+    &.selected {
+      background-color: var(--hint-color);
+      color: var(--color-white);
+    }
+
+    .flag,
+    .name,
+    .selected {
+      @include flex-center(false);
+    }
+
+    .name {
+      flex: 1;
+    }
+  }
+
+  .language img {
+    height: 40px;
+    width: 40px;
+  }
+}

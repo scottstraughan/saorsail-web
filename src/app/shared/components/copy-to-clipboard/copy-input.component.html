@@ -1,0 +1,10 @@
+@if (copied()) {
+  <swc-maskable-icon
+      class="icon"
+      icon="thin/checked"
+      [style.color]="hintColor()"></swc-maskable-icon>
+} @else {
+  <swc-maskable-icon
+      class="icon"
+      icon="thin/clipboard"></swc-maskable-icon>
+}

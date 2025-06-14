@@ -1,0 +1,34 @@
+@if (application(); as application) {
+  <div class="container">
+    <a class="body" (click)="clicked.emit()" [routerLink]="'/app/' + application.namespace">
+      @if (application.stars !== undefined && application.stars > 0) {
+        <div class="stars" title="This application {{ application.stars }} on the source code repo">
+          <swc-maskable-icon class="star-icon" icon="star"></swc-maskable-icon> {{ application.stars }}
+        </div>
+      }
+
+      <div class="icon">
+        @if (localizationService.resolveLocalizedImageUrl(application.metadata.icon) | async; as icon) {
+          <div class="wrapper">
+            <img [src]="icon" alt="{{ application.namespace }} Icon"/>
+          </div>
+        }
+      </div>
+
+      <div class="details">
+        <div>
+          <h1>{{ localizationService.getLocalized(application.metadata.name) | async }}</h1>
+          <h2>{{ localizationService.getLocalized(application.metadata.summary) | async }}</h2>
+        </div>
+      </div>
+    </a>
+
+    <div class="actions">
+      <div>
+        <swc-install-button
+            [application]="application"
+            [version]="applicationService.getLatestVersion(application)"></swc-install-button>
+      </div>
+    </div>
+  </div>
+}

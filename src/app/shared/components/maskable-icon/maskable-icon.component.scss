@@ -1,0 +1,18 @@
+@use '../../../../mixins' as *;
+
+:host {
+  --st-icon-src: '';
+
+  @include flex-center;
+
+  background-color: currentColor;
+  background-size: contain;
+  display: inline-flex;
+  mask: var(--st-icon-src) no-repeat center / contain !important;
+
+  img {
+    height: auto;
+    opacity: 0;
+    width: 100%;
+  }
+}

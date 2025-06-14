@@ -1,0 +1,21 @@
+<header>
+  Browse Older Versions
+</header>
+
+<div class="versions">
+  @for (version of versions(); track version.file.sha256) {
+    <a class="version" (click)="onVersionChange(version)">
+      <div class="name">
+        <div>
+          <h1>Version {{ version.manifest.versionName }}</h1>
+          <h2>File Size: {{ fileSizeInMb(version.file.size) }}MB</h2>
+        </div>
+      </div>
+      <div class="actions">
+        <swc-install-button
+            [application]="application()"
+            [version]="version"></swc-install-button>
+      </div>
+    </a>
+  }
+</div>

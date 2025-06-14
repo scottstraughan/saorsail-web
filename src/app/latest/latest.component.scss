@@ -1,0 +1,118 @@
+@use '../../mixins' as *;
+@use '../../variables' as *;
+
+:host {
+  display: flex;
+
+  flex-direction: column;
+  gap: var(--swc-spacing);
+  margin: 0 auto;
+  max-width: $content-container-max-width;
+  padding-bottom: var(--swc-spacing) !important;
+  --swc-spacing: 1rem;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    padding: 0 $content-side-padding;
+  }
+
+  .loading {
+    @include flex-center;
+
+    height: 100vh;
+
+    swc-loading-indicator {
+      width: 100px;
+      opacity: .5;
+    }
+  }
+
+  .panel {
+    &:not(.first) {
+      @include hoverable-item(true);
+    }
+
+    --padding: 4rem;
+
+    background-color: #ccc;
+    border-radius: 20px;
+    padding: var(--padding);
+
+    &.first {
+      background: var(--hint-color);
+      border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+      color: var(--color-white);
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 4rem;
+      min-height: 400px;
+      overflow: hidden;
+      padding: var(--padding) 0;
+
+      @container main-container (min-width: 800px) {
+        flex-direction: row;
+        padding: 0;
+      }
+
+      .title {
+        @include flex-center(false);
+
+        h1, h2 {
+          word-break: break-word;
+        }
+
+        flex: 1;
+        padding: 0 var(--padding);
+
+        h2 {
+          font-weight: normal;
+          opacity: .7;
+        }
+
+        swc-install-button {
+          --swc-bg-color: var(--ui-bg-color-primary);
+          --swc-text-color: rgba(var(--text-color-rgb));
+        }
+      }
+
+      .screenshot {
+        @include flex-center;
+
+        flex: 1;
+        max-height: 100%;
+        overflow: hidden;
+        position: relative;
+
+        img {
+          height: auto;
+          max-height: 250px;
+          max-width: 400px;
+          position: static;
+
+          @container main-container (min-width: 800px) {
+            position: absolute;
+            right: var(--padding);
+            top: 0;
+            max-height: revert;
+            max-width: 400px;
+            width: 300px;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .panels {
+    display: grid;
+    grid-gap: var(--swc-spacing);
+    grid-template-columns: 1fr;
+
+    @container main-container (min-width: 800px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .panel {
+      flex: 1;
+    }
+  }
+}

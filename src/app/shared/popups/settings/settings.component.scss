@@ -1,0 +1,65 @@
+@use '../../../../mixins' as *;
+
+:host {
+  --settings-padding: 2rem;
+
+  display: flex;
+  flex-direction: row;
+
+  @media screen and (min-width: 800px) {
+    max-width: 900px;
+    max-height: 623px;
+  }
+
+  .toc {
+    background-color: var(--ui-bg-color-tierary);
+    border-right: var(--ui-border-color) 1px solid;
+    display: flex;
+    flex-basis: 250px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+
+    .item {
+      @include flex-center(false);
+
+      border-bottom: var(--ui-border-color) 1px solid;
+      color: rgba(var(--text-color-rgb), .8);
+      cursor: pointer;
+      gap: .5rem;
+      padding: 1.3rem;
+      transition: var(--transition);
+      user-select: none;
+
+      swc-maskable-icon {
+        display: inline-block;
+      }
+
+      &:hover,
+      &.active {
+        opacity: 1;
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .35);
+      }
+
+      &.active {
+        background-color: var(--hint-color);
+        color: var(--color-white);
+      }
+    }
+  }
+
+  .content {
+    background-color: var(--ui-bg-color-secondary);
+    flex: 1;
+    overflow: auto;
+  }
+}
+
+.test {
+  width: 100%;
+}

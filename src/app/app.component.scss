@@ -1,0 +1,164 @@
+@use '../mixins' as *;
+@use '../variables' as *;
+
+:host {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    flex-direction: row;
+  }
+
+  nav {
+    background-color: var(--hint-color);
+    border-right: var(--ui-border-color) 1px solid;
+    color: var(--color-white);
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    height: $mobile-menu-height;
+    padding: 2rem;
+    width: 100%;
+
+    // Desktop layout
+    @media screen and (min-width: $mobile-breakpoint) {
+      background-color: inherit;
+      color: inherit;
+      flex-direction: column;
+      height: auto;
+      padding: 2rem 1rem;
+      width: $desktop-menu-width;
+    }
+
+    .logo {
+      padding-bottom: 2rem;
+      text-align: center;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        display: none;
+      }
+
+      img {
+        display: inline-block;
+        max-width: 98px;
+        height: auto;
+      }
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      gap: .5rem;
+
+      @media screen and (min-width: $mobile-breakpoint) {
+        flex-direction: column;
+      }
+
+      .nav-item {
+        @include flex-center;
+
+        border-radius: var(--border-radius-small);
+        cursor: pointer;
+        flex: 1;
+        flex-direction: column;
+        gap: .5rem;
+        transition: var(--transition);
+
+        swc-maskable-icon {
+          width: 20px;
+        }
+
+        // Mobile layout
+        @media screen and (max-width: $mobile-breakpoint) {
+          opacity: .5;
+
+          &:hover,
+          &.active {
+            opacity: 1;
+          }
+        }
+
+        // Desktop layout
+        @media screen and (min-width: $mobile-breakpoint) {
+          color: inherit;
+          flex: none;
+          flex-direction: column;
+          font-size: .8rem;
+          justify-content: left;
+          padding: 1.5rem;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, .2);
+          }
+
+          &.active {
+            color: var(--color-white);
+
+            @media screen and (min-width: $mobile-breakpoint) {
+              background-color: var(--hint-color);
+            }
+          }
+        }
+
+        &.back,
+        &.search,
+        &.nearby {
+          swc-maskable-icon {
+            width: 22px;
+          }
+        }
+      }
+    }
+
+    .settings {
+      display: grid;
+      grid-gap: .5rem;
+      grid-template-columns: 1fr 1fr;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        display: none;
+      }
+
+      .item {
+        @include flex-center;
+
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: var(--border-radius-medium);
+        cursor: pointer;
+        padding: 1rem 0;
+
+        &:not(.disabled):hover {
+          background-color: rgba(0, 0, 0, 0.08);
+        }
+
+        &.disabled {
+          opacity: .5;
+          pointer-events: none;
+          cursor: not-allowed;
+        }
+      }
+
+      .language img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  main {
+    flex: 1;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow: auto;
+    padding: 0 1rem;
+    container: main-container / inline-size;
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      padding: 0;
+    }
+  }
+}

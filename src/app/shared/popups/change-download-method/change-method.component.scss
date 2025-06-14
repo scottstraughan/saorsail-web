@@ -1,0 +1,65 @@
+@use '../../../../mixins' as *;
+
+:host {
+  @media screen and (min-width: 800px) {
+    max-height: 520px;
+    max-width: 600px;
+  }
+
+  .methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .5rem;
+
+    .method {
+      @include hoverable-item;
+
+      background-color: var(--ui-bg-color-secondary);
+      border-radius: var(--border-radius-medium);
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      opacity: .8;
+      overflow: hidden;
+      position: relative;
+
+      &.selected {
+        opacity: 1;
+
+        .status {
+          color: green;
+        }
+      }
+
+      .icon,
+      .label,
+      .status {
+        padding: .5rem;
+      }
+
+      .icon-container {
+        background-color: rgba(0, 0, 0, .02);
+        padding: 1.5rem 0;
+
+        .icon {
+          width: 50px;
+        }
+      }
+
+      .status {
+        position: absolute;
+        right: .5rem;
+        top: .5rem;
+      }
+
+      .label {
+        flex: 1;
+        padding: 1rem 0;
+      }
+    }
+  }
+
+  .actions {
+    padding: 1rem;
+  }
+}

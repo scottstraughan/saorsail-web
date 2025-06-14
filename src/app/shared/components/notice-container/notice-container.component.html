@@ -1,0 +1,15 @@
+<div class="container">
+  @if (loading()) {
+    <swc-loading-indicator></swc-loading-indicator>
+  }
+
+  @if (icon(); as icon) {
+    <swc-maskable-icon [icon]="icon"></swc-maskable-icon>
+  }
+
+  <h1>{{ title() }}</h1>
+
+  @if (subTitle(); as subTitle) {
+    <h2>{{ subTitle }}</h2>
+  }
+</div>

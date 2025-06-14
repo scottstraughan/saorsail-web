@@ -1,0 +1,46 @@
+<menu class="categories" #categoriesList>
+  @for (category of categories(); track category) {
+    <div class="category"
+         [class.active]="selectedCategory()?.id === category.id"
+         (click)="onCategorySelected(category)">
+      <swc-maskable-icon [icon]="getCategoriesIcon(category)"></swc-maskable-icon>
+      <div>{{ localizationService.getLocalized(category.name) | async }}</div>
+    </div>
+  }
+</menu>
+
+@if (selectedCategory(); as category) {
+  <div class="container">
+    <div class="wrapper">
+      <!-- Header -->
+      <header [style.background-image]="'url(' + packageService.getCategoriesThumbnail(category.id) + ')'">
+        <div class="title">
+          <h1>{{ localizationService.getLocalized(category.name) | async }}</h1>
+        </div>
+
+        <div class="filter-button" title="Change the filters" (click)="onChangeFilters()">
+          <swc-maskable-icon icon="thin/filter"></swc-maskable-icon>
+        </div>
+      </header>
+
+      <!-- Content -->
+      @if (loadState() == LoadingState.LOADING) {
+        <swc-notice-container title="Loading Applications" [loading]="true"></swc-notice-container>
+      } @else if (loadState() == LoadingState.LOAD_FAILED) {
+        <swc-notice-container title="Error Loading Applications" subTitle="Please refresh the page to try again"></swc-notice-container>
+      } @else if (loadState() == LoadingState.LOAD_SUCCESS) {
+        <div class="applications-wrapper">
+          <div class="applications">
+            @for (application of packages(); track application.namespace) {
+              <swc-application-widget [application]="application"></swc-application-widget>
+            }
+          </div>
+
+          @if (applicationsCategoryTotal() > packages().length) {
+            <swc-show-more-button [loading]="showMoreLoading()" (click)="onShowMore()"></swc-show-more-button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}

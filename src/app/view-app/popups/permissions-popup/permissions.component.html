@@ -1,0 +1,16 @@
+<header>
+  App Permissions ({{ version().manifest.versionName }})
+</header>
+
+<div class="permissions">
+  @for (permission of version().manifest.usesPermission; track permission.name) {
+    @if (getPermissionSdkUrl(permission); as permissionUrl) {
+      <a target="_blank"
+         rel="noopener"
+         class="permission"
+         [href]="permissionUrl">{{ permission.name }}</a>
+    } @else {
+      <div class="permission">{{ permission.name }}</div>
+    }
+  }
+</div>

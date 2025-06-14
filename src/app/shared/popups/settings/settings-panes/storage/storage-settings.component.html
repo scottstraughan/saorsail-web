@@ -1,0 +1,41 @@
+<swc-settings-block-item title="App Database" subTitle="Reload the application database">
+  <div class="state">
+    @if (loading()) {
+      <swc-loading-indicator class="indicator"></swc-loading-indicator>
+    } @else {
+      @if ((syncService.lastSyncDate() | async); as lastSyncDate) {
+        {{ lastSyncDate | date: 'medium' }}
+      } @else {
+        Unknown
+      }
+    }
+  </div>
+
+  <swc-icon-button
+      icon="thin/sync"
+      label="Reload Database"
+      [disabled]="loading()"
+      (click)="onReloadAppDatabase()"></swc-icon-button>
+</swc-settings-block-item>
+
+<swc-settings-block-item
+    class="update-time"
+    title="App Database Update Interval"
+    subTitle="Set how often do you wish to check for database updates">
+  <select (change)='onSyncIntervalChanged($event)'>
+    @for (interval of updateIntervals(); track $index) {
+      <option [value]="interval"
+              [selected]="currentUpdateInterval() == interval">{{ interval }}</option>
+    }
+  </select>
+</swc-settings-block-item>
+
+<swc-settings-block-item
+    title="Reset Marketplace"
+    subTitle="If you are having issues, reset the entire marketplace">
+  <swc-icon-button
+      icon="thin/sync"
+      label="Reset"
+      [disabled]="loading()"
+      (click)="onReset()"></swc-icon-button>
+</swc-settings-block-item>

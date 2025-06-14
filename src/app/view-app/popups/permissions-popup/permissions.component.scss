@@ -1,0 +1,28 @@
+@use '../../../../mixins' as *;
+@use '../../../../variables' as *;
+
+:host {
+  @media screen and (min-width: $mobile-breakpoint) {
+    max-height: 700px !important;
+    max-width: 600px !important;
+  }
+
+  .permissions {
+    overflow: auto;
+    padding: 1rem;
+
+    .permission {
+      display: flex;
+      padding: 1.5rem;
+      background-color: var(--ui-bg-color-primary);
+      border-radius: var(--border-radius-medium);
+      overflow: auto;
+      margin-bottom: .5rem;
+      cursor: default;
+    }
+
+    a.permission {
+      @include hoverable-item;
+    }
+  }
+}

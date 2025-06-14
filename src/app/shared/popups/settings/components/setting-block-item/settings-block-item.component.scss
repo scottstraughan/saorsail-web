@@ -1,0 +1,19 @@
+:host {
+  background-color: var(--ui-bg-color-tierary);
+  border-radius: var(--border-radius-small);
+  display: block;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+
+  h1 {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: .9rem;
+    font-weight: normal;
+    margin-top: .2rem;
+    opacity: .5;
+  }
+}

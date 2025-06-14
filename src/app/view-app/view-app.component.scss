@@ -1,0 +1,198 @@
+@use '../../mixins' as *;
+
+:host {
+  display: block;
+  --side-padding: 3rem;
+
+  --screenshot-top-offset: 20px;
+
+  .container {
+    @include content-container;
+
+    background-color: var(--ui-bg-color-primary);
+    min-height: 100vh;
+    position: relative;
+
+    .header-container {
+      background-color: var(--hint-color);
+      background-position: center;
+      background-size: 150% 150%;
+      border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+
+      header {
+        backdrop-filter: blur(70px);
+        background-color: rgba(24, 118, 210, .2);
+        color: var(--color-white);
+
+        .wrapper {
+          @include flex-center(false);
+
+          gap: 2rem;
+          height: 320px;
+          padding: 0 var(--side-padding);
+
+          .icon,
+          .title {
+            @include flex-center(false);
+          }
+
+          .icon img {
+            width: 75px;
+          }
+
+          .title {
+            flex: 1;
+
+            h1 {
+              margin-bottom: 0;
+            }
+
+            h2 {
+              margin-top: .2rem;
+              opacity: .6;
+            }
+          }
+
+          .actions {
+            align-items: flex-end;
+            display: flex;
+
+            swc-install-button {
+              transform: scale(1.4);
+            }
+          }
+        }
+      }
+
+      .overview {
+        backdrop-filter: blur(70px);
+        background-color: rgba(2, 18, 32, .5);
+        box-shadow: inset 0 4px 5px 0 rgba(0, 0, 0, .1);
+        color: var(--color-white);
+        cursor: default;
+        display: flex;
+        padding: 1.5rem var(--side-padding);
+
+        .item {
+          flex: 1;
+          text-align: center;
+
+          h1,
+          h2 {
+            margin: 0;
+            padding: 0;
+          }
+
+          h1 {
+            font-size: 1rem;
+            font-weight: normal;
+            opacity: .6;
+          }
+
+          h2 {
+            font-size: 1.2rem;
+            margin-top: .5rem;
+          }
+        }
+
+        .sep {
+          background-color: rgba(255, 255, 255, .1);
+          width: 1px;
+        }
+      }
+    }
+
+    .screenshots {
+      background-color: var(--ui-bg-color-secondary);
+      display: block;
+      overflow: auto;
+      padding: calc(.5rem + var(--screenshot-top-offset)) .5rem .5rem .5rem;
+      position: relative;
+      top: calc(var(--screenshot-top-offset) * -1);
+      white-space: nowrap;
+      z-index: 1;
+
+      .screenshot {
+        background-color: #ccc;
+        border-radius: var(--border-radius-medium);
+        display: inline-block;
+        flex: 1;
+        height: 649px;
+        margin: .5rem;
+        overflow: hidden;
+        width: 300px;
+
+        img {
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+
+    .contents {
+      padding: 0 var(--side-padding) var(--side-padding) var(--side-padding);
+
+      .old-version-message {
+        background-color: var(--color-red);
+        border-radius: var(--border-radius-small);
+        color: var(--color-white);
+        cursor: pointer;
+        margin: 1rem 0;
+        opacity: .8;
+        padding: 1rem;
+        text-align: center;
+        transition: var(--transition);
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      section {
+        padding: 2rem 0 0 0;
+
+        header h1 {
+          font-size: 1.2rem;
+          margin: 0 0 1rem 0;
+        }
+
+        &.information {
+          .panels {
+            display: grid;
+            grid-gap: .5rem;
+            grid-template-columns: 1fr 1fr;
+
+            .panel {
+              background-color: rgba(0, 0, 0, .1);
+              border-radius: var(--border-radius-medium);
+              padding: 2rem;
+              transition: var(--transition);
+
+              h1, h2 {
+                font-size: 1rem;
+                font-weight: normal;
+                margin: 0;
+              }
+
+              h1 {
+                opacity: .6;
+              }
+
+              h2 {
+                font-weight: bold;
+                margin-top: .2rem;
+              }
+
+              &.action {
+                @include hoverable-item;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

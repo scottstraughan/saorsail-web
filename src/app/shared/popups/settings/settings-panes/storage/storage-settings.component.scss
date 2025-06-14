@@ -1,0 +1,31 @@
+@use '../../../../../../mixins' as *;
+
+.state {
+  background-color: var(--ui-bg-color-secondary);
+  border-radius: var(--border-radius-medium);
+  margin-bottom: 1rem;
+  padding: 2rem;
+  text-align: center;
+
+  .indicator {
+    display: inline-block;
+    width: 1.2rem;
+  }
+}
+
+.update-time {
+  select {
+    background-color: var(--ui-bg-color-secondary);
+    border: var(--ui-border);
+    border-radius: var(--border-radius-small);
+    color: currentColor;
+    cursor: pointer;
+    padding: 1rem;
+    transition: var(--transition);
+    width: 100%;
+
+    &:hover {
+      background-color: var(--ui-bg-color-primary);
+    }
+  }
+}

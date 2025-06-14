@@ -1,0 +1,30 @@
+<header>
+  <swc-icon-input
+      #searchElement
+      icon="search"
+      (valueChange)="onSearchValueChanged($event)"></swc-icon-input>
+</header>
+
+@if (state() == SearchState.FOUND) {
+  <div class="results-container">
+    <div class="results">
+      @for (application of apps(); track application.namespace) {
+        <swc-application-widget
+            (clicked)="onAppClicked()"
+            [application]="application"></swc-application-widget>
+      }
+    </div>
+  </div>
+} @else if (state() == SearchState.NOT_FOUND) {
+  <swc-notice-container
+      icon="thin/no-results"
+      title="No Applications Found"></swc-notice-container>
+} @else if (state() == SearchState.SEARCHING) {
+  <swc-notice-container
+      [loading]="true"
+      title="Searching"></swc-notice-container>
+} @else if (state() == SearchState.NOT_STARTED) {
+  <swc-notice-container
+      icon="thin/type"
+      title="Please type to search"></swc-notice-container>
+}

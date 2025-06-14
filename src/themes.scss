@@ -1,0 +1,49 @@
+@use 'themes/dark-theme' as dark-theme;
+
+body {
+  --color-white: #efefef;
+  --color-green: #4c7700;
+  --color-blue: #1876d2;
+  --color-red: #b50000;
+  --color-yellow: #dc7d00;
+
+  --text-color-rgb: 0, 0, 0;
+  --hint-color: var(--color-blue);
+
+  --transition: .3s all;
+
+  --border-radius-small: 8px;
+  --border-radius-medium: 12px;
+  --border-radius-large: 20px;
+
+  --box-shadow-normal: 2px 2px 5px 0px rgba(0, 0, 0, .1);
+  --box-shadow-heavier: 2px 2px 5px 0px rgba(0, 0, 0, .2);
+
+  --ui-bg-color-primary: #fff;
+  --ui-bg-color-secondary: #ededed;
+  --ui-bg-color-tierary: #dcdcdc;
+
+  --ui-border-color: #cbcbcb;
+  --ui-border: var(--ui-border-color) 1px solid;
+
+  .show-theme-dark {
+    display: none !important;
+  }
+
+  .show-theme-light {
+    display: inherit;
+  }
+}
+
+// Dark theme
+body.theme-dark {
+  @include dark-theme.dark-theme();
+
+  .show-theme-dark {
+    display: inherit !important
+  }
+
+  .show-theme-light {
+    display: none !important;
+  }
+}

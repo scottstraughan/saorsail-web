@@ -1,0 +1,18 @@
+@if (method(); as method) {
+  <a class="wrapper" (click)="onInstall($event)" [href]="href()" target="_blank">
+    <div class="icon">
+      @if (loading()) {
+        <swc-loading-indicator class="loading"></swc-loading-indicator>
+      } @else {
+        <swc-maskable-icon [icon]="method.icon"></swc-maskable-icon>
+      }
+    </div>
+    <div class="title">
+      {{ title() }}
+    </div>
+  </a>
+}
+
+<div class="options" (click)="onOptionsClicked()">
+  <swc-maskable-icon icon="thin/more"></swc-maskable-icon>
+</div>

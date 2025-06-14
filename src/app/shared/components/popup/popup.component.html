@@ -1,0 +1,9 @@
+@if (component) {
+  <div class="close" (click)="onClose()">
+    <swc-maskable-icon class="close-icon" icon="thin/close"></swc-maskable-icon>
+  </div>
+
+  <div class="container">
+    <ng-container *ngComponentOutlet="component"></ng-container>
+  </div>
+}

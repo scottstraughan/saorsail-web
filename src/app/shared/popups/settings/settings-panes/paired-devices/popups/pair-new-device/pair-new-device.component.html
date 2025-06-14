@@ -1,0 +1,38 @@
+<div class="demo"></div>
+
+<div class="content">
+  <div class="details">
+    <h1>Pair New Device</h1>
+
+    <p>Install apps directly to your device from the marketplace by pairing with the Saorsail for Android app.</p>
+    <p>To pair, open the Saorsail App on your Android device and click "Pair via QR" code, and then scan the QR code
+    shown.</p>
+
+    <div class="pair">
+      <qrcode
+          class="qr-code"
+          colorDark="#000"
+          colorLight="#efefef"
+          [qrdata]="deviceCode()"
+          [width]="100"
+          [margin]="0"
+          [errorCorrectionLevel]="'M'"></qrcode>
+
+      <swc-icon-input
+          #nameInput
+          title="Name your paired device"
+          class="name"
+          icon="thin/name"
+          placeholder="Samsung Galaxy i9000"
+          [(value)]="deviceName"></swc-icon-input>
+    </div>
+  </div>
+
+  <div class="actions">
+    <swc-icon-button
+        icon="thin/add"
+        label="Pair Device"
+        [disabled]="!isValid()"
+        (click)="onAddDevice()"></swc-icon-button>
+  </div>
+</div>

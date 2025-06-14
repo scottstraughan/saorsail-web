@@ -1,0 +1,28 @@
+<swc-icon-button
+    class="pair-new-device"
+    label="Pair New Device"
+    icon="thin/add"
+    (click)="onAddPairedDevice()"></swc-icon-button>
+
+@if (pairedDevices().length > 0) {
+  <ul class="paired-devices">
+    @for (device of pairedDevices(); track device.code) {
+      <li>
+        <div class="info">
+          <h1 class="device-name">{{ device.name }}</h1>
+          <h2 class="device-code"><b>Pair Code:</b> {{ device.code }}</h2>
+        </div>
+        <div class="device-actions">
+          <swc-copy-input
+              #copyInputComponent
+              class="action"
+              [content]="device.code"></swc-copy-input>
+          <swc-maskable-icon
+              class="action delete"
+              icon="thin/delete"
+              (click)="onRemovePairedDevice(device)"></swc-maskable-icon>
+        </div>
+      </li>
+    }
+  </ul>
+}

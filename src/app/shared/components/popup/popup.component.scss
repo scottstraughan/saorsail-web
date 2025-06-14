@@ -1,0 +1,77 @@
+@use '../../../../variables' as *;
+@use '../../../../mixins' as *;
+
+:host {
+  --swc-popup-bg-color: rgba(0, 0, 0, .6);
+  --swc-popup-container-close-bg-color-hover: rgba(0, 0, 0, .1);
+  --swc-popup-container-close-color: var(--color-white);
+  --swc-popup-container-close-font-size: 70px;
+  --swc-popup-container-close-offset-top: calc(var(--nav-bar-height) - 20px);
+  --swc-popup-container-padding: 1rem;
+  --swc-popup-popup-border-radius-large: 30px;
+  --swc-popup-popup-border-radius-small: 16px;
+  --swc-popup-popup-min-height: 100px;
+
+  @include flex-center;
+
+  background-color: var(--swc-popup-bg-color);
+  bottom: 0;
+  flex-direction: column;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100vw;
+  z-index: 999999999999999999999999;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    height: 100%;
+    padding: var(--swc-popup-container-padding);
+    width: 100%;
+  }
+
+  .close {
+    cursor: pointer;
+    display: none;
+    width: 100%;
+
+    &:hover {
+      background-color: var(--swc-popup-container-close-bg-color-hover);
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      @include flex-center;
+
+      height: var(--swc-popup-container-close-offset-top);
+    }
+
+    .close-icon {
+      color: var(--color-white);
+      width: var(--swc-popup-container-close-font-size);
+    }
+  }
+
+  .container {
+    border-radius: var(--swc-popup-popup-border-radius-large) var(--swc-popup-popup-border-radius-large) 0 0;
+    overflow: hidden;
+    flex: 1;
+
+    ::ng-deep > * {
+      width: 100vw;
+      height: 100%;
+    }
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      border-radius: var(--swc-popup-popup-border-radius-small);
+      flex: none;
+
+      ::ng-deep > * {
+        min-width: 200px;
+        min-height: 200px;
+        width: 100vw;
+        height: 100vh;
+      }
+    }
+  }
+}

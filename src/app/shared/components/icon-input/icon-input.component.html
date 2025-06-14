@@ -1,0 +1,17 @@
+@if (icon(); as icon) {
+  <div class="icon">
+    <swc-maskable-icon [icon]="icon"></swc-maskable-icon>
+  </div>
+}
+
+<input class="input" #inputElement type="text" [(ngModel)]="value" [placeholder]="placeholder()" />
+
+@if (valid() !== undefined) {
+  <div class="validity">
+    @if (valid()) {
+      <swc-maskable-icon class="valid" icon="thin/checked"></swc-maskable-icon>
+    } @else {
+      <swc-maskable-icon class="invalid" icon="thin/unchecked"></swc-maskable-icon>
+    }
+  </div>
+}

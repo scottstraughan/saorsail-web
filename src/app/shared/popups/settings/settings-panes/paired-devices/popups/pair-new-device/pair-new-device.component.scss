@@ -1,0 +1,60 @@
+@use '../../../../../../../../mixins' as *;
+
+:host {
+  background-color: var(--ui-bg-color-secondary);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media screen and (min-width: 800px) {
+    max-width: 860px;
+    height: auto !important;
+  }
+
+  .demo {
+    @include flex-center;
+
+    background-image: url(/assets/img/settings/pair-example.webp);
+    background-size: cover;
+    background-color: #111;
+    background-position: center;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+
+    .details {
+      flex: 1;
+      padding: 2.5rem;
+
+      h1 {
+        font-size: 1.6rem;
+        margin: 0;
+      }
+
+      .name {
+        color: rgba(var(--text-color-rgb));
+        margin-top: 1rem;
+      }
+
+      .pair {
+        background-color: rgba(0, 0, 0, .05);
+        padding: 2rem;
+        border-radius: var(--border-radius-small);
+        box-shadow: var(--box-shadow-normal);
+        text-align: center;
+      }
+    }
+
+    .actions {
+      background-color: var(--ui-bg-color-tierary);
+      display: flex;
+      gap: .5rem;
+      padding: 1rem;
+
+      swc-icon-button {
+        flex: 1;
+      }
+    }
+  }
+}

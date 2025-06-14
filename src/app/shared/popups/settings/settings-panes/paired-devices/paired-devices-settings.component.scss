@@ -1,0 +1,62 @@
+@use '../../../../../../mixins' as *;
+
+.pair-new-device {
+  display: inline-flex;
+}
+
+.paired-devices {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  list-style: none inside none;
+  padding: 0;
+
+  li {
+    @include hoverable-item;
+
+    background-color: var(--ui-bg-color-primary);
+    border: rgba(0, 0, 0, .2) 1px solid;
+    border-radius: var(--border-radius-small);
+    cursor: default;
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+
+    .info {
+      flex: 1;
+
+      .device-name,
+      .device-code {
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .device-code {
+        font-size: .7rem;
+        font-weight: normal;
+        margin-top: .3rem;
+        opacity: .5;
+        word-break: break-all;
+        cursor: pointer;
+      }
+    }
+
+    .device-actions {
+      @include flex-center(false);
+
+      gap: .2rem;
+
+      .action {
+        cursor: pointer;
+        opacity: .5;
+        height: 24px;
+        transition: var(--transition);
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

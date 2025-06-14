@@ -1,0 +1,27 @@
+@use '../../../../mixins' as *;
+
+:host {
+  @include flex-center;
+
+  color: rgba(var(--text-color-rgb), .4);
+  height: 100%;
+  text-align: center;
+
+  .container {
+    swc-maskable-icon,
+    swc-loading-indicator {
+      display: inline-flex;
+      height: 70px;
+      width: 70px;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+}

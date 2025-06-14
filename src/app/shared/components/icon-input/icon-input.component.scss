@@ -1,0 +1,72 @@
+@use '../../../../mixins' as *;
+
+:host {
+  --swc-input-bg-color: var(--ui-bg-color-primary);
+  --swc-input-border: var(--ui-border-color);
+  --swc-input-shadow-focused: var(--box-shadow-heavier);
+  --swc-input-shadow-unfocused: var(--box-shadow-normal);
+  --swc-input-transition: var(--transition);
+  --swc-outide-padding: 1rem;
+  --swc-between-padding: .5rem;
+  --swc-border-radius: var(--border-radius-small);
+
+  @include flex-center(false);
+
+  background-color: var(--swc-input-bg-color);
+  border: var(--swc-input-border);
+  border-radius: var(--swc-border-radius);
+  box-shadow: var(--swc-input-shadow-unfocused);
+  gap: .5rem;
+  opacity: .7;
+  overflow: hidden;
+  transition: var(--swc-input-transition);
+  width: 100%;
+
+  &:hover {
+    box-shadow: var(--swc-input-shadow-focused);
+    opacity: 1;
+  }
+
+  .icon,
+  .input {
+    padding: var(--swc-outide-padding);
+  }
+
+  .input {
+    background-color: transparent;
+    border: none;
+    color: currentColor;
+    font-size: inherit;
+    outline: none;
+    padding-left: var(--swc-between-padding);
+    width: 100%;
+  }
+
+  swc-maskable-icon {
+    height: 26px;
+    width: 26px;
+  }
+
+  .icon {
+    @include flex-center(false);
+
+    background-color: rgba(0, 0, 0, .05);
+    border-right: var(--swc-input-border);
+    cursor: default;
+    height: 100%;
+    user-select: none;
+  }
+
+  .validity {
+    padding: 0 var(--swc-outide-padding) 0 0;
+
+    .valid {
+      color: var(--color-green);
+    }
+
+    .invalid {
+      color: currentColor;
+      opacity: .3;
+    }
+  }
+}

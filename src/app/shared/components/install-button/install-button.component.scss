@@ -1,0 +1,61 @@
+@use '../../../../mixins' as *;
+
+:host {
+  @include hoverable-item;
+
+  --swc-bg-color: var(--hint-color);
+  --swc-install-button-padding: .5rem;
+  --swc-text-color: var(--color-white);
+
+  background-color: var(--swc-bg-color);
+  border-radius: 30px;
+  color: var(--swc-text-color);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: .7rem;
+  overflow: hidden;
+  user-select: none;
+
+  .wrapper,
+  .options {
+    @include flex-center;
+    transition: var(--transition);
+  }
+
+  .wrapper {
+    padding: var(--swc-install-button-padding);
+
+    .icon,
+    .title {
+      @include flex-center;
+    }
+
+    .icon {
+      swc-loading-indicator,
+      swc-maskable-icon {
+        width: 17px;
+      }
+    }
+
+    .title {
+      padding-left: .3rem
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .4);
+    }
+  }
+
+  .options {
+    background-color: rgba(0, 0, 0, .2);
+    padding: 0 var(--swc-install-button-padding);
+
+    swc-maskable-icon {
+      width: 17px;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .4);
+    }
+  }
+}
