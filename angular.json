@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "localize": true,
+            "localize": false,
             "outputPath": "dist/saorsail-web-client",
             "index": "src/index.html",
             "browser": "src/main.ts",
