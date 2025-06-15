@@ -228,7 +228,7 @@ export class LocalizationService {
     },
     'en-US': {
       name: 'English (US)',
-      code: 'en-us',
+      code: 'en-US',
       icon: true
     },
     'eo': {
