@@ -10,21 +10,21 @@
   <div class="main">
     @if (isInAppView(); as backUrl) {
       <a [routerLink]="backUrl" class="nav-item active back">
-        <swc-maskable-icon icon="back"></swc-maskable-icon><span i18n>Back</span>
+        <swc-maskable-icon icon="thick/back"></swc-maskable-icon><span i18n>Back</span>
       </a>
     }
 
     <a class="nav-item search" (click)="onSearch()">
-      <swc-maskable-icon icon="search"></swc-maskable-icon><span i18n>Search</span>
+      <swc-maskable-icon icon="thick/search"></swc-maskable-icon><span i18n>Search</span>
     </a>
     <a routerLink="./categories" routerLinkActive="active" class="nav-item categories">
-      <swc-maskable-icon icon="categories"></swc-maskable-icon><span i18n>Categories</span>
+      <swc-maskable-icon icon="thick/categories"></swc-maskable-icon><span i18n>Categories</span>
     </a>
     <a routerLink="./latest" routerLinkActive="active" class="nav-item latest">
-      <swc-maskable-icon icon="latest"></swc-maskable-icon><span i18n>Latest</span>
+      <swc-maskable-icon icon="thick/latest"></swc-maskable-icon><span i18n>Latest</span>
     </a>
     <a routerLink="./popular" routerLinkActive="active" class="nav-item nearby">
-      <swc-maskable-icon icon="popular"></swc-maskable-icon><span i18n>Popular</span>
+      <swc-maskable-icon icon="thick/popular"></swc-maskable-icon><span i18n>Popular</span>
     </a>
   </div>
 
