@@ -11,6 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { PopupService } from './shared/components/popup/popup.service';
 import { SettingsComponent, SettingPanelId } from './shared/popups/settings/settings.component';
 import { SearchComponent } from './shared/popups/search/search.component';
+import { IconComponent } from './shared/components/icon/icon.component';
 
 @Component({
   selector: 'swc-app',
@@ -24,6 +25,7 @@ import { SearchComponent } from './shared/popups/search/search.component';
     AsyncPipe,
     LoadingIndicatorComponent,
     NgOptimizedImage,
+    IconComponent,
   ],
   styleUrl: './app.component.scss'
 })

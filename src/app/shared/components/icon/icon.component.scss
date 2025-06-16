@@ -1,0 +1,11 @@
+@use '../../../../mixins' as *;
+
+:host {
+  @include flex-center;
+
+  display: inline-flex;
+
+  img {
+    width: 100%;
+  }
+}
