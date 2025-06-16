@@ -99,7 +99,7 @@ export class InstallService {
             ErrorComponent, <ErrorPopupData> {
               title: 'Failed to Install',
               message: e.message,
-              icon: 'thin/error'
+              icon: 'general/error'
             });
 
           return of(e);

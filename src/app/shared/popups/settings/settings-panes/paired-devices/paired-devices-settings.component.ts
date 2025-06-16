@@ -22,7 +22,7 @@ import { ChangeEndpointComponent } from './popups/change-endpoint/change-endpoin
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PairedDevicesSettingsComponent {
-  public static icon: string = 'thin/phone';
+  public static icon: string = 'general/phone';
   public static title: string = 'Paired Devices';
 
   readonly pairedDevices: Signal<PairedDevice[]> = signal([]);

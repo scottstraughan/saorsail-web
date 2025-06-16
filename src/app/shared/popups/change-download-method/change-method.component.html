@@ -1,6 +1,6 @@
 <header>
   <div class="icon">
-    <swc-maskable-icon class="icon" icon="thick/search"></swc-maskable-icon>
+    <swc-maskable-icon class="icon" icon="general/search"></swc-maskable-icon>
   </div>
   <div class="title">
     Default Download Method
@@ -13,7 +13,7 @@
       <div class="method" (click)="onSelectDownloadMethod(method)" [class.selected]="selectedMethod().name == method.name">
         <div class="status">
           @if (selectedMethod().name == method.name) {
-            <swc-maskable-icon icon="thin/checked"></swc-maskable-icon>
+            <swc-maskable-icon icon="general/checked"></swc-maskable-icon>
           }
         </div>
         <div class="icon-container">
@@ -29,7 +29,7 @@
 
 <div class="actions">
   <swc-icon-button
-      icon="thin/add"
+      icon="general/add"
       label="Add New Paired Device"
       (click)="onAddPairedDevice()"></swc-icon-button>
 </div>

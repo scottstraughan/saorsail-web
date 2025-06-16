@@ -15,7 +15,7 @@ import { PopupInstance } from '../../components/popup/popup.service';
 export class ErrorComponent {
   readonly title: WritableSignal<string> = signal('');
   readonly message: WritableSignal<string> = signal('');
-  readonly icon: WritableSignal<string> = signal('thin/system');
+  readonly icon: WritableSignal<string> = signal('general/system');
 
   constructor(
     @Inject('FDM_POPUP') popupInstance: PopupInstance<ErrorComponent>,

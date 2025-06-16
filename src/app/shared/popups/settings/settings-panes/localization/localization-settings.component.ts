@@ -24,7 +24,7 @@ import { Local, LocalizationService } from '../../../../services/localization.se
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LocalizationSettingsComponent implements OnInit {
-  static icon: string = 'thin/language';
+  static icon: string = 'general/language';
   static title: string = 'Localization';
 
   readonly languages: WritableSignal<Local[]> = signal([]);

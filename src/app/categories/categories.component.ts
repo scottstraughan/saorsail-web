@@ -102,7 +102,7 @@ export class CategoriesComponent {
   getCategoriesIcon(
     category: Category
   ): string {
-    return `thin/${category.id.toLowerCase()}`;
+    return `categories/${category.id.toLowerCase()}`;
   }
 
   /**

@@ -3,7 +3,7 @@
     <a class="body" (click)="clicked.emit()" [routerLink]="'/app/' + application.namespace">
       @if (application.stars !== undefined && application.stars > 0) {
         <div class="stars" title="This application {{ application.stars }} on the source code repo">
-          <swc-maskable-icon class="star-icon" icon="thick/star"></swc-maskable-icon> {{ application.stars }}
+          <swc-maskable-icon class="star-icon" icon="general/star"></swc-maskable-icon> {{ application.stars }}
         </div>
       }
 

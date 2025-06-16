@@ -1,7 +1,7 @@
 <header>
   <swc-icon-input
       #searchElement
-      icon="thick/search"
+      icon="general/search"
       (valueChange)="onSearchValueChanged($event)"></swc-icon-input>
 </header>
 
@@ -17,7 +17,7 @@
   </div>
 } @else if (state() == SearchState.NOT_FOUND) {
   <swc-notice-container
-      icon="thin/no-results"
+      icon="general/no-results"
       title="No Applications Found"></swc-notice-container>
 } @else if (state() == SearchState.SEARCHING) {
   <swc-notice-container
@@ -25,6 +25,6 @@
       title="Searching"></swc-notice-container>
 } @else if (state() == SearchState.NOT_STARTED) {
   <swc-notice-container
-      icon="thin/type"
+      icon="general/type"
       title="Please type to search"></swc-notice-container>
 }

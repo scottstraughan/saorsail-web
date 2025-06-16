@@ -14,7 +14,7 @@ import { DisplayThemeService } from '../../../../services/display-theme.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AboutSettingsComponent {
-  static icon: string = 'thin/info';
+  static icon: string = 'general/info';
   static title: string = 'About';
 
   readonly darkTheme: WritableSignal<boolean> = signal(false);

@@ -28,7 +28,7 @@ import { PairedDevicesSettingsComponent } from '../paired-devices/paired-devices
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StorageSettingsComponent {
-  static icon: string = 'thin/sync';
+  static icon: string = 'general/sync';
   static title: string = 'Storage / Sync';
 
   readonly loading: Signal<boolean>;

@@ -2,12 +2,12 @@
   <swc-icon-button
       class="pair-new-device"
       label="Pair New Device"
-      icon="thin/add"
+      icon="general/add"
       (click)="onAddPairedDevice()"></swc-icon-button>
 
   <swc-icon-button
       class="change-endpoint"
-      icon="thin/cloud"
+      icon="general/cloud"
       (click)="onChangeEndpoint()"></swc-icon-button>
 </div>
 
@@ -26,7 +26,7 @@
               [content]="device.code"></swc-copy-input>
           <swc-maskable-icon
               class="action delete"
-              icon="thin/delete"
+              icon="general/delete"
               (click)="onRemovePairedDevice(device)"></swc-maskable-icon>
         </div>
       </li>
