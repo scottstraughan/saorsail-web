@@ -5,5 +5,5 @@ export const environment = {
   fdroidDatabaseBaseUrl: 'https://f-droid.org/repo',
   fdroidRepositoryUrl: 'https://database.saorsail.com/v1/repository.json',
   popularDatabaseUrl: 'https://database.saorsail.com/v1/popular.json',
-  installServiceEndpoint: 'https://saorsail-main-6e1e5bc.d2.zuplo.dev/install',
+  installServiceEndpoint: 'https://saorsail-main-6e1e5bc.d2.zuplo.dev',
 };

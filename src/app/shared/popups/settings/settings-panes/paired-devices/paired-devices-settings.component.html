@@ -1,8 +1,15 @@
-<swc-icon-button
-    class="pair-new-device"
-    label="Pair New Device"
-    icon="thin/add"
-    (click)="onAddPairedDevice()"></swc-icon-button>
+<div class="buttons">
+  <swc-icon-button
+      class="pair-new-device"
+      label="Pair New Device"
+      icon="thin/add"
+      (click)="onAddPairedDevice()"></swc-icon-button>
+
+  <swc-icon-button
+      class="change-endpoint"
+      icon="thin/cloud"
+      (click)="onChangeEndpoint()"></swc-icon-button>
+</div>
 
 @if (pairedDevices().length > 0) {
   <ul class="paired-devices">

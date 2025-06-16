@@ -7,6 +7,7 @@ import { IconButtonComponent } from '../../../../components/icon-button/icon-but
 import { PairedDevice, PairedDevicesService } from '../../../../services/paired-devices.service';
 import { PopupService } from '../../../../components/popup/popup.service';
 import { CopyInputComponent } from '../../../../components/copy-to-clipboard/copy-input.component';
+import { ChangeEndpointComponent } from './popups/change-endpoint/change-endpoint.component';
 
 @Component({
   imports: [
@@ -26,6 +27,9 @@ export class PairedDevicesSettingsComponent {
 
   readonly pairedDevices: Signal<PairedDevice[]> = signal([]);
 
+  /**
+   * Constructor.
+   */
   constructor(
     private pairedDevicesService: PairedDevicesService,
     private changeDetectorRef: ChangeDetectorRef,
@@ -43,14 +47,28 @@ export class PairedDevicesSettingsComponent {
     return PairedDevicesSettingsComponent.title;
   }
 
+  /**
+   * Remove a specific paired device.
+   */
   onRemovePairedDevice(
     device: PairedDevice
   ) {
     this.pairedDevicesService.delete(device);
   }
 
+  /**
+   * Called when a user wants to add a new paired device.
+   */
   onAddPairedDevice() {
     this.popupService.show(
       PairNewDeviceComponent, undefined);
+  }
+
+  /**
+   * Called when a user wishes to change the endpoint.
+   */
+  onChangeEndpoint() {
+    this.popupService.show(
+      ChangeEndpointComponent, undefined);
   }
 }

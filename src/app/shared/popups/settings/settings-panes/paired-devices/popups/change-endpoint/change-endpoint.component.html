@@ -1,0 +1,30 @@
+<div class="details">
+  <h1>Change Endpoint</h1>
+
+  <p>If you do not wish to use the default install-to-device endpoint, you can also setup and use your own!</p>
+  <p>Please visit <a href="https://github.com/scottstraughan/saorsail-middleware" target="_blank" rel="noopener">
+    this repository</a> to view how you can setup your own endpoint for free.</p>
+
+  <swc-icon-input icon="thin/cloud" [(value)]="endpoint"></swc-icon-input>
+
+  <swc-icon-button
+      class="use-default"
+      title="Use the default endpoint."
+      icon="thin/rollback"
+      label="Restore Default"
+      (click)="onUseDefault()"></swc-icon-button>
+</div>
+
+<div class="actions">
+  <swc-icon-button
+      title="Close and use the default."
+      icon="thin/close"
+      label="Cancel"
+      (click)="onClose()"></swc-icon-button>
+
+  <swc-icon-button
+      title="Save the new endpoint and use that from now on."
+      icon="thin/storage"
+      label="Save"
+      (click)="onSave()"></swc-icon-button>
+</div>
