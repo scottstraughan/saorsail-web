@@ -3,10 +3,10 @@
 :host {
   background-color: var(--ui-bg-color-secondary);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.1fr;
 
   @media screen and (min-width: 800px) {
-    max-width: 860px;
+    max-width: 790px;
     height: auto !important;
   }
 

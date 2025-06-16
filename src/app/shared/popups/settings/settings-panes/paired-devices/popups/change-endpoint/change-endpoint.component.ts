@@ -71,13 +71,6 @@ export class ChangeEndpointComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Close the popup.
-   */
-  onClose() {
-    this.popupInstance.close();
-  }
-
-  /**
    * Use the default endpoint.
    */
   onUseDefault() {
