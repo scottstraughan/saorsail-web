@@ -10,27 +10,27 @@
   <div class="main">
     @if (isInAppView(); as backUrl) {
       <a [routerLink]="backUrl" class="nav-item active back">
-        <swc-maskable-icon icon="back"></swc-maskable-icon><span i18n>Back</span>
+        <swc-icon icon="menu/back"></swc-icon><span i18n>Back</span>
       </a>
     }
 
     <a class="nav-item search" (click)="onSearch()">
-      <swc-maskable-icon icon="search"></swc-maskable-icon><span i18n>Search</span>
+      <swc-icon icon="menu/search"></swc-icon><span i18n>Search</span>
     </a>
     <a routerLink="./categories" routerLinkActive="active" class="nav-item categories">
-      <swc-maskable-icon icon="categories"></swc-maskable-icon><span i18n>Categories</span>
+      <swc-icon icon="menu/categories"></swc-icon><span i18n>Categories</span>
     </a>
     <a routerLink="./latest" routerLinkActive="active" class="nav-item latest">
-      <swc-maskable-icon icon="latest"></swc-maskable-icon><span i18n>Latest</span>
+      <swc-icon icon="menu/latest"></swc-icon><span i18n>Latest</span>
     </a>
     <a routerLink="./popular" routerLinkActive="active" class="nav-item nearby">
-      <swc-maskable-icon icon="popular"></swc-maskable-icon><span i18n>Popular</span>
+      <swc-icon icon="menu/popular"></swc-icon><span i18n>Popular</span>
     </a>
   </div>
 
   <div class="settings">
     <a (click)="onPairDevice()" class="item" title="Pair a new device">
-      <swc-maskable-icon icon="thin/phone"></swc-maskable-icon>
+      <swc-maskable-icon icon="general/phone"></swc-maskable-icon>
     </a>
 
     <a (click)="onSync()" class="item" [class.disabled]="syncing()" title="Sync the database">
@@ -38,7 +38,7 @@
     </a>
 
     <a (click)="onShowSettings()" class="item" title="Show the settings">
-      <swc-maskable-icon icon="thin/system"></swc-maskable-icon>
+      <swc-maskable-icon icon="general/system"></swc-maskable-icon>
     </a>
 
     <a (click)="onChangeLang()" class="item language" title="Change the language">

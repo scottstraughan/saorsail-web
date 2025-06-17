@@ -1,7 +1,12 @@
 @use '../../../../../../mixins' as *;
 
-.pair-new-device {
-  display: inline-flex;
+.buttons {
+  display: flex;
+  justify-content: space-between;
+
+  .change-endpoint {
+    justify-content: flex-end;
+  }
 }
 
 .paired-devices {

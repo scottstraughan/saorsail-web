@@ -147,7 +147,7 @@ export class SyncService {
       ErrorComponent, <ErrorPopupData> {
         title: 'Syncing...',
         message: 'The database is currently downloading, please wait before moving around the marketplace.',
-        icon: 'thin/sync'
+        icon: 'general/sync'
       });
   }
 

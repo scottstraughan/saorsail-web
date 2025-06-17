@@ -16,7 +16,7 @@ import { DisplayTheme, DisplayThemeService, ThemeColor } from '../../../../servi
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DisplaySettingsComponent {
-  static icon: string = 'thin/phone';
+  static icon: string = 'general/phone';
   static title: string = 'Display';
 
   /**

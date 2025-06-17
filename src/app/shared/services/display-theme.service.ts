@@ -23,13 +23,13 @@ export class DisplayThemeService {
   static readonly THEMES: DisplayTheme[] = [
     {
       name: 'Light Mode',
-      icon: './assets/settings/display/theme-light.webp',
+      icon: './assets/img/settings/display/theme-light.webp',
       class: 'theme-light',
       isDark: false,
     },
     {
       name: 'Dark Mode',
-      icon: './assets/settings/display/theme-dark.webp',
+      icon: './assets/img/settings/display/theme-dark.webp',
       class: 'theme-dark',
       isDark: true
     }

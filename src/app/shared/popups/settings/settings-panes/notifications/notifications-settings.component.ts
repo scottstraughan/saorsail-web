@@ -18,7 +18,7 @@ import { NotificationService, UserNotificationState } from '../../../../services
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationsSettingsComponent {
-  static icon: string = 'thin/notification';
+  static icon: string = 'general/notification';
   static title: string = 'Notifications';
 
   protected readonly notificationsState: Signal<UserNotificationState>;

@@ -1,0 +1,39 @@
+@use '../../../../../../../../mixins' as *;
+
+:host {
+  background-color: var(--ui-bg-color-secondary);
+  display: block;
+
+  @media screen and (min-width: 800px) {
+    height: auto !important;
+    max-width: 600px;
+  }
+
+  .details {
+    padding: 2.5rem;
+
+    h1 {
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    a {
+      font-weight: bold;
+    }
+
+    .use-default {
+      margin-top: 1rem;
+    }
+  }
+
+  .actions {
+    background-color: var(--ui-bg-color-tierary);
+    display: flex;
+    gap: .5rem;
+    padding: 1rem;
+
+    swc-icon-button {
+      flex: 1;
+    }
+  }
+}

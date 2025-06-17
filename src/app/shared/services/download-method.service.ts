@@ -14,7 +14,7 @@ export class DownloadMethodService {
   private defaultMethod: DownloadMethod = {
     type: DownloadMethodType.DOWNLOAD,
     name: 'Download the APK',
-    icon: 'thin/download'
+    icon: 'general/download'
   };
 
   readonly method$: BehaviorSubject<DownloadMethod> = new BehaviorSubject<DownloadMethod>(this.getDefaultMethod());
@@ -28,7 +28,7 @@ export class DownloadMethodService {
       .pipe(
         tap(devices => this.methods = [this.defaultMethod].concat(devices.map(device => <DownloadMethod> {
           type: DownloadMethodType.INSTALL,
-          icon: 'thin/phone',
+          icon: 'general/phone',
           name: `Install to ${device.name}`,
           pairedDevice: device
         }))),

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { Application, ApplicationVersion } from '../models/repository.model';
 import { DownloadMethod } from './download-method.service';
 import { LocalizationService } from './localization.service';
@@ -9,6 +9,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PopupService } from '../components/popup/popup.service';
 import { ErrorComponent, ErrorPopupData } from '../popups/error/error.component';
 import { environment } from '../../../environments/environment';
+import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,27 +18,39 @@ export class InstallService {
   /**
    * The endpoint to send install requests to.
    */
-  static readonly INSTALL_SERVICE_ENDPOINT = environment.installServiceEndpoint;
+  private static readonly INSTALL_ENDPOINT_STORAGE_KEY = 'swc-install-endpoint';
+
+  /**
+   * The endpoint to send install requests to.
+   */
+  public static readonly INSTALL_SERVICE_ENDPOINT = environment.installServiceEndpoint;
+
+  /**
+   * Observable that can be used to track changes to the install endpoint.
+   * @private
+   */
+  private installServiceEndpoint$: BehaviorSubject<string>
+    = new BehaviorSubject<string>(InstallService.INSTALL_SERVICE_ENDPOINT);
 
   /**
    * Constructor.
-   * @param localizationService
-   * @param notificationService
-   * @param httpClient
-   * @param popupService
    */
   constructor(
     private localizationService: LocalizationService,
     private notificationService: NotificationService,
     private httpClient: HttpClient,
-    private popupService: PopupService
-  ) { }
+    private popupService: PopupService,
+    @Inject(LOCAL_STORAGE) private storageService: StorageService
+  ) {
+    const installEndpoint = this.storageService.get(InstallService.INSTALL_ENDPOINT_STORAGE_KEY);
+
+    if (installEndpoint) {
+      this.installServiceEndpoint$.next(installEndpoint);
+    }
+  }
 
   /**
    * Being the process of installing an app to a device.
-   * @param application
-   * @param method
-   * @param version
    */
   install(
     application: Application,
@@ -86,7 +99,7 @@ export class InstallService {
             ErrorComponent, <ErrorPopupData> {
               title: 'Failed to Install',
               message: e.message,
-              icon: 'thin/error'
+              icon: 'general/error'
             });
 
           return of(e);
@@ -96,12 +109,33 @@ export class InstallService {
 
   /**
    * Get a download URL for the APK.
-   * @param version
    */
   getDownloadApkUrl(
     version: ApplicationVersion
   ): string {
     return FdroidRepositoryService.REPOSITORY_BASE_URL + version.file.name;
+  }
+
+  /**
+   * Observe the install endpoint.
+   */
+  observeEndpoint(): Observable<string> {
+    return this.installServiceEndpoint$.asObservable();
+  }
+
+  /**
+   * Set the endpoint to use.
+   * @param endpoint
+   */
+  setEndpoint(
+    endpoint: string
+  ) {
+    if (!InstallService.isValidUrl(endpoint)) {
+      throw new Error('The provided URL is not valid.');
+    }
+
+    this.installServiceEndpoint$.next(endpoint);
+    this.storageService.set(InstallService.INSTALL_ENDPOINT_STORAGE_KEY, endpoint);
   }
 
   /**
@@ -112,7 +146,7 @@ export class InstallService {
   private installToDevice(
     installRequest: InstallRequest,
   ) {
-    return this.httpClient.post(InstallService.INSTALL_SERVICE_ENDPOINT, installRequest, {
+    return this.httpClient.post(this.installServiceEndpoint$.value + '/install', installRequest, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'text/plain'
@@ -122,6 +156,23 @@ export class InstallService {
       tap(() =>
         console.log(installRequest)),
     );
+  }
+
+  /**
+   * Check if a URL is valid or not.
+   * https://stackoverflow.com/a/43467144
+   * @private
+   */
+  private static isValidUrl(
+    url: any
+  ): boolean {
+    try {
+      url = new URL(url);
+    } catch (_) {
+      return false;
+    }
+
+    return url.protocol === "http:" || url.protocol === "https:";
   }
 }
 

@@ -11,16 +11,16 @@
           (click)="onAskPermission()"></swc-icon-button>
     } @else if (notificationsState() == UserNotificationState.GRANTED) {
       <div class="state granted">
-        <swc-maskable-icon icon="thin/checked"></swc-maskable-icon>
+        <swc-maskable-icon icon="general/checked"></swc-maskable-icon>
         You have granted permission for alerts to be shown.
       </div>
 
       <swc-icon-button
-          label="Send Test Notificaiton"
+          label="Send Test Notification"
           (click)="onSendTestNotification()"></swc-icon-button>
     } @else if (notificationsState() == UserNotificationState.DENIED) {
       <div class="state denied">
-        <swc-maskable-icon icon="thin/off"></swc-maskable-icon>
+        <swc-maskable-icon icon="general/off"></swc-maskable-icon>
         You have denied permission for alerts to be shown. To change, check your browser settings.
       </div>
     }
