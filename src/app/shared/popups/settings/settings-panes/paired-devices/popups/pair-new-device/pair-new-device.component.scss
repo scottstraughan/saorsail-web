@@ -3,7 +3,7 @@
 :host {
   background-color: var(--ui-bg-color-secondary);
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr 1.2fr;
 
   @media screen and (min-width: 800px) {
     max-width: 790px;
@@ -26,6 +26,15 @@
     .details {
       flex: 1;
       padding: 2.5rem;
+
+      a {
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
 
       h1 {
         font-size: 1.6rem;

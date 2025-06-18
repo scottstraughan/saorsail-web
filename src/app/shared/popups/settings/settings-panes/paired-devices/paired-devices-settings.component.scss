@@ -2,11 +2,7 @@
 
 .buttons {
   display: flex;
-  justify-content: space-between;
-
-  .change-endpoint {
-    justify-content: flex-end;
-  }
+  gap: .5rem;
 }
 
 .paired-devices {
