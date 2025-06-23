@@ -13,24 +13,28 @@
   }
 
   nav {
-    background-color: var(--hint-color);
+    background-color: var(--color-white);
     border-right: var(--ui-border-color) 1px solid;
-    color: var(--color-white);
     display: flex;
     flex-direction: row;
     gap: 1rem;
     height: $mobile-menu-height;
     padding: 2rem;
     width: 100%;
+    font-size: 12px;
+    box-shadow: 0px -4px 14px 0px rgba(0, 0, 0, .1);
+    border-radius: 15px 15px 0 0;
 
     // Desktop layout
     @media screen and (min-width: $mobile-breakpoint) {
       background-color: inherit;
-      color: inherit;
       flex-direction: column;
       height: auto;
       padding: 2rem 1rem;
       width: $desktop-menu-width;
+      font-weight: normal;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .logo {
@@ -154,11 +158,6 @@
     flex-direction: column;
     max-height: 100vh;
     overflow: auto;
-    padding: 0 1rem;
     container: main-container / inline-size;
-
-    @media screen and (min-width: $mobile-breakpoint) {
-      padding: 0;
-    }
   }
 }
