@@ -24,11 +24,9 @@
     </a>
 
     <div class="actions">
-      <div>
-        <swc-install-button
-            [application]="application"
-            [version]="applicationService.getLatestVersion(application)"></swc-install-button>
-      </div>
+      <swc-install-button
+          [application]="application"
+          [version]="applicationService.getLatestVersion(application)"></swc-install-button>
     </div>
   </div>
 }
