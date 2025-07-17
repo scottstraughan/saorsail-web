@@ -3,6 +3,7 @@ import { map, Observable, tap } from 'rxjs';
 import { Application, ApplicationVersion, Category } from '../models/repository.model';
 import { DatabaseService } from './database.service';
 import { Filters, OrderBy, OrderDirection } from '../models/filters.model';
+import { TestBooleanFilterGroup, TestFilter, TestFilters } from './filter2.service';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,87 @@ export class ApplicationService {
           results: applications
         })
       )
+  }
+
+  getFiltered(
+    filters: Filters
+  ): Observable<PartialResult<Application>> {
+    let totalResultsCount = 0;
+    let filteredResultsCount = 0;
+
+    return this.databaseService.getAll<Application>('applications')
+      .pipe(
+        tap(applications =>
+          totalResultsCount = applications.length),
+        map(applications =>
+          ApplicationService.filter(filters.filters, applications)),
+        tap(applications =>
+          filteredResultsCount = applications.length),
+        map(applications => applications.sort((a: Application, b: Application) =>
+          a.metadata.added < b.metadata.added ? 1 : -1)),
+        map(applications =>
+          applications.slice(filters.offset, filters.limit + filters.offset)),
+        map(applications =>
+          this.sortApplications(filters, applications)),
+        map(applications => <PartialResult<Application>> {
+          totalResultsCount: totalResultsCount,
+          filteredResultsCount: filteredResultsCount,
+          currentResultsCount: applications.length,
+          results: applications
+        })
+      )
+  }
+
+  static filter(
+    filters: TestFilters | undefined,
+    applications: Application[]
+  ): Application[] {
+    if (!filters)
+      return applications;
+
+    const found: Application[] = [];
+
+    const categories = (filters.getFilter('categories') as TestBooleanFilterGroup).getEnabled()
+      .map(category => category.toLowerCase());
+
+    const keywordFilterStrings = (filters.getFilter('keywords') as TestBooleanFilterGroup).value.toString().toLowerCase();
+    const enabledStars = filters.getFilter('stars').getEnabled();
+    const enabledLicenses: string[] = filters.getFilter('license').getEnabled();
+
+
+    for (const application of applications) {
+      let passedFilters = true;
+
+      // Ensure apps pass keyword filter checks
+      if (keywordFilterStrings.length > 0
+        && !JSON.stringify(application.metadata).toLowerCase().includes(keywordFilterStrings))
+        continue
+
+      // Ensure apps pass categories filter checks
+      if (categories.length > 0
+        && !categories.some(category => application.metadata.categories.includes(category)))
+        continue
+
+      // Ensure apps pass stars checks
+      if (enabledStars.length > 0) {
+        for (const stars of enabledStars) {
+          if (application.stars == undefined || application.stars < Number.parseInt(stars))
+            passedFilters = false;
+        }
+      }
+
+      // Ensure apps pass license filter checks
+      if (enabledLicenses.length > 0)  {
+        if (!enabledLicenses.some(license => application.metadata.license.includes(license)))
+          passedFilters = false;
+      }
+
+      // App has passed all filter checks, add it to "the list"
+      if (passedFilters)
+        found.push(application);
+    }
+
+    return found;
   }
 
   getPopular(
@@ -115,8 +197,8 @@ export class ApplicationService {
 
     return this.databaseService.getAll<Application>('applications')
       .pipe(
-        map(applications =>
-          applications.filter(aPackage => aPackage.metadata.categories.includes(filters.category.id))),
+        //map(applications =>
+        //  applications.filter(aPackage => aPackage.metadata.categories.includes(filters.category.id))),
         map(applications =>
           this.sortApplications(filters, applications)),
         tap(applications =>
@@ -269,6 +351,7 @@ export class ApplicationService {
 
 export interface PartialResult<T> {
   totalResultsCount: number
+  filteredResultsCount: number
   currentResultsCount: number
   results: T[]
 }

@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { LatestComponent } from './latest/latest.component';
-import { CategoriesComponent } from './categories/categories.component';
 import { ViewAppComponent } from './view-app/view-app.component';
 import { PopularComponent } from './popular/popular.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRouteGuard } from './app.route-guard';
+import { BrowseComponent } from './browse/browse.component';
 
 export const routes: Routes = [
   {
@@ -18,13 +18,8 @@ export const routes: Routes = [
     canDeactivate: [AppRouteGuard],
   },
   {
-    path: 'categories',
-    component: CategoriesComponent,
-    canDeactivate: [AppRouteGuard],
-  },
-  {
-    path: 'categories/:categoryId',
-    component: CategoriesComponent,
+    path: 'browse',
+    component: BrowseComponent,
     canDeactivate: [AppRouteGuard],
   },
   {

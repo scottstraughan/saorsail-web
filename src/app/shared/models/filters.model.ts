@@ -1,10 +1,10 @@
-import { Category } from './repository.model';
+import { TestFilters } from '../services/filter2.service';
 
 export interface Filters {
   order: Order
-  category: Category
   limit: number
   offset: number
+  filters?: TestFilters
 }
 
 export interface Order {

@@ -3,9 +3,7 @@ import { ApplicationService } from '../shared/services/application.service';
 import { map, Observable, take, tap } from 'rxjs';
 import { Application, ImageReference } from '../shared/models/repository.model';
 import { LocalizationService } from '../shared/services/localization.service';
-import { AsyncPipe } from '@angular/common';
 import { ApplicationWidgetComponent } from '../shared/components/application-widget/application-widget.component';
-import { InstallButtonComponent } from '../shared/components/install-button/install-button.component';
 import { ShowMoreButtonComponent } from '../shared/components/show-more-button/show-more-button.component';
 import { FdroidRepositoryService } from '../shared/services/repository/fdroid-repository.service';
 import { Title } from '@angular/platform-browser';
@@ -16,9 +14,7 @@ import { LoadingIndicatorComponent } from '../shared/components/loading-indicato
   selector: 'swc-latest',
   standalone: true,
   imports: [
-    AsyncPipe,
     ApplicationWidgetComponent,
-    InstallButtonComponent,
     ShowMoreButtonComponent,
     LoadingIndicatorComponent
   ],

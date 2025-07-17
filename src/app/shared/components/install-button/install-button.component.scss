@@ -5,7 +5,7 @@
   @include hoverable-item;
 
   --swc-bg-color: var(--hint-color);
-  --swc-install-button-padding: .5rem;
+  --swc-install-button-padding: .6rem;
   --swc-text-color: var(--color-white);
 
   background-color: var(--swc-bg-color);
@@ -17,6 +17,10 @@
   overflow: hidden;
   user-select: none;
   width: 100%;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    width: auto;
+  }
 
   .wrapper,
   .options {

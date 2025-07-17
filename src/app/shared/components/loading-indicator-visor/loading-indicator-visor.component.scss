@@ -1,0 +1,47 @@
+:host {
+  --swc-loading-indicator-visor-track-color: rgba(0, 0, 0, .3);
+  --swc-loading-indicator-visor-nipple-color: var(--hint-color);
+  --swc-loading-indicator-visor-nipple-width: 30%;
+  --swc-loading-indicator-visor-height: 30px;
+  --swc-loading-indicator-visor-width: 50%;
+  --swc-loading-indicator-visor-speed: 2.5s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .track {
+    background-color: var(--swc-loading-indicator-visor-track-color);
+    border-radius: 20px;
+    width: var(--swc-loading-indicator-visor-width);
+    height: var(--swc-loading-indicator-visor-height);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 1px 2px 25px 0 rgba(0, 0, 0, .15) inset;
+  }
+
+  .nipple {
+    background-color: var(--swc-loading-indicator-visor-nipple-color);
+    width: var(--swc-loading-indicator-visor-nipple-width);
+    height: var(--swc-loading-indicator-visor-height);
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: loading var(--swc-loading-indicator-visor-speed) infinite linear;
+  }
+
+  @keyframes loading {
+    0% {
+      left: 0;
+    }
+    50% {
+      left: calc(100% - var(--swc-loading-indicator-visor-nipple-width));
+    }
+    100% {
+      left: 0;
+    }
+  }
+}

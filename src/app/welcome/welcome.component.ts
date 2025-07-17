@@ -46,7 +46,7 @@ export class WelcomeComponent implements OnInit {
     this.databaseService.inValidState('categories')
       .then(ready => {
         if (ready) {
-          this.router.navigate(['categories'], { replaceUrl: true })
+          this.router.navigate(['browse'], { replaceUrl: true })
             .then();
         } else {
           this.reset();
