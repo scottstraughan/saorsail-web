@@ -24,6 +24,7 @@
     font-size: 12px;
     box-shadow: 0px -4px 14px 0px rgba(0, 0, 0, .1);
     border-radius: 15px 15px 0 0;
+    color: var(--color-black);
 
     // Desktop layout
     @media screen and (min-width: $mobile-breakpoint) {
@@ -35,6 +36,7 @@
       font-weight: normal;
       border-radius: 0;
       box-shadow: none;
+      color: var(--text-color-rgb);
     }
 
     .logo {
@@ -159,5 +161,10 @@
     max-height: 100vh;
     overflow: auto;
     container: main-container / inline-size;
+    padding: 0 1rem;
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      padding: 0;
+    }
   }
 }

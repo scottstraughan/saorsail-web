@@ -1,0 +1,39 @@
+@use '../../../../mixins' as *;
+
+:host {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+
+  &.fill {
+    flex-direction: column;
+  }
+
+  .item {
+    @include hoverable-item;
+
+    display: flex;
+    gap: .5rem;
+    padding: .8rem 1rem;
+    background-color: var(--ui-bg-color-tierary);
+    border-radius: var(--border-radius-large);
+
+    &.selected {
+      background-color: var(--hint-color);
+      color: var(--color-white);
+    }
+
+    .icon,
+    .name {
+      @include flex-center(false)
+    }
+
+    .icon {
+      width: 20px;
+    }
+
+    .name {
+      flex: 1;
+    }
+  }
+}

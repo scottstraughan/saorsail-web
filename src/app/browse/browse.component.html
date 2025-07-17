@@ -1,0 +1,88 @@
+<div class="filters" [class.closed]="!showFilters()">
+  <div class="header" (click)="onFiltersClose()">
+    <swc-icon class="close" [size]="38" icon="general/close" />
+  </div>
+
+  <div class="block">
+    <div class="title">Search</div>
+    @if (filters().getFilter('keywords'); as filter) {
+      <swc-icon-input [value]="filter.value" (valueChange)="onKeywordsChanged($event)" icon="general/search" />
+    }
+  </div>
+
+  <div class="block">
+    <div class="title">Categories</div>
+    @if (filters().getFilter('categories'); as booleanFilterGroup) {
+      <swc-multi-select
+          [items]="MultiSelectComponent.fromFilter(booleanFilterGroup)"
+          (selectionChange)="onBooleanFilterGroupChanged(booleanFilterGroup, $event)" />
+    }
+  </div>
+
+  <div class="block">
+    <div class="title">Stars</div>
+    @if (filters().getFilter('stars'); as booleanFilterGroup) {
+      <swc-multi-select
+          [items]="MultiSelectComponent.fromFilter(booleanFilterGroup)"
+          (selectionChange)="onBooleanFilterGroupChanged(booleanFilterGroup, $event)" />
+    }
+  </div>
+
+  <div class="block">
+    <div class="title">License</div>
+    @if (filters().getFilter('license'); as booleanFilterGroup) {
+      <swc-multi-select
+          [items]="MultiSelectComponent.fromFilter(booleanFilterGroup)"
+          (selectionChange)="onBooleanFilterGroupChanged(booleanFilterGroup, $event)" />
+    }
+  </div>
+
+  <div class="block">
+    <div class="title">Sort</div>
+    <select
+        name="order"
+        [ngModel]="selectedOrder()"
+        (ngModelChange)="onOrderChanged($event)"
+        [compareWith]="compareOrder">
+      @for (order of DefaultOrderFilters; track order) {
+        <option [ngValue]="order">{{ getFriendlyOrder(order) | titlecase }}</option>
+      }
+    </select>
+
+  </div>
+</div>
+
+<div class="container content-container">
+  <header class="splash">
+    <div class="title">
+      <h1>Browse Apps</h1>
+      <h2>Get involved and download the most popular apps from the store</h2>
+    </div>
+    <div class="header-icon">
+      <img class="header-icon" src="/assets/icons/menu/popular.svg" alt="Popular" />
+    </div>
+  </header>
+
+  @if (loading()) {
+    <swc-loading-indicator class="dimmed"></swc-loading-indicator>
+  } @else {
+    <div class="info">
+      <div class="message">
+        Showing {{ apps().length }} apps, found {{ filtererAppCount() }} of total {{ totalAppsCount() }}
+      </div>
+      <div class="action">
+        <swc-icon-button (click)="onShowFilters()" label="Change Filters" />
+      </div>
+    </div>
+
+    <div class="app-list">
+      @for (app of apps(); track app.namespace) {
+        <swc-application-widget [application]="app"></swc-application-widget>
+      }
+
+      @if (apps().length < filtererAppCount()) {
+        <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
+      }
+    </div>
+  }
+</div>

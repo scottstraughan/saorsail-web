@@ -1,7 +1,13 @@
 :host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
   swc-maskable-icon {
     height: auto;
     width: 100%;
+    max-width: 100px;
 
     &.loading {
       animation: rotate 1s infinite reverse linear;

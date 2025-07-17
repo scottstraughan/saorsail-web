@@ -1,0 +1,110 @@
+@use '../../variables' as *;
+
+:host {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  font-size: .9rem;
+
+  .filters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: var(--ui-bg-color-secondary);
+    height: 100vh;
+
+    &.closed {
+      display: none;
+    }
+
+    .header {
+      background-color: var(--hint-color);
+      color: var(--color-white);
+      padding: 1rem;
+
+      .close {
+        width: 100%;
+      }
+    }
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      position: static;
+      display: block;
+      width: 350px;
+      height: 100vh;
+      border-right: var(--ui-border-color) 1px solid;
+      overflow: auto;
+
+      .header {
+        display: none;
+      }
+
+      &.closed {
+        display: block;
+      }
+    }
+
+    .block {
+      padding: 2rem 1.5rem;
+
+      .title {
+        font-size: 1.1rem;
+        padding-bottom: 1rem;
+      }
+
+      &:not(:last-of-type) {
+        border-bottom: var(--ui-border-color) 1px solid;
+      }
+    }
+
+    select {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+
+  .container {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      padding: 0 1rem;
+
+      .splash {
+        display: none;
+      }
+    }
+  }
+
+  .info {
+    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+
+    .message {
+      padding: 1rem;
+      background-color: var(--ui-bg-color-secondary);
+      border-radius: var(--border-radius-medium);
+      flex: 1;
+    }
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      margin-top: 0;
+      border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+
+      .action {
+        display: none;
+      }
+
+      .message {
+        background-color: var(--hint-color);
+        color: var(--color-white);
+        border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+      }
+    }
+  }
+}

@@ -1,7 +1,10 @@
 @use '../../mixins' as *;
+@use '../../variables' as *;
 
 :host {
   @include flex-center;
+
+  --icon-size: 55px;
 
   position: fixed;
   background-color: rgba(0, 0, 0, .6);
@@ -18,7 +21,7 @@
     height: 100vh;
     width: 100vw;
 
-    @media screen and (min-width: 800px) {
+    @media screen and (min-width: $mobile-breakpoint) {
       max-height: 700px;
       max-width: 900px;
       display: grid;
@@ -27,15 +30,18 @@
     }
 
     .splash {
-      position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-gap: 2rem;
       padding: 4rem;
       flex: 1;
+      background-color: var(--ui-bg-color-secondary);
 
       .item {
         @include flex-center;
+
+        height: var(--icon-size);
+        position: relative;
 
         &.item:nth-of-type(1n + 1) img {
           animation: float 2s ease-in-out infinite;
@@ -66,15 +72,17 @@
         display: none;
       }
 
-      @media screen and (min-width: 800px) {
+      @media screen and (min-width: $mobile-breakpoint) {
         .row4, .row5 {
           display: block;
         }
       }
 
       img {
+        top: 0;
+        left: 0;
         position: absolute;
-        width: 55px;
+        width: var(--icon-size);
         height: auto;
         border-radius: var(--border-radius-large);
       }

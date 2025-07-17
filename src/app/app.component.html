@@ -1,11 +1,11 @@
 <nav>
-  <div class="logo">
+  <a class="logo" routerLink="/">
     <img [ngSrc]="darkTheme() ? '../assets/img/logo-white.svg' : '../assets/img/logo-black.svg'"
          priority
          alt="Saorsail Logo"
          height="48"
          width="160" />
-  </div>
+  </a>
 
   <div class="main">
     @if (isInAppView(); as backUrl) {
@@ -14,11 +14,8 @@
       </a>
     }
 
-    <a class="nav-item search" (click)="onSearch()">
-      <swc-icon icon="menu/search"></swc-icon><span i18n>Search</span>
-    </a>
-    <a routerLink="./categories" routerLinkActive="active" class="nav-item categories">
-      <swc-icon icon="menu/categories"></swc-icon><span i18n>Categories</span>
+    <a routerLink="./browse" routerLinkActive="active" class="nav-item browse">
+      <swc-icon icon="menu/categories"></swc-icon><span i18n>Browse</span>
     </a>
     <a routerLink="./latest" routerLinkActive="active" class="nav-item latest">
       <swc-icon icon="menu/latest"></swc-icon><span i18n>Latest</span>
