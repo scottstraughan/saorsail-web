@@ -1,11 +1,7 @@
-@for (item of selectItems(); track $index) {
-  <div class="item" [class.selected]="item.selected" (click)="onClick($index, item)">
-    @if (item.icon; as icon) {
-      <div class="icon">
-        <swc-maskable-icon [icon]="icon"></swc-maskable-icon>
-      </div>
-    }
-
-    <div class="name">{{ item.name }}</div>
+@for (item of selectItems(); track item.id) {
+  <div class="item"
+       [class.selected]="item.selected"
+       (click)="onClick($index, item)">
+    <div class="name">{{ item.title }}</div>
   </div>
 }

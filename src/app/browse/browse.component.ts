@@ -1,20 +1,21 @@
-import { Component, OnInit, Signal, signal, WritableSignal } from '@angular/core';
-import { first, forkJoin, map, Observable, switchMap, take, tap } from 'rxjs';
+import { Component, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
+import { debounceTime, distinctUntilChanged, map, Observable, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { ApplicationService } from '../shared/services/application.service';
 import { MultiSelectComponent, SelectItem } from '../shared/components/multi-select/multi-select.component';
-import { Application } from '../shared/models/repository.model';
+import { Application, Category } from '../shared/models/repository.model';
 import { ApplicationWidgetComponent } from '../shared/components/application-widget/application-widget.component';
 import { LoadingIndicatorComponent } from '../shared/components/loading-indicator/loading-indicator.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IconInputComponent } from '../shared/components/icon-input/icon-input.component';
-import { TestBooleanFilterGroup, TestFilter, TestFilters, } from '../shared/services/filter2.service';
+import { MultiFilterGroup, Filters, FilterValue, KeywordFilter } from '../shared/lib/filters';
 import { LocalizationService } from '../shared/services/localization.service';
-import { DefaultOrderFilters, Filters, Order, OrderBy, OrderDirection } from '../shared/models/filters.model';
+import { DefaultOrderFilters, ModelFilters, ModelOrder, OrderBy, OrderDirection } from '../shared/models/filters.model';
 import { FormsModule } from '@angular/forms';
-import { TitleCasePipe } from '@angular/common';
 import { ShowMoreButtonComponent } from '../shared/components/show-more-button/show-more-button.component';
 import { IconComponent } from '../shared/components/icon/icon.component';
 import { IconButtonComponent } from '../shared/components/icon-button/icon-button.component';
+import { TitleCasePipe } from '@angular/common';
+import { LoggerService } from '../shared/services/logger.service';
 
 @Component({
   selector: 'swc-browse',
@@ -25,19 +26,16 @@ import { IconButtonComponent } from '../shared/components/icon-button/icon-butto
     LoadingIndicatorComponent,
     IconInputComponent,
     FormsModule,
-    TitleCasePipe,
     ShowMoreButtonComponent,
     IconComponent,
     IconButtonComponent,
+    TitleCasePipe,
   ],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.scss'
 })
-export class BrowseComponent implements OnInit {
+export class BrowseComponent implements OnInit, OnDestroy {
   static ITEMS_PER_PAGE = 20;
-
-  protected readonly MultiSelectComponent = MultiSelectComponent;
-  protected readonly DefaultOrderFilters = DefaultOrderFilters;
 
   /**
    * Show or hide the filters panel. Only works on mobile.
@@ -46,24 +44,35 @@ export class BrowseComponent implements OnInit {
 
   readonly loading: WritableSignal<boolean> = signal(true);
   readonly apps: WritableSignal<Application[]> = signal([]);
-  readonly selectedOrder: WritableSignal<Order> = signal({
+  readonly selectedOrder: WritableSignal<ModelOrder> = signal({
     by: OrderBy.NAME,
     direction: OrderDirection.DESC
   });
-  readonly filters: WritableSignal<TestFilters> = signal(new TestFilters([
-    new TestFilter('keywords', ''),
-    new TestBooleanFilterGroup('categories', []),
-    new TestBooleanFilterGroup('stars', [
-      '1000', '500', '200', '100'
-    ], false),
-    new TestBooleanFilterGroup('license', [
-      'MIT', 'Apache', 'GPL'
+  readonly filters: WritableSignal<Filters> = signal(new Filters([
+    new KeywordFilter(),
+    new MultiFilterGroup('categories', []),
+    new MultiFilterGroup('stars', [
+      new FilterValue('1000', '1000+'),
+      new FilterValue('500', '500+'),
+      new FilterValue('50', '50+')
+    ]),
+    new MultiFilterGroup('license', [
+      new FilterValue('mit', 'MIT'),
+      new FilterValue('apache', 'Apache'),
+      new FilterValue('gpl', 'GPL'),
+      new FilterValue('bsd', 'BSD'),
+      new FilterValue('unlicense', 'Unlicensed'),
     ]),
   ]));
 
   readonly page: WritableSignal<number> = signal(1);
   readonly totalAppsCount: WritableSignal<number> = signal(0);
   readonly filtererAppCount: WritableSignal<number> = signal(0);
+
+  keywords: string = '';
+
+  protected keywordSubject$ = new Subject<string>();
+  private cleanup$ = new Subject<any>();
 
   /**
    * Constructor.
@@ -72,7 +81,8 @@ export class BrowseComponent implements OnInit {
     private applicationService: ApplicationService,
     private activatedRoute: ActivatedRoute,
     private localizationService: LocalizationService,
-    private router: Router
+    private router: Router,
+    private loggerService: LoggerService
   ) { }
 
   /**
@@ -81,6 +91,10 @@ export class BrowseComponent implements OnInit {
   ngOnInit(): void {
     this.addCategoriesToFilters()
       .pipe(
+        // Tidy on cleanup
+        takeUntil(this.cleanup$),
+
+        // Switch to params
         switchMap(() =>
           this.activatedRoute.queryParams),
 
@@ -92,32 +106,47 @@ export class BrowseComponent implements OnInit {
         tap(() => this.reload())
       )
       .subscribe();
+
+    this.keywordSubject$.pipe(
+      takeUntil(this.cleanup$),
+      debounceTime(500),
+      distinctUntilChanged(),
+      tap(keywords => this.updateKeywords(keywords))
+    ).subscribe();
   }
 
   /**
-   * Called when the keyword string has changed.
+   * Called when the search keywords have been updated.
    */
-  onKeywordsChanged(
-    $event: string
+  updateKeywords(
+    keywords: string
   ) {
-    const filter = this.filters().getFilter<TestFilter>('keywords');
+    const filter = this.filters().getFilter<FilterValue>('keywords');
 
     if (!filter)
       return
 
-    filter.value = $event;
+    filter.value = keywords;
 
-    this.onFiltersChanged();
+    setTimeout(() => this.onFiltersChanged());
+  }
+
+  /**
+   * @inheritdoc
+   */
+  ngOnDestroy() {
+    this.cleanup$.next(undefined)
+    this.cleanup$.complete();
   }
 
   /**
    * Called when one of the boolean groups has changed.
    */
   onBooleanFilterGroupChanged(
-    filterGroup: any,
+    filterGroup: MultiFilterGroup<boolean>,
     selectItem: SelectItem
   ) {
-    (filterGroup as TestBooleanFilterGroup).setEnabled(selectItem.name, selectItem.selected);
+    filterGroup.setEnabled(selectItem.id, selectItem.selected);
     this.onFiltersChanged();
   }
 
@@ -151,16 +180,15 @@ export class BrowseComponent implements OnInit {
     if (!concat)
       this.loading.set(true);
 
-    const filters: Filters = {
-      order: this.selectedOrder(),
-      limit: BrowseComponent.ITEMS_PER_PAGE,
-      offset: this.page() * BrowseComponent.ITEMS_PER_PAGE - BrowseComponent.ITEMS_PER_PAGE,
-      filters: this.filters(),
-    }
+    const filters: ModelFilters = new ModelFilters(
+      this.selectedOrder(),
+      BrowseComponent.ITEMS_PER_PAGE,
+      this.page() * BrowseComponent.ITEMS_PER_PAGE - BrowseComponent.ITEMS_PER_PAGE,
+      this.filters());
 
-    console.log('Reloading', filters);
+    this.loggerService.info('Reloading...');
 
-    this.applicationService.getFiltered(filters)
+    this.applicationService.getApplications(filters)
       .pipe(
         tap(result =>
           this.totalAppsCount.set(result.totalResultsCount)),
@@ -181,6 +209,8 @@ export class BrowseComponent implements OnInit {
       .subscribe();
   }
 
+  categories: WritableSignal<Category[]> = signal([]);
+
   /**
    * Get the categories from the backend, add them to the filters.
    * @private
@@ -188,28 +218,31 @@ export class BrowseComponent implements OnInit {
   private addCategoriesToFilters(): Observable<any> {
     return this.applicationService.getCategories()
       .pipe(
-        map(categories =>
-          categories.map(category =>
-            this.localizationService.getLocalized(category.name).pipe(first()))),
-        switchMap(categoryNamesObservables =>
-          forkJoin(categoryNamesObservables)),
-        tap(names => {
-          const categoriesFilter = this.filters().getFilter<TestBooleanFilterGroup>('categories');
-          categoriesFilter.setFromArray(names);
+        tap(categories =>
+          this.categories.set(categories)),
+        tap(categories => {
+          const categoriesFilter = this.filters().getFilter<MultiFilterGroup<any>>('categories');
+
+          for (const category of categories) {
+            categoriesFilter.addFilterValue(new FilterValue(
+              category.id,
+              this.localizationService.getLocalizedSingle(category.name)
+            ));
+          }
         }),
       )
   }
 
   onOrderChanged(
-    $event: Order
+    $event: ModelOrder
   ) {
     this.selectedOrder.set($event);
     this.onFiltersChanged();
   }
 
   compareOrder(
-    o1: Order,
-    o2: Order
+    o1: ModelOrder,
+    o2: ModelOrder
   ) {
     if (!o1 || !o2) {
       return o1 == o2;
@@ -219,7 +252,7 @@ export class BrowseComponent implements OnInit {
   }
 
   getFriendlyOrder(
-    order: Order
+    order: ModelOrder
   ): string {
     if (order.by && order.direction) {
       return `${order.by.toString().replace('-', ' ')} (${order.direction})`;
@@ -240,4 +273,23 @@ export class BrowseComponent implements OnInit {
   onShowFilters() {
     this.showFilters.set(true);
   }
+
+
+  getCategorySelectItems(
+    filterGroup: MultiFilterGroup<string>
+  ) {
+    const selectItems: SelectItem[] = [];
+
+    for (const filterValue of filterGroup.values) {
+      selectItems.push(<SelectItem> {
+        id: filterValue.id,
+        title: filterValue.value,
+        selected: filterValue.enabled
+      })
+    }
+
+    return selectItems;
+  }
+
+  protected readonly DefaultOrderFilters = DefaultOrderFilters;
 }

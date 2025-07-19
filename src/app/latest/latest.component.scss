@@ -1,3 +1,7 @@
 @use '../../mixins' as *;
 @use '../../variables' as *;
 
+swc-loading-indicator {
+  height: 50%;
+  margin-top: 2rem;
+}

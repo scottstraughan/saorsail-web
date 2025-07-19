@@ -10,7 +10,6 @@ import { take, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { PopupService } from './shared/components/popup/popup.service';
 import { SettingsComponent, SettingPanelId } from './shared/popups/settings/settings.component';
-import { SearchComponent } from './shared/popups/search/search.component';
 import { IconComponent } from './shared/components/icon/icon.component';
 
 @Component({
@@ -91,11 +90,6 @@ export class AppComponent {
   onChangeLang() {
     this.popupService.show(
       SettingsComponent, SettingPanelId.LOCALIZATION);
-  }
-
-  onSearch() {
-    this.popupService.show(
-      SearchComponent, undefined);
   }
 
   onPairDevice() {

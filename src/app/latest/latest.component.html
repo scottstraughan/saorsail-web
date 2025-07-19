@@ -1,18 +1,17 @@
 <div class="content-container">
+  <header class="splash">
+    <div class="title">
+      <h1>Latest Apps</h1>
+      <h2>Download the latest apps from the Saorsail marketplace</h2>
+    </div>
+    <div class="header-icon">
+      <img class="header-icon" src="/assets/icons/menu/latest.svg" alt="Latest" />
+    </div>
+  </header>
+
   @if (loading() && apps().length == 0) {
     <swc-loading-indicator class="dimmed"></swc-loading-indicator>
   } @else {
-
-    <header class="splash">
-      <div class="title">
-        <h1>Latest Apps</h1>
-        <h2>Download the latest apps from the Saorsail marketplace</h2>
-      </div>
-      <div class="header-icon">
-        <img class="header-icon" src="/assets/icons/menu/latest.svg" alt="Latest" />
-      </div>
-    </header>
-
     <div class="app-list">
       @for (app of apps(); track app.namespace) {
         <swc-application-widget [application]="app"></swc-application-widget>

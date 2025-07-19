@@ -13,7 +13,7 @@
   }
 
   nav {
-    background-color: var(--color-white);
+    background-color: var(--hint-color);
     border-right: var(--ui-border-color) 1px solid;
     display: flex;
     flex-direction: row;
@@ -23,8 +23,7 @@
     width: 100%;
     font-size: 12px;
     box-shadow: 0px -4px 14px 0px rgba(0, 0, 0, .1);
-    border-radius: 15px 15px 0 0;
-    color: var(--color-black);
+    color: var(--color-white);
 
     // Desktop layout
     @media screen and (min-width: $mobile-breakpoint) {

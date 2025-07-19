@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ApplicationService } from '../shared/services/application.service';
 import { map, Observable, take, tap } from 'rxjs';
-import { Application, ImageReference } from '../shared/models/repository.model';
+import { Application } from '../shared/models/repository.model';
 import { LocalizationService } from '../shared/services/localization.service';
 import { ApplicationWidgetComponent } from '../shared/components/application-widget/application-widget.component';
 import { ShowMoreButtonComponent } from '../shared/components/show-more-button/show-more-button.component';
@@ -70,22 +70,6 @@ export class LatestComponent implements OnInit {
     }
 
     return undefined;
-  }
-
-  /**
-   * Find a good first application screenshot to show on the splash panel.
-   */
-  getFirstAppScreenshot(
-    app: Application
-  ): Observable<string> {
-    return this.localizationService.getLocalized<ImageReference>(app.metadata.screenshots['phone'])
-      .pipe(
-        map((screenshots: any) =>
-          screenshots[0]),
-        map(screenshot =>
-          this.fdroidRepositoryService.resolveImageUrl(screenshot)),
-        take(1)
-      )
   }
 
   /**
