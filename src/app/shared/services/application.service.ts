@@ -1,84 +1,199 @@
-import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { from, map, Observable } from 'rxjs';
 import { Application, ApplicationVersion, Category } from '../models/repository.model';
 import { DatabaseService } from './database.service';
-import { Filters, OrderBy, OrderDirection } from '../models/filters.model';
-import { TestBooleanFilterGroup, TestFilter, TestFilters } from './filter2.service';
+import { ModelFilters, ModelOrder, OrderBy, OrderDirection } from '../models/filters.model';
+import { Filters, FilterValue, MultiFilterGroup } from '../lib/filters';
+import { IndexedDBRequest } from '../lib/indexed-database';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationService {
-  static readonly DEFAULT_ORDER_BY = OrderBy.NAME;
-  static readonly DEFAULT_ORDER_DIRECTION = OrderDirection.ASC;
+  /**
+   * Database service.
+   * @private
+   */
+  private databaseService: DatabaseService = inject(DatabaseService);
 
-  constructor(
-    private databaseService: DatabaseService,
-  ) { }
+  /**
+   * Logger service.
+   * @private
+   */
+  private loggerService: LoggerService = inject(LoggerService);
 
+  /**
+   * Get a specific application by its namespace.
+   */
   getApplication(
     namespace: string
   ): Observable<Application> {
     return this.databaseService.getByID<Application>('applications', namespace);
   }
 
-  all(): Observable<Application[]> {
-    return this.databaseService.getAll<Application>('applications');
-  }
-
+  /**
+   * Get the latest apps.
+   */
   getLatest(
     limit: number = 20,
     offset: number = 0
   ): Observable<PartialResult<Application>> {
-    let totalResultsCount = 0;
+    const filters: ModelFilters = new ModelFilters(
+      <ModelOrder> { by: OrderBy.DATE_ADDED, direction: OrderDirection.DESC },
+      limit,
+      offset
+    );
 
-    return this.databaseService.getAll<Application>('applications')
-      .pipe(
-        tap(applications =>
-          totalResultsCount = applications.length),
-        map(applications => applications.sort((a: Application, b: Application) =>
-          a.metadata.added < b.metadata.added ? 1 : -1)),
-        map(applications =>
-          applications.slice(offset, limit + offset)),
-        map(applications => <PartialResult<Application>> {
-          totalResultsCount: totalResultsCount,
-          currentResultsCount: applications.length,
-          results: applications
-        })
-      )
+    return this.getApplications(filters);
   }
 
-  getFiltered(
-    filters: Filters
+  /**
+   * Get the most popular apps.
+   */
+  getPopular(
+    limit: number = 20,
+    offset: number = 0
   ): Observable<PartialResult<Application>> {
-    let totalResultsCount = 0;
-    let filteredResultsCount = 0;
+    const filters: ModelFilters = new ModelFilters(
+      <ModelOrder> { by: OrderBy.POPULARITY, direction: OrderDirection.DESC },
+      limit,
+      offset
+    );
+
+    return this.getApplications(filters);
+  }
+
+  /**
+   * Get an array of applications and filter them using the provided filters.
+   * Note: this function uses a web worker for performance but will fall back to direct indexDB access on failure.
+   */
+  getApplications(
+    filters: ModelFilters
+  ): Observable<PartialResult<Application>> {
+    if (typeof Worker !== 'undefined') {
+      this.loggerService.info('Web worker supported, fetching applications via worker...');
+
+      const promise = new Promise<PartialResult<Application>>((resolve, reject) => {
+        const worker = new Worker(new URL('./../workers/indexed-db.worker', import.meta.url));
+
+        // Receive response
+        worker.onmessage = (event) => {
+          resolve(event.data);
+          worker.terminate();
+        };
+
+        // Handle errors
+        worker.onerror = (err: any) => {
+          worker.terminate();
+          console.log(err);
+          reject(err);
+        };
+
+        const workerData: IndexedDBRequest = new IndexedDBRequest(
+          'swc-data', 'applications', filters);
+
+        // Send request
+        worker.postMessage(JSON.stringify(workerData));
+      });
+
+      return from(promise);
+    }
+
+    this.loggerService.warn('Web worker not supported, fetching applications directly...');
 
     return this.databaseService.getAll<Application>('applications')
       .pipe(
-        tap(applications =>
-          totalResultsCount = applications.length),
         map(applications =>
-          ApplicationService.filter(filters.filters, applications)),
-        tap(applications =>
-          filteredResultsCount = applications.length),
-        map(applications => applications.sort((a: Application, b: Application) =>
-          a.metadata.added < b.metadata.added ? 1 : -1)),
-        map(applications =>
-          applications.slice(filters.offset, filters.limit + filters.offset)),
-        map(applications =>
-          this.sortApplications(filters, applications)),
-        map(applications => <PartialResult<Application>> {
-          totalResultsCount: totalResultsCount,
-          filteredResultsCount: filteredResultsCount,
-          currentResultsCount: applications.length,
-          results: applications
-        })
+          ApplicationService.restrict(filters, applications))
       )
   }
 
-  static filter(
-    filters: TestFilters | undefined,
+  /**
+   * Get all the supported categories.
+   */
+  getCategories(): Observable<Category[]> {
+    return this.databaseService.getAll<Category>('categories')
+      .pipe(
+        map(categories => categories.sort(function(a: Category, b: Category) {
+          return a.id > b.id ? 1 : -1
+        }))
+      );
+  }
+
+  /**
+   * Get the latest version of an application.
+   */
+  getLatestVersion(
+    application: Application
+  ): ApplicationVersion {
+    const versions = Object.values(application.versions);
+    let latestVersion = versions[0];
+
+    for (const version of versions) {
+      if (version.added > latestVersion.added) {
+        latestVersion = version;
+      }
+    }
+
+    return latestVersion;
+  }
+
+  /**
+   * Get a specific version of an application.
+   */
+  getVersion(
+    application: Application,
+    version: string
+  ): ApplicationVersion {
+    const versions = Object.values(application.versions);
+
+    for (const currentVersion of versions) {
+      if (currentVersion.manifest.versionName == version) {
+        return currentVersion;
+      }
+    }
+
+    throw new VersionNotFoundError('Could not find version.');
+  }
+
+  /**
+   * Filter applications provided using filters provided and return the filtered applications.
+   */
+  static restrict(
+    modelFilters: ModelFilters,
+    applications: Application[]
+  ): PartialResult<Application> {
+    // Total app count
+    const totalResultsCount = applications.length;
+
+    if (modelFilters.filters) {
+      // Filter out apps based on filters
+      applications = ApplicationService.filterApplications(modelFilters.filters, applications);
+    }
+
+    // Sort the apps using filters
+    applications = ApplicationService.sortApplications(modelFilters, applications);
+
+    // Filtered count
+    const filteredResultsCount = applications.length;
+
+    // Slice apps based on filters
+    applications = applications.slice(modelFilters.offset, modelFilters.limit + modelFilters.offset);
+
+    return <PartialResult<Application>> {
+      totalResultsCount: totalResultsCount,
+      filteredResultsCount: filteredResultsCount,
+      currentResultsCount: applications.length,
+      results: applications
+    }
+  }
+
+  /**
+   * Filter applications based on filters.
+   */
+  private static filterApplications(
+    filters: Filters | undefined,
     applications: Application[]
   ): Application[] {
     if (!filters)
@@ -86,13 +201,15 @@ export class ApplicationService {
 
     const found: Application[] = [];
 
-    const categories = (filters.getFilter('categories') as TestBooleanFilterGroup).getEnabled()
-      .map(category => category.toLowerCase());
+    const categories = filters.getFilter<MultiFilterGroup<string>>('categories').allEnabled()
+      .map(category => category.id);
 
-    const keywordFilterStrings = (filters.getFilter('keywords') as TestBooleanFilterGroup).value.toString().toLowerCase();
-    const enabledStars = filters.getFilter('stars').getEnabled();
-    const enabledLicenses: string[] = filters.getFilter('license').getEnabled();
+    const keywordFilterStrings = filters.getFilter<FilterValue>('keywords').value.toLowerCase();
+    const enabledStars = filters.getFilter<MultiFilterGroup<string>>('stars').allEnabled()
+      .map(category => category.id);
 
+    const enabledLicenses: string[] = filters.getFilter<MultiFilterGroup<string>>('license').allEnabled()
+      .map(category => category.id.toLowerCase());
 
     for (const application of applications) {
       let passedFilters = true;
@@ -117,7 +234,7 @@ export class ApplicationService {
 
       // Ensure apps pass license filter checks
       if (enabledLicenses.length > 0)  {
-        if (!enabledLicenses.some(license => application.metadata.license.includes(license)))
+        if (!enabledLicenses.some(license => application.metadata.license.toLowerCase().includes(license)))
           passedFilters = false;
       }
 
@@ -129,92 +246,11 @@ export class ApplicationService {
     return found;
   }
 
-  getPopular(
-    limit: number = 20,
-    offset: number = 0
-  ): Observable<PartialResult<Application>> {
-    let totalResultsCount = 0;
-
-    return this.all()
-      .pipe(
-        tap(applications =>
-          totalResultsCount = applications.length),
-        map(applications => applications.sort((a: Application, b: Application) => {
-          const aStars = a.stars ? a.stars : 0
-          const bStars = b.stars ? b.stars : 0;
-          return bStars - aStars;
-        })),
-        map(applications =>
-          applications.slice(offset, limit + offset)),
-        map(applications => <PartialResult<Application>> {
-          totalResultsCount: totalResultsCount,
-          currentResultsCount: applications.length,
-          results: applications
-        })
-      )
-  }
-
-  searchApplications(
-    searchValue: any,
-    limit: number = 20,
-    offset: number = 0
-  ) {
-    const searchWords = searchValue.toString().toLowerCase().split(' ');
-    let totalResultsCount = 0;
-
-    return this.databaseService.getAll<Application>('applications')
-      .pipe(
-        tap(applications =>
-          totalResultsCount = applications.length),
-        map(applications => {
-          return applications.filter(application => {
-            let searchableValues = JSON.stringify(Object.values(application.metadata.name));
-
-            if (application.metadata.authorName) {
-              searchableValues += ' ' + application.metadata.authorName;
-            }
-
-            searchableValues = searchableValues.toLowerCase();
-
-            return searchWords.every((searchWord: string) =>
-              searchableValues.toLowerCase().includes(searchWord));
-          })
-        }),
-        map(applications =>
-          applications.slice(offset, limit + offset)),
-        map(applications => <PartialResult<Application>> {
-          totalResultsCount: totalResultsCount,
-          currentResultsCount: applications.length,
-          results: applications
-        })
-      )
-  }
-
-  getApplicationsByCategory(
-    filters: Filters
-  ): Observable<PartialResult<Application>> {
-    let totalResultsCount = 0;
-
-    return this.databaseService.getAll<Application>('applications')
-      .pipe(
-        //map(applications =>
-        //  applications.filter(aPackage => aPackage.metadata.categories.includes(filters.category.id))),
-        map(applications =>
-          this.sortApplications(filters, applications)),
-        tap(applications =>
-          totalResultsCount = applications.length),
-        map(applications =>
-          applications.slice(filters.offset, filters.limit + filters.offset)),
-        map(applications => <PartialResult<Application>> {
-          totalResultsCount: totalResultsCount,
-          currentResultsCount: applications.length,
-          results: applications
-        })
-      )
-  }
-
-  private sortApplications(
-    filters: Filters,
+  /**
+   * Sort provided applications based on filters.
+   */
+  private static sortApplications(
+    filters: ModelFilters,
     applications: Application[]
   ): Application[] {
     if (filters.order.by == OrderBy.NAME && filters.order.direction == OrderDirection.ASC) {
@@ -257,98 +293,12 @@ export class ApplicationService {
 
     return applications;
   }
-
-  getCategories(): Observable<Category[]> {
-    return this.databaseService.getAll<Category>('categories')
-      .pipe(
-        map(categories => categories.sort(function(a: Category, b: Category) {
-          return a.id > b.id ? 1 : -1
-        }))
-      );
-  }
-
-  getCategoriesThumbnail(
-    categoryName: string
-  ): string {
-    categoryName = categoryName.toLowerCase();
-    let icon = 'category_connectivity';
-
-    switch (categoryName) {
-      case 'connectivity':
-        icon = 'category_connectivity';
-        break;
-      case 'development':
-        icon = 'category_development';
-        break;
-      case 'games':
-        icon = 'category_games';
-        break;
-      case 'graphics':
-        icon = 'category_graphics';
-        break;
-      case 'internet':
-        icon = 'category_internet';
-        break;
-      case 'money':
-        icon = 'category_money';
-        break;
-      case 'navigation':
-        icon = 'category_navigation';
-        break;
-      case 'reading':
-        icon = 'category_reading';
-        break;
-      case 'science-and-education':
-        icon = 'category_science_education';
-        break;
-      case 'security':
-        icon = 'category_security';
-        break;
-      case 'system':
-        icon = 'category_system';
-        break;
-      case 'theming':
-        icon = 'category_theming';
-        break;
-      case 'writing':
-        icon = 'category_writing';
-        break;
-    }
-
-    return `/assets/img/categories/${icon}.png`;
-  }
-
-  getLatestVersion(
-    application: Application
-  ): ApplicationVersion {
-    const versions = Object.values(application.versions);
-    let latestVersion = versions[0];
-
-    for (const version of versions) {
-      if (version.added > latestVersion.added) {
-        latestVersion = version;
-      }
-    }
-
-    return latestVersion;
-  }
-
-  getVersion(
-    application: Application,
-    version: string
-  ): ApplicationVersion {
-    const versions = Object.values(application.versions);
-
-    for (const currentVersion of versions) {
-      if (currentVersion.manifest.versionName == version) {
-        return currentVersion;
-      }
-    }
-
-    throw new VersionNotFoundError('Could not find version.');
-  }
 }
 
+/**
+ * A partial result. Since we can apply filters and limit apps per request, we want to provide information about the
+ * full request and also the returned request.
+ */
 export interface PartialResult<T> {
   totalResultsCount: number
   filteredResultsCount: number
@@ -356,4 +306,7 @@ export interface PartialResult<T> {
   results: T[]
 }
 
+/**
+ * Error when a version is not found.
+ */
 export class VersionNotFoundError extends Error {}

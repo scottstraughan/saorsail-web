@@ -1014,6 +1014,21 @@ export class LocalizationService {
   }
 
   /**
+   * Get a string translated to the users preferred local. If the preferred local is not available, the string will
+   * fall back to the default local.
+   * @param record
+   */
+  getLocalizedSingle<T>(
+    record: Record<string, T> | undefined
+  ): T {
+    if (!record) {
+      return <T> 'Unknown'
+    }
+
+    return record[this.local$.value.code];
+  }
+
+  /**
    * Observe any changes to the preferred local.
    */
   observeLocal(): Observable<Local> {

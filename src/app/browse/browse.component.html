@@ -6,7 +6,7 @@
   <div class="block">
     <div class="title">Search</div>
     @if (filters().getFilter('keywords'); as filter) {
-      <swc-icon-input [value]="filter.value" (valueChange)="onKeywordsChanged($event)" icon="general/search" />
+      <swc-icon-input [value]="filter.value" (valueChange)="keywordSubject$.next($event)" icon="general/search" />
     }
   </div>
 
@@ -14,7 +14,7 @@
     <div class="title">Categories</div>
     @if (filters().getFilter('categories'); as booleanFilterGroup) {
       <swc-multi-select
-          [items]="MultiSelectComponent.fromFilter(booleanFilterGroup)"
+          [items]="getCategorySelectItems(booleanFilterGroup)"
           (selectionChange)="onBooleanFilterGroupChanged(booleanFilterGroup, $event)" />
     }
   </div>
@@ -23,7 +23,7 @@
     <div class="title">Stars</div>
     @if (filters().getFilter('stars'); as booleanFilterGroup) {
       <swc-multi-select
-          [items]="MultiSelectComponent.fromFilter(booleanFilterGroup)"
+          [items]="getCategorySelectItems(booleanFilterGroup)"
           (selectionChange)="onBooleanFilterGroupChanged(booleanFilterGroup, $event)" />
     }
   </div>
@@ -32,7 +32,7 @@
     <div class="title">License</div>
     @if (filters().getFilter('license'); as booleanFilterGroup) {
       <swc-multi-select
-          [items]="MultiSelectComponent.fromFilter(booleanFilterGroup)"
+          [items]="getCategorySelectItems(booleanFilterGroup)"
           (selectionChange)="onBooleanFilterGroupChanged(booleanFilterGroup, $event)" />
     }
   </div>
@@ -48,8 +48,8 @@
         <option [ngValue]="order">{{ getFriendlyOrder(order) | titlecase }}</option>
       }
     </select>
-
   </div>
+
 </div>
 
 <div class="container content-container">
@@ -65,24 +65,24 @@
 
   @if (loading()) {
     <swc-loading-indicator class="dimmed"></swc-loading-indicator>
-  } @else {
-    <div class="info">
-      <div class="message">
-        Showing {{ apps().length }} apps, found {{ filtererAppCount() }} of total {{ totalAppsCount() }}
-      </div>
-      <div class="action">
-        <swc-icon-button (click)="onShowFilters()" label="Change Filters" />
-      </div>
-    </div>
-
-    <div class="app-list">
-      @for (app of apps(); track app.namespace) {
-        <swc-application-widget [application]="app"></swc-application-widget>
-      }
-
-      @if (apps().length < filtererAppCount()) {
-        <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
-      }
-    </div>
   }
+
+  <div class="info">
+    <div class="message">
+      Showing {{ apps().length }} apps, matched {{ filtererAppCount() }} of {{ totalAppsCount() }} total
+    </div>
+    <div class="action">
+      <swc-icon-button (click)="onShowFilters()" label="Change Filters" />
+    </div>
+  </div>
+
+  <div class="app-list">
+    @for (app of apps(); track app.namespace) {
+      <swc-application-widget [application]="app"></swc-application-widget>
+    }
+    @if (apps().length < filtererAppCount()) {
+      <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
+    }
+  </div>
+
 </div>

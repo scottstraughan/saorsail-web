@@ -93,7 +93,6 @@
     }
 
     @media screen and (min-width: $mobile-breakpoint) {
-      margin-top: 0;
       border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
 
       .action {
@@ -103,7 +102,6 @@
       .message {
         background-color: var(--hint-color);
         color: var(--color-white);
-        border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
       }
     }
   }
