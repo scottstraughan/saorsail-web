@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="it" date="2025-07-19T17:29:28Z">
+        <body>
+            <trans-unit id="8890553633144307762" datatype="html">
+                <source>Back</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/app.component.html</context>
+                    <context context-type="linenumber">13,14</context>
+                </context-group>
+                <target>Indietro</target>
+            </trans-unit>
+            <trans-unit id="787163983066183218" datatype="html">
+                <source>Browse</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/app.component.html</context>
+                    <context context-type="linenumber">18,19</context>
+                </context-group>
+                <target>Sfoglia</target>
+            </trans-unit>
+            <trans-unit id="2820031676440667416" datatype="html">
+                <source>Latest</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/app.component.html</context>
+                    <context context-type="linenumber">21,22</context>
+                </context-group>
+                <target>Ultima</target>
+            </trans-unit>
+            <trans-unit id="7375243393535212946" datatype="html">
+                <source>Popular</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/app.component.html</context>
+                    <context context-type="linenumber">24,25</context>
+                </context-group>
+                <target>Popolare</target>
+            </trans-unit>
+            <trans-unit id="7226393899797342515" datatype="html">
+                <source>Pair a new device</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/app.component.html</context>
+                    <context context-type="linenumber">29,30</context>
+                </context-group>
+                <target>Abbina un nuovo dispositivo</target>
+            </trans-unit>
+            <trans-unit id="6747228178039275321" datatype="html">
+                <source>Sync the database</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/app.component.html</context>
+                    <context context-type="linenumber">33,34</context>
+                </context-group>
+                <target>Sincronizzare il database</target>
+            </trans-unit>
+            <trans-unit id="6674127206193992398" datatype="html">
+                <source>Show the settings</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/app.component.html</context>
+                    <context context-type="linenumber">37,38</context>
+                </context-group>
+                <target>Mostra le impostazioni</target>
+            </trans-unit>
+            <trans-unit id="742596572641738016" datatype="html">
+                <source>Change the language</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/app.component.html</context>
+                    <context context-type="linenumber">41,42</context>
+                </context-group>
+                <target>Cambiare la lingua</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

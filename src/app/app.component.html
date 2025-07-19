@@ -26,19 +26,19 @@
   </div>
 
   <div class="settings">
-    <a (click)="onPairDevice()" class="item" title="Pair a new device">
+    <a (click)="onPairDevice()" class="item" i18n-title title="Pair a new device">
       <swc-maskable-icon icon="general/phone"></swc-maskable-icon>
     </a>
 
-    <a (click)="onSync()" class="item" [class.disabled]="syncing()" title="Sync the database">
+    <a (click)="onSync()" class="item" [class.disabled]="syncing()" i18n-title title="Sync the database">
       <swc-loading-indicator [loading]="syncing()"></swc-loading-indicator>
     </a>
 
-    <a (click)="onShowSettings()" class="item" title="Show the settings">
+    <a (click)="onShowSettings()" class="item" i18n-title title="Show the settings">
       <swc-maskable-icon icon="general/system"></swc-maskable-icon>
     </a>
 
-    <a (click)="onChangeLang()" class="item language" title="Change the language">
+    <a (click)="onChangeLang()" class="item language" i18n-title title="Change the language">
       @if (this.localizationService.observeLocal() | async; as languageReference) {
         <img [ngSrc]="localizationService.getLanguageIcon(languageReference)"
              alt="{{ languageReference.name }} Icon"

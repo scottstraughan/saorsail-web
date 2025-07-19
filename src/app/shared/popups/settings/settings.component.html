@@ -2,7 +2,7 @@
   @for (panel of panels(); track panel.name) {
     <div class="item" [class.active]="panel.id == selectedPanel().id" (click)="onSelectSettings(panel)">
       <swc-maskable-icon [icon]="panel.icon"></swc-maskable-icon>
-      <div>{{ panel.name }}</div>
+      <div i18n>{{ panel.name }}</div>
     </div>
   }
 </div>

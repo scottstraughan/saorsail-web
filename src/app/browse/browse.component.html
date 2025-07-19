@@ -4,14 +4,14 @@
   </div>
 
   <div class="block">
-    <div class="title">Search</div>
+    <div i18n class="title">Search</div>
     @if (filters().getFilter('keywords'); as filter) {
       <swc-icon-input [value]="filter.value" (valueChange)="keywordSubject$.next($event)" icon="general/search" />
     }
   </div>
 
   <div class="block">
-    <div class="title">Categories</div>
+    <div i18n class="title">Categories</div>
     @if (filters().getFilter('categories'); as booleanFilterGroup) {
       <swc-multi-select
           [items]="getCategorySelectItems(booleanFilterGroup)"
@@ -20,7 +20,7 @@
   </div>
 
   <div class="block">
-    <div class="title">Stars</div>
+    <div i18n class="title">Stars</div>
     @if (filters().getFilter('stars'); as booleanFilterGroup) {
       <swc-multi-select
           [items]="getCategorySelectItems(booleanFilterGroup)"
@@ -29,7 +29,7 @@
   </div>
 
   <div class="block">
-    <div class="title">License</div>
+    <div i18n class="title">License</div>
     @if (filters().getFilter('license'); as booleanFilterGroup) {
       <swc-multi-select
           [items]="getCategorySelectItems(booleanFilterGroup)"
@@ -38,7 +38,7 @@
   </div>
 
   <div class="block">
-    <div class="title">Sort</div>
+    <div i18n class="title">Sort</div>
     <select
         name="order"
         [ngModel]="selectedOrder()"
@@ -55,8 +55,8 @@
 <div class="container content-container">
   <header class="splash">
     <div class="title">
-      <h1>Browse Apps</h1>
-      <h2>Get involved and download the most popular apps from the store</h2>
+      <h1 i18n>Browse Apps</h1>
+      <h2 i18n>Get involved and download the most popular apps from the store</h2>
     </div>
     <div class="header-icon">
       <img class="header-icon" src="/assets/icons/menu/popular.svg" alt="Popular" />
@@ -68,11 +68,11 @@
   }
 
   <div class="info">
-    <div class="message">
+    <div class="message" i18n>
       Showing {{ apps().length }} apps, matched {{ filtererAppCount() }} of {{ totalAppsCount() }} total
     </div>
     <div class="action">
-      <swc-icon-button (click)="onShowFilters()" label="Change Filters" />
+      <swc-icon-button i18n-label (click)="onShowFilters()" label="Change Filters" />
     </div>
   </div>
 

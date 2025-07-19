@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="fr" date="2025-07-19T17:35:35Z">
+    <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="de" date="2025-07-19T17:36:3Z">
         <body>
             <trans-unit id="8890553633144307762" datatype="html">
                 <source>Back</source>
@@ -8,7 +8,7 @@
                     <context context-type="sourcefile">src/app/app.component.html</context>
                     <context context-type="linenumber">13,14</context>
                 </context-group>
-                <target>Dos</target>
+                <target>Zurück</target>
             </trans-unit>
             <trans-unit id="787163983066183218" datatype="html">
                 <source>Browse</source>
@@ -16,7 +16,7 @@
                     <context context-type="sourcefile">src/app/app.component.html</context>
                     <context context-type="linenumber">18,19</context>
                 </context-group>
-                <target>Parcourir</target>
+                <target>Durchsuchen</target>
             </trans-unit>
             <trans-unit id="2820031676440667416" datatype="html">
                 <source>Latest</source>
@@ -24,7 +24,7 @@
                     <context context-type="sourcefile">src/app/app.component.html</context>
                     <context context-type="linenumber">21,22</context>
                 </context-group>
-                <target>Dernière</target>
+                <target>Letzte</target>
             </trans-unit>
             <trans-unit id="7375243393535212946" datatype="html">
                 <source>Popular</source>
@@ -32,7 +32,7 @@
                     <context context-type="sourcefile">src/app/app.component.html</context>
                     <context context-type="linenumber">24,25</context>
                 </context-group>
-                <target>Populaire</target>
+                <target>Beliebt</target>
             </trans-unit>
             <trans-unit id="7226393899797342515" datatype="html">
                 <source>Pair a new device</source>
@@ -40,7 +40,7 @@
                     <context context-type="sourcefile">src/app/app.component.html</context>
                     <context context-type="linenumber">29,30</context>
                 </context-group>
-                <target>Associez un nouvel appareil</target>
+                <target>Kombinieren Sie ein neues Gerät</target>
             </trans-unit>
             <trans-unit id="6747228178039275321" datatype="html">
                 <source>Sync the database</source>
@@ -48,7 +48,7 @@
                     <context context-type="sourcefile">src/app/app.component.html</context>
                     <context context-type="linenumber">33,34</context>
                 </context-group>
-                <target>Synchroniser la base de données</target>
+                <target>Synchronisieren Sie die Datenbank</target>
             </trans-unit>
             <trans-unit id="6674127206193992398" datatype="html">
                 <source>Show the settings</source>
@@ -56,7 +56,7 @@
                     <context context-type="sourcefile">src/app/app.component.html</context>
                     <context context-type="linenumber">37,38</context>
                 </context-group>
-                <target>Afficher les paramètres</target>
+                <target>Zeigen Sie die Einstellungen an</target>
             </trans-unit>
             <trans-unit id="742596572641738016" datatype="html">
                 <source>Change the language</source>
@@ -64,7 +64,7 @@
                     <context context-type="sourcefile">src/app/app.component.html</context>
                     <context context-type="linenumber">41,42</context>
                 </context-group>
-                <target>Changer la langue</target>
+                <target>Ändern Sie die Sprache</target>
             </trans-unit>
             <trans-unit id="4580988005648117665" datatype="html">
                 <source>Search</source>
@@ -72,7 +72,7 @@
                     <context context-type="sourcefile">src/app/browse/browse.component.html</context>
                     <context context-type="linenumber">7,8</context>
                 </context-group>
-                <target>Recherche</target>
+                <target>Suchen</target>
             </trans-unit>
             <trans-unit id="1902100407096396858" datatype="html">
                 <source>Categories</source>
@@ -80,7 +80,7 @@
                     <context context-type="sourcefile">src/app/browse/browse.component.html</context>
                     <context context-type="linenumber">14,15</context>
                 </context-group>
-                <target>Catégories</target>
+                <target>Kategorien</target>
             </trans-unit>
             <trans-unit id="2163921050531005555" datatype="html">
                 <source>Stars</source>
@@ -88,7 +88,7 @@
                     <context context-type="sourcefile">src/app/browse/browse.component.html</context>
                     <context context-type="linenumber">23,24</context>
                 </context-group>
-                <target>Étoiles</target>
+                <target>Sterne</target>
             </trans-unit>
             <trans-unit id="6877113876835666202" datatype="html">
                 <source>License</source>
@@ -96,7 +96,7 @@
                     <context context-type="sourcefile">src/app/browse/browse.component.html</context>
                     <context context-type="linenumber">32,33</context>
                 </context-group>
-                <target>Licence</target>
+                <target>Lizenz</target>
             </trans-unit>
             <trans-unit id="5146398958364876914" datatype="html">
                 <source>Sort</source>
@@ -104,7 +104,7 @@
                     <context context-type="sourcefile">src/app/browse/browse.component.html</context>
                     <context context-type="linenumber">41,42</context>
                 </context-group>
-                <target>Trier</target>
+                <target>Sortieren</target>
             </trans-unit>
             <trans-unit id="6814165324768399947" datatype="html">
                 <source>Browse Apps</source>
@@ -112,7 +112,7 @@
                     <context context-type="sourcefile">src/app/browse/browse.component.html</context>
                     <context context-type="linenumber">58,59</context>
                 </context-group>
-                <target>Parcourir les applications</target>
+                <target>Apps durchsuchen</target>
             </trans-unit>
             <trans-unit id="9019970425536102784" datatype="html">
                 <source>Get involved and download the most popular apps from the store</source>
@@ -124,7 +124,7 @@
                     <context context-type="sourcefile">src/app/popular/popular.component.html</context>
                     <context context-type="linenumber">5,6</context>
                 </context-group>
-                <target>Impliquez-vous et téléchargez les applications les plus populaires du magasin</target>
+                <target>Beteiligen Sie sich und laden Sie die beliebtesten Apps aus dem Geschäft herunter</target>
             </trans-unit>
             <trans-unit id="8947070849623692808" datatype="html">
                 <source> Showing 
@@ -136,10 +136,10 @@
                     <context context-type="sourcefile">src/app/browse/browse.component.html</context>
                     <context context-type="linenumber">72,74</context>
                 </context-group>
-                <target>Projection
-                    <x id="INTERPOLATION" equiv-text="{{ apps().length }}"/>applications, appariées
-                    <x id="INTERPOLATION_1" equiv-text="{{ filtererAppCount() }}"/>de
-                    <x id="INTERPOLATION_2" equiv-text="{{ totalAppsCount() }}"/>totale
+                <target>Zeigen
+                    <x id="INTERPOLATION" equiv-text="{{ apps().length }}"/>Apps, abgestimmt
+                    <x id="INTERPOLATION_1" equiv-text="{{ filtererAppCount() }}"/>von
+                    <x id="INTERPOLATION_2" equiv-text="{{ totalAppsCount() }}"/>gesamt
                 </target>
             </trans-unit>
             <trans-unit id="5628109973224414572" datatype="html">
@@ -148,7 +148,7 @@
                     <context context-type="sourcefile">src/app/browse/browse.component.html</context>
                     <context context-type="linenumber">75,76</context>
                 </context-group>
-                <target>Changer les filtres</target>
+                <target>Filter ändern</target>
             </trans-unit>
             <trans-unit id="2107420120837644604" datatype="html">
                 <source>Latest Apps</source>
@@ -156,7 +156,7 @@
                     <context context-type="sourcefile">src/app/latest/latest.component.html</context>
                     <context context-type="linenumber">4,5</context>
                 </context-group>
-                <target>Dernières applications</target>
+                <target>Neueste Apps</target>
             </trans-unit>
             <trans-unit id="8119622800352448721" datatype="html">
                 <source>Download the latest apps from the Saorsail marketplace</source>
@@ -164,7 +164,7 @@
                     <context context-type="sourcefile">src/app/latest/latest.component.html</context>
                     <context context-type="linenumber">5,6</context>
                 </context-group>
-                <target>Téléchargez les dernières applications à partir du SAORSAIL Marketplace</target>
+                <target>Laden Sie die neuesten Apps vom Saorsail Marketplace herunter</target>
             </trans-unit>
             <trans-unit id="5656199881002794703" datatype="html">
                 <source>Popular Apps</source>
@@ -172,7 +172,7 @@
                     <context context-type="sourcefile">src/app/popular/popular.component.html</context>
                     <context context-type="linenumber">4,5</context>
                 </context-group>
-                <target>Applications populaires</target>
+                <target>Beliebte Apps</target>
             </trans-unit>
             <trans-unit id="2614607010577950577" datatype="html">
                 <source>Overview</source>
@@ -180,7 +180,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/about/about-settings.component.html</context>
                     <context context-type="linenumber">4,5</context>
                 </context-group>
-                <target>Aperçu</target>
+                <target>Überblick</target>
             </trans-unit>
             <trans-unit id="7447817781458952547" datatype="html">
                 <source>Saorsail ("Free" in Gaelic) is a web-based storefront for all apps that are free and/or open source. Built upon the incredible work of the 
@@ -191,9 +191,9 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/about/about-settings.component.html</context>
                     <context context-type="linenumber">8,12</context>
                 </context-group>
-                <target>SAORSAIL ("gratuit" en gaélique) est une vitrine basée sur le Web pour toutes les applications gratuites et / ou open source. Construit sur le travail incroyable du
-                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/f-droid/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Équipe F-D-Droid
-                    <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, Saorsail utilise la base de données publique F-D-Droid pour vous donner accès à une énorme collection d'applications de domaine public.
+                <target>SaorSail ("kostenlos" in Gälisch) ist eine webbasierte Storefront für alle Apps, die kostenlos und/oder Open Source sind. Auf der unglaublichen Arbeit des
+                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/f-droid/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>F-Droid-Team
+                    <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>SaorSail verwendet die öffentliche Datenbank von F-Droid, um Ihnen Zugriff auf eine riesige Sammlung von Public-Domain-Apps zu erhalten.
                 </target>
             </trans-unit>
             <trans-unit id="6259731213494524728" datatype="html">
@@ -202,7 +202,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/about/about-settings.component.html</context>
                     <context context-type="linenumber">12,13</context>
                 </context-group>
-                <target>SAORSAIL a également été conçu pour faciliter l'installation d'applications du Web, directement vers vos appareils.</target>
+                <target>SaorSail wurde auch so konzipiert, dass es sehr einfach ist, Apps aus dem Web direkt auf Ihre Geräte zu installieren.</target>
             </trans-unit>
             <trans-unit id="1948732483765799751" datatype="html">
                 <source>Credits</source>
@@ -210,7 +210,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/about/about-settings.component.html</context>
                     <context context-type="linenumber">19</context>
                 </context-group>
-                <target>Crédits</target>
+                <target>Credits</target>
             </trans-unit>
             <trans-unit id="1072149392002240683" datatype="html">
                 <source>All the humans that have helped create the marketplace</source>
@@ -218,7 +218,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/about/about-settings.component.html</context>
                     <context context-type="linenumber">19,20</context>
                 </context-group>
-                <target>Tous les humains qui ont aidé à créer le marché</target>
+                <target>Alle Menschen, die dazu beigetragen haben, den Marktplatz zu schaffen</target>
             </trans-unit>
             <trans-unit id="7103588127254721505" datatype="html">
                 <source>Theme</source>
@@ -226,7 +226,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/display/display-settings.component.html</context>
                     <context context-type="linenumber">4</context>
                 </context-group>
-                <target>Thème</target>
+                <target>Thema</target>
             </trans-unit>
             <trans-unit id="6447932641528283716" datatype="html">
                 <source>Customize the look and feel of the marketplace.</source>
@@ -234,7 +234,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/display/display-settings.component.html</context>
                     <context context-type="linenumber">4,5</context>
                 </context-group>
-                <target>Personnalisez l'apparence du marché.</target>
+                <target>Passen Sie das Erscheinungsbild des Marktes an.</target>
             </trans-unit>
             <trans-unit id="7075723343572770176" datatype="html">
                 <source>Colour Scheme</source>
@@ -242,7 +242,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/display/display-settings.component.html</context>
                     <context context-type="linenumber">19,20</context>
                 </context-group>
-                <target>Schéma de couleurs</target>
+                <target>Farbschema</target>
             </trans-unit>
             <trans-unit id="237806349116597207" datatype="html">
                 <source>Change the color scheme used on the marketplace.</source>
@@ -250,7 +250,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/display/display-settings.component.html</context>
                     <context context-type="linenumber">20,22</context>
                 </context-group>
-                <target>Modifiez le schéma de couleurs utilisé sur le marché.</target>
+                <target>Ändern Sie das auf dem Markt verwendete Farbschema.</target>
             </trans-unit>
             <trans-unit id="5851560788527570644" datatype="html">
                 <source>Notifications</source>
@@ -258,7 +258,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/notifications/notifications-settings.component.html</context>
                     <context context-type="linenumber">4,5</context>
                 </context-group>
-                <target>Notifications</target>
+                <target>Benachrichtigungen</target>
             </trans-unit>
             <trans-unit id="7757098375480461041" datatype="html">
                 <source>Enable or disable notificaitons</source>
@@ -266,7 +266,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/notifications/notifications-settings.component.html</context>
                     <context context-type="linenumber">5,7</context>
                 </context-group>
-                <target>Activer ou désactiver les notificaitons</target>
+                <target>Benachrichtigungen aktivieren oder deaktivieren</target>
             </trans-unit>
             <trans-unit id="4622499755152038510" datatype="html">
                 <source> You have not yet provided permission (or denied) notifications. Click the "Change Permission" button to provide permission. </source>
@@ -274,7 +274,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/notifications/notifications-settings.component.html</context>
                     <context context-type="linenumber">9,10</context>
                 </context-group>
-                <target>Vous n'avez pas encore fourni de notifications d'autorisation (ou de refus). Cliquez sur le bouton "Modifier l'autorisation" pour fournir l'autorisation.</target>
+                <target>Sie haben noch keine Benachrichtigungen zur Erlaubnis erteilt (oder verweigert). Klicken Sie auf die Schaltfläche "Berechtigung ändern", um die Berechtigung zu erteilen.</target>
             </trans-unit>
             <trans-unit id="6497969227900255122" datatype="html">
                 <source>You have granted permission for alerts to be shown.</source>
@@ -282,7 +282,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/notifications/notifications-settings.component.html</context>
                     <context context-type="linenumber">19,20</context>
                 </context-group>
-                <target>Vous avez accordé la permission de montrer les alertes.</target>
+                <target>Sie haben die Erlaubnis erteilt, dass Warnungen angezeigt werden.</target>
             </trans-unit>
             <trans-unit id="6131389445862547799" datatype="html">
                 <source>You have denied permission for alerts to be shown. To change, check your browser settings.</source>
@@ -290,7 +290,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/notifications/notifications-settings.component.html</context>
                     <context context-type="linenumber">28,29</context>
                 </context-group>
-                <target>Vous avez nié l'autorisation de montrer les alertes. Pour modifier, vérifiez les paramètres de votre navigateur.</target>
+                <target>Sie haben die Erlaubnis verweigert, dass Warnungen angezeigt werden. Um sich zu ändern, überprüfen Sie Ihre Browsereinstellungen.</target>
             </trans-unit>
             <trans-unit id="8337597418547368640" datatype="html">
                 <source>Pair Device</source>
@@ -302,7 +302,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/pair-new-device/pair-new-device.component.html</context>
                     <context context-type="linenumber">41,42</context>
                 </context-group>
-                <target>Paire l'appareil</target>
+                <target>Paargerät</target>
             </trans-unit>
             <trans-unit id="3997241732590012913" datatype="html">
                 <source>Get Android App</source>
@@ -310,7 +310,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/paired-devices-settings.component.html</context>
                     <context context-type="linenumber">15</context>
                 </context-group>
-                <target>Obtenez l'application Android</target>
+                <target>Holen Sie sich Android App</target>
             </trans-unit>
             <trans-unit id="7334390082969259853" datatype="html">
                 <source>Pair Code:</source>
@@ -318,7 +318,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/paired-devices-settings.component.html</context>
                     <context context-type="linenumber">29</context>
                 </context-group>
-                <target>Code de paire:</target>
+                <target>Paarcode:</target>
             </trans-unit>
             <trans-unit id="2937015339834520042" datatype="html">
                 <source>Change Endpoint</source>
@@ -326,7 +326,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/change-endpoint/change-endpoint.component.html</context>
                     <context context-type="linenumber">2,4</context>
                 </context-group>
-                <target>Changer le point de terminaison</target>
+                <target>Endpunkt ändern</target>
             </trans-unit>
             <trans-unit id="399652017592671620" datatype="html">
                 <source>If you do not wish to use the default install-to-device endpoint, you can also setup and use your own!</source>
@@ -334,7 +334,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/change-endpoint/change-endpoint.component.html</context>
                     <context context-type="linenumber">4,5</context>
                 </context-group>
-                <target>Si vous ne souhaitez pas utiliser le point de terminaison d'installation par défaut, vous pouvez également configurer et utiliser le vôtre!</target>
+                <target>Wenn Sie nicht den Standard-Endpunkt für Installationsträger verwenden möchten, können Sie auch Ihre eigenen einrichten und verwenden!</target>
             </trans-unit>
             <trans-unit id="8477276892542952582" datatype="html">
                 <source>Please visit 
@@ -345,9 +345,9 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/change-endpoint/change-endpoint.component.html</context>
                     <context context-type="linenumber">5,8</context>
                 </context-group>
-                <target>Veuillez visiter
-                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/scottstraughan/saorsail-middleware&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Ce référentiel
-                    <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>Pour voir comment vous pouvez configurer votre propre point de terminaison gratuitement.
+                <target>Bitte besuchen Sie
+                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/scottstraughan/saorsail-middleware&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Dieses Repository
+                    <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>Um anzuzeigen, wie Sie Ihren eigenen Endpunkt kostenlos einrichten können.
                 </target>
             </trans-unit>
             <trans-unit id="5753049960063809110" datatype="html">
@@ -356,7 +356,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/change-endpoint/change-endpoint.component.html</context>
                     <context context-type="linenumber">15,16</context>
                 </context-group>
-                <target>Restaurer par défaut</target>
+                <target>Standardeinstellung wiederherstellen</target>
             </trans-unit>
             <trans-unit id="3768927257183755959" datatype="html">
                 <source>Save</source>
@@ -364,7 +364,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/change-endpoint/change-endpoint.component.html</context>
                     <context context-type="linenumber">25</context>
                 </context-group>
-                <target>Sauvegarder</target>
+                <target>Speichern</target>
             </trans-unit>
             <trans-unit id="8231920240132856501" datatype="html">
                 <source>Pair New Device</source>
@@ -372,7 +372,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/pair-new-device/pair-new-device.component.html</context>
                     <context context-type="linenumber">5,7</context>
                 </context-group>
-                <target>Associez le nouvel appareil</target>
+                <target>Kombinieren Sie ein neues Gerät</target>
             </trans-unit>
             <trans-unit id="4466203630519195129" datatype="html">
                 <source>Install apps directly to your device from the marketplace by pairing with the 
@@ -383,8 +383,8 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/pair-new-device/pair-new-device.component.html</context>
                     <context context-type="linenumber">7,11</context>
                 </context-group>
-                <target>Installez les applications directement sur votre appareil depuis le marché en jumelant avec le
-                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/scottstraughan/saorsail-assistant-android/releases&quot; target=&quot;_blank&quot;&gt;"/>Saorsail pour Android
+                <target>Installieren Sie Apps direkt an Ihrem Gerät vom Marktplatz, indem Sie sie mit dem kombinieren
+                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/scottstraughan/saorsail-assistant-android/releases&quot; target=&quot;_blank&quot;&gt;"/>Saorsail für Android
                     <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>App.
                 </target>
             </trans-unit>
@@ -394,7 +394,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/pair-new-device/pair-new-device.component.html</context>
                     <context context-type="linenumber">11,14</context>
                 </context-group>
-                <target>Pour jumeler, ouvrez l'application SAORSAIL sur votre appareil Android et cliquez sur le code "PAIR via QR", puis numérisez le code QR affiché.</target>
+                <target>Öffnen Sie zum Kombinieren die SaorSail -App auf Ihrem Android -Gerät und klicken Sie auf "Paar über QR" -Code und scannen Sie dann den angezeigten QR -Code.</target>
             </trans-unit>
             <trans-unit id="6196469542671405371" datatype="html">
                 <source>Name your paired device</source>
@@ -402,7 +402,7 @@
                     <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/popups/pair-new-device/pair-new-device.component.html</context>
                     <context context-type="linenumber">29,30</context>
                 </context-group>
-                <target>Nommez votre appareil apparié</target>
+                <target>Nennen Sie Ihr gepaartes Gerät</target>
             </trans-unit>
             <trans-unit id="187187500641108332" datatype="html">
                 <source>

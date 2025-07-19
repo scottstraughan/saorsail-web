@@ -1,11 +1,13 @@
 <div class="buttons">
   <swc-icon-button
+      i18n-label
       class="pair-new-device"
       label="Pair Device"
       icon="general/add"
       (click)="onAddPairedDevice()"></swc-icon-button>
 
   <swc-icon-button
+      i18n-label
       href="https://github.com/scottstraughan/saorsail-assistant-android/releases"
       target="_blank"
       class="download-apk"
@@ -24,7 +26,7 @@
       <li>
         <div class="info">
           <h1 class="device-name">{{ device.name }}</h1>
-          <h2 class="device-code"><b>Pair Code:</b> {{ device.code }}</h2>
+          <h2 class="device-code"><b i18n>Pair Code:</b> {{ device.code }}</h2>
         </div>
         <div class="device-actions">
           <swc-copy-input

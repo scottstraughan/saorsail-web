@@ -1,4 +1,7 @@
-<swc-settings-block-item title="Theme" subTitle="Customize the look and feel of the marketplace.">
+<swc-settings-block-item
+    i18n-title i18n-subTitle
+    title="Theme"
+    subTitle="Customize the look and feel of the marketplace.">
   <div class="themes">
     @for (theme of themes(); track theme.name) {
       <div class="theme" [class.selected]="theme.name == selectedTheme().name" (click)="onSelectTheme(theme)">
@@ -11,7 +14,11 @@
   </div>
 </swc-settings-block-item>
 
-<swc-settings-block-item title="Colour Scheme" subTitle="Change the color scheme used on the marketplace.">
+<swc-settings-block-item
+    i18n-title i18n-subTitle
+    title="Colour Scheme"
+    subTitle="Change the color scheme used on the marketplace.">
+
   <div class="pallet">
     @for (color of getPallets(); track color) {
       <div class="choice"
