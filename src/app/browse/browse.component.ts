@@ -15,6 +15,7 @@ import { ShowMoreButtonComponent } from '../shared/components/show-more-button/s
 import { IconComponent } from '../shared/components/icon/icon.component';
 import { IconButtonComponent } from '../shared/components/icon-button/icon-button.component';
 import { TitleCasePipe } from '@angular/common';
+import { LoggerService } from '../shared/services/logger.service';
 
 @Component({
   selector: 'swc-browse',
@@ -80,7 +81,8 @@ export class BrowseComponent implements OnInit, OnDestroy {
     private applicationService: ApplicationService,
     private activatedRoute: ActivatedRoute,
     private localizationService: LocalizationService,
-    private router: Router
+    private router: Router,
+    private loggerService: LoggerService
   ) { }
 
   /**
@@ -126,7 +128,6 @@ export class BrowseComponent implements OnInit, OnDestroy {
 
     filter.value = keywords;
 
-    console.log(filter)
     setTimeout(() => this.onFiltersChanged());
   }
 
@@ -185,7 +186,7 @@ export class BrowseComponent implements OnInit, OnDestroy {
       this.page() * BrowseComponent.ITEMS_PER_PAGE - BrowseComponent.ITEMS_PER_PAGE,
       this.filters());
 
-    console.log('Reloading', filters);
+    this.loggerService.info('Reloading...');
 
     this.applicationService.getApplications(filters)
       .pipe(

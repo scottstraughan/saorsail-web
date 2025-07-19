@@ -72,7 +72,6 @@ export class ViewAppComponent implements OnInit {
   ) {
     return this.databaseService.getApplication(packageName)
       .pipe(
-        tap(application => console.log(application)),
         tap(application => {
           this.localizationService.getLocalized(application.metadata.name)
             .pipe(
