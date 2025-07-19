@@ -1025,7 +1025,11 @@ export class LocalizationService {
       return <T> 'Unknown'
     }
 
-    return record[this.local$.value.code];
+    if (this.local$.value.code in record) {
+      return record[this.local$.value.code];
+    }
+
+    return record[LocalizationService.DEFAULT_LOCAL];
   }
 
   /**
