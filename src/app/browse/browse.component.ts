@@ -226,7 +226,7 @@ export class BrowseComponent implements OnInit, OnDestroy {
           for (const category of categories) {
             categoriesFilter.addFilterValue(new FilterValue(
               category.id,
-              this.localizationService.getLocalizedSingle(category.name)
+              this.localizationService.localizeRecord(category.name)
             ));
           }
         }),

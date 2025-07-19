@@ -15,7 +15,7 @@ import { DisplayThemeService } from '../../../../services/display-theme.service'
 })
 export class AboutSettingsComponent {
   static icon: string = 'general/info';
-  static title: string = 'About';
+  static title: string = $localize`About`;
 
   readonly darkTheme: WritableSignal<boolean> = signal(false);
 

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
 import { Application } from '../../models/repository.model';
 import { LocalizationService } from '../../services/localization.service';
 import { RouterLink } from '@angular/router';
@@ -11,7 +10,6 @@ import { MaskableIconComponent } from '../maskable-icon/maskable-icon.component'
   selector: 'swc-application-widget',
   standalone: true,
   imports: [
-    AsyncPipe,
     RouterLink,
     InstallButtonComponent,
     MaskableIconComponent

@@ -85,6 +85,10 @@
           <context context-type="sourcefile">src/app/browse/browse.component.html</context>
           <context context-type="linenumber">32,33</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="5146398958364876914" datatype="html">
         <source>Sort</source>
@@ -111,18 +115,39 @@
           <context context-type="linenumber">5,6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8947070849623692808" datatype="html">
-        <source> Showing <x id="INTERPOLATION" equiv-text="{{ apps().length }}"/> apps, matched <x id="INTERPOLATION_1" equiv-text="{{ filtererAppCount() }}"/> of <x id="INTERPOLATION_2" equiv-text="{{ totalAppsCount() }}"/> total </source>
+      <trans-unit id="3313305464759255603" datatype="html">
+        <source>Showing</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/browse/browse.component.html</context>
-          <context context-type="linenumber">72,74</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1333486409717675331" datatype="html">
+        <source>apps, matched</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/browse/browse.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5881876145178332550" datatype="html">
+        <source>of</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/browse/browse.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6489441800790477240" datatype="html">
+        <source>total</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/browse/browse.component.html</context>
+          <context context-type="linenumber">74,75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5628109973224414572" datatype="html">
         <source>Change Filters</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/browse/browse.component.html</context>
-          <context context-type="linenumber">75,76</context>
+          <context context-type="linenumber">77,78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2107420120837644604" datatype="html">
@@ -144,6 +169,20 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popular/popular.component.html</context>
           <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6082171864197428613" datatype="html">
+        <source>Install</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/install-button/install-button.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3099741642167775297" datatype="html">
+        <source>Download</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/install-button/install-button.component.ts</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2614607010577950577" datatype="html">
@@ -181,6 +220,13 @@
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1726363342938046830" datatype="html">
+        <source>About</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/about/about-settings.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7103588127254721505" datatype="html">
         <source>Theme</source>
         <context-group purpose="location">
@@ -193,6 +239,17 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/display/display-settings.component.html</context>
           <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ theme.name }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/display/display-settings.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/popups/settings/settings.component.html</context>
+          <context context-type="linenumber">5,6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7075723343572770176" datatype="html">
@@ -209,11 +266,29 @@
           <context context-type="linenumber">20,22</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6812930637022637485" datatype="html">
+        <source>Display</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/display/display-settings.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2732752787737094710" datatype="html">
+        <source>Localization</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/localization/localization-settings.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5851560788527570644" datatype="html">
         <source>Notifications</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/notifications/notifications-settings.component.html</context>
           <context context-type="linenumber">4,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/notifications/notifications-settings.component.ts</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7757098375480461041" datatype="html">
@@ -267,6 +342,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/paired-devices-settings.component.html</context>
           <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4124389937456536586" datatype="html">
+        <source>Paired Devices</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/paired-devices/paired-devices-settings.component.ts</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2937015339834520042" datatype="html">
@@ -332,11 +414,89 @@
           <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="187187500641108332" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ panel.name }}"/></source>
+      <trans-unit id="7013855698532150828" datatype="html">
+        <source>Storage / Sync</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/popups/settings/settings.component.html</context>
-          <context context-type="linenumber">5,6</context>
+          <context context-type="sourcefile">src/app/shared/popups/settings/settings-panes/storage/storage-settings.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7071470734400948493" datatype="html">
+        <source>Author</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">97,98</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">102,103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="231679111972850796" datatype="html">
+        <source>Added</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7239750919884229270" datatype="html">
+        <source>Updated</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7314814725704332646" datatype="html">
+        <source>Permissions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">109,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6389014871764076901" datatype="html">
+        <source>Available Versions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">115,116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5804710822240029545" datatype="html">
+        <source>Selected Version</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">120,121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7056893903045825360" datatype="html">
+        <source>Latest Version</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">126,127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3631120767869171701" datatype="html">
+        <source>APK Size</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">132,133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5187476798319122379" datatype="html">
+        <source>Android SDK Target</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">137,138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="699101831638598755" datatype="html">
+        <source>Android SDK Minimum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/view-app/view-app.component.html</context>
+          <context context-type="linenumber">142,143</context>
         </context-group>
       </trans-unit>
     </body>

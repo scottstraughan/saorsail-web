@@ -17,7 +17,7 @@ import { DisplayTheme, DisplayThemeService, ThemeColor } from '../../../../servi
 })
 export class DisplaySettingsComponent {
   static icon: string = 'general/phone';
-  static title: string = 'Display';
+  static title: string = $localize`Display`;
 
   /**
    * A signal of available themes.

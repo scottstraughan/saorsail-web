@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
 import { Application, ApplicationVersion } from '../models/repository.model';
 import { DownloadMethod } from './download-method.service';
 import { LocalizationService } from './localization.service';
@@ -62,36 +62,23 @@ export class InstallService {
     }
 
     const pairedDevice = method.pairedDevice;
-    const localizationResult = {
-      'title': '',
-      'icon': ''
+
+    const installRequest = <InstallRequest> {
+      devicePairCode: pairedDevice.code,
+      appNamespace: application.namespace,
+      appIconUrl: this.localizationService.localizeImageRecord(application.metadata.icon),
+      appName: this.localizationService.localizeRecord(application.metadata.name),
+      appVersion: version.manifest.versionName,
+      appPackageDownloadUrl: this.getDownloadApkUrl(version)
     };
 
-    return this.localizationService.getLocalized(application.metadata.name)
+    return this.installToDevice(installRequest)
       .pipe(
-        tap(title =>
-          localizationResult.title = title),
-        switchMap(() =>
-          this.localizationService.resolveLocalizedImageUrl(application.metadata.icon)),
-        tap(icon =>
-          localizationResult.icon = icon),
-        map(() => {
-          return <InstallRequest> {
-            devicePairCode: pairedDevice.code,
-            appNamespace: application.namespace,
-            appIconUrl: localizationResult.icon,
-            appName: localizationResult.title,
-            appVersion: version.manifest.versionName,
-            appPackageDownloadUrl: this.getDownloadApkUrl(version)
-          }
-        }),
-        switchMap(installRequest =>
-          this.installToDevice(installRequest)),
         tap(() => {
           this.notificationService.create({
-            title: `Installing ${localizationResult.title} to ${pairedDevice.name}`,
-            body: `${localizationResult.title} should start installing on ${pairedDevice.name} shortly, if not, check settings.`,
-            icon: localizationResult.icon
+            title: `Installing ${installRequest.appName} to ${pairedDevice.name}`,
+            body: `${installRequest.appName} should start installing on ${pairedDevice.name} shortly, if not, check settings.`,
+            icon: installRequest.appIconUrl
           })
         }),
         catchError((e: HttpErrorResponse) => {

@@ -1,5 +1,5 @@
-import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, of } from 'rxjs';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
+import { BehaviorSubject, filter, Observable, tap } from 'rxjs';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { ImageReference } from '../models/repository.model';
 import { FdroidRepositoryService } from './repository/fdroid-repository.service';
@@ -941,16 +941,19 @@ export class LocalizationService {
   private local$: BehaviorSubject<Local> = new BehaviorSubject<Local>(
     LocalizationService.languages[LocalizationService.DEFAULT_LOCAL]);
 
+
   /**
    * Constructor
+   * @param currentLocale
    * @param storageService
    * @param fdroidRepositoryService
    */
   constructor(
+    @Inject(LOCALE_ID) public currentLocale: string,
     @Inject(LOCAL_STORAGE) private storageService: StorageService,
     private fdroidRepositoryService: FdroidRepositoryService
   ) {
-    this.setLocal(this.storageService.get(LocalizationService.STORAGE_KEY));
+    this.setLocal(currentLocale);
   }
 
   /**
@@ -994,31 +997,7 @@ export class LocalizationService {
    * fall back to the default local.
    * @param record
    */
-  getLocalized<T>(
-    record: Record<string, T> | undefined
-  ): Observable<T> {
-    return this.local$
-      .pipe(
-        map(() => {
-          if (!record) {
-            return <T> 'Unknown';
-          }
-
-          if (this.local$.value.code in record) {
-            return record[this.local$.value.code];
-          }
-
-          return record[LocalizationService.DEFAULT_LOCAL];
-        })
-      )
-  }
-
-  /**
-   * Get a string translated to the users preferred local. If the preferred local is not available, the string will
-   * fall back to the default local.
-   * @param record
-   */
-  getLocalizedSingle<T>(
+  localizeRecord<T>(
     record: Record<string, T> | undefined
   ): T {
     if (!record) {
@@ -1039,6 +1018,14 @@ export class LocalizationService {
     return this.local$;
   }
 
+  observeLocalChanges(): Observable<Local> {
+    const currentLocal = this.local$.value;
+
+    return this.observeLocal()
+      .pipe(
+        filter(local => currentLocal != local));
+  }
+
   /**
    * Get the default local.
    */
@@ -1052,19 +1039,16 @@ export class LocalizationService {
    * @param imageReference
    * @param fallback
    */
-  resolveLocalizedImageUrl(
+  localizeImageRecord(
     imageReference: Record<string, ImageReference> | undefined,
     fallback: string = '/assets/img/missing.webp'
-  ): Observable<string> {
+  ): string {
     if (!imageReference) {
-      return of(fallback);
+      return fallback;
     }
 
-    return this.getLocalized(imageReference)
-      .pipe(
-        map(imageReference =>
-          this.fdroidRepositoryService.resolveImageUrl(imageReference)),
-      )
+    return this.fdroidRepositoryService.resolveImageUrl(
+      this.localizeRecord(imageReference));
   }
 }
 

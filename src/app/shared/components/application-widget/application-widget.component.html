@@ -6,12 +6,12 @@
       </div>
     }
 
-    @if (localizationService.resolveLocalizedImageUrl(application.metadata.icon) | async; as icon) {
+    @if (localizationService.localizeImageRecord(application.metadata.icon); as icon) {
       <div class="icon" [style.background-image]="'url(' + icon + ')'"></div>
     }
 
-    <h1>{{ localizationService.getLocalized(application.metadata.name) | async }}</h1>
-    <h2>{{ localizationService.getLocalized(application.metadata.summary) | async }}</h2>
+    <h1>{{ localizationService.localizeRecord(application.metadata.name) }}</h1>
+    <h2>{{ localizationService.localizeRecord(application.metadata.summary) }}</h2>
   </a>
 
   <div class="actions">

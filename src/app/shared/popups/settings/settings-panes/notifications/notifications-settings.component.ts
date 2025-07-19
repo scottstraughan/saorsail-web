@@ -19,7 +19,7 @@ import { NotificationService, UserNotificationState } from '../../../../services
 })
 export class NotificationsSettingsComponent {
   static icon: string = 'general/notification';
-  static title: string = 'Notifications';
+  static title: string = $localize`Notifications`;
 
   protected readonly notificationsState: Signal<UserNotificationState>;
 

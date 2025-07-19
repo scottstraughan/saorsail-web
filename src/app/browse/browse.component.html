@@ -68,8 +68,10 @@
   }
 
   <div class="info">
-    <div class="message" i18n>
-      Showing {{ apps().length }} apps, matched {{ filtererAppCount() }} of {{ totalAppsCount() }} total
+    <div class="message">
+      <span i18n>Showing</span> {{ apps().length }}
+      <span i18n>apps, matched</span> {{ filtererAppCount() }}
+      <span i18n>of</span> {{ totalAppsCount() }} <span i18n>total</span>
     </div>
     <div class="action">
       <swc-icon-button i18n-label (click)="onShowFilters()" label="Change Filters" />
