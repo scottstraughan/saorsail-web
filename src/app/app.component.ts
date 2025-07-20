@@ -55,7 +55,6 @@ export class AppComponent {
 
     this.localizationService.observeLocal()
       .pipe(
-        tap(local => alert(local.code)),
         tap(local => this.translate.use(local.code))
       )
       .subscribe();

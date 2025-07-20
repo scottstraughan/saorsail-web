@@ -18,7 +18,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DisplaySettingsComponent {
-  static icon: string = 'general/phone';
+  static icon: string = 'general/display';
   static title: string = `Display`;
 
   /**

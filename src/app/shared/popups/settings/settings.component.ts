@@ -18,6 +18,8 @@ import { AboutSettingsComponent } from './settings-panes/about/about-settings.co
 import { SettingsHeaderComponent } from './components/setting-header/settings-header.component';
 import { SettingsContentComponent } from './components/setting-content/settings-content.component';
 import { TranslateService } from '@ngx-translate/core';
+import { take, tap } from 'rxjs';
+import { LocalizationService } from '../../services/localization.service';
 
 @Component({
   imports: [
@@ -42,6 +44,7 @@ export class SettingsComponent {
   constructor(
     @Inject('FDM_POPUP') private popupInstance: PopupInstance<SettingsComponent>,
     private translateService: TranslateService,
+    protected localizationService: LocalizationService,
   ) {
     this.panels.set([
       {
@@ -86,6 +89,13 @@ export class SettingsComponent {
     if (this.popupInstance.getPopupData()) {
       this.onSelectSettingsByName(this.popupInstance.getPopupData())
     }
+
+    this.localizationService.observeLocalChanges()
+      .pipe(
+        tap(() => this.popupInstance.close()),
+        take(1)
+      )
+      .subscribe()
   }
 
   /**
