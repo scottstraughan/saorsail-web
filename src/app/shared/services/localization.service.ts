@@ -10,7 +10,7 @@ import { FdroidRepositoryService } from './repository/fdroid-repository.service'
 export class LocalizationService {
   static readonly DEFAULT_LOCAL = 'en-US';
   static readonly STORAGE_KEY = 'swc-preferred-local';
-  static readonly languages: Record<string, Local> = {
+  static readonly languages: Record<string, Locale> = {
     'de': {
       name: 'German',
       code: 'de',
@@ -43,9 +43,8 @@ export class LocalizationService {
     }
   };
 
-  private local$: BehaviorSubject<Local> = new BehaviorSubject<Local>(
+  private locale$: BehaviorSubject<Locale> = new BehaviorSubject<Locale>(
     LocalizationService.languages[LocalizationService.DEFAULT_LOCAL]);
-
 
   /**
    * Constructor
@@ -56,7 +55,7 @@ export class LocalizationService {
   constructor(
     @Inject(LOCALE_ID) public currentLocale: string,
     @Inject(LOCAL_STORAGE) private storageService: StorageService,
-    private fdroidRepositoryService: FdroidRepositoryService
+    private fdroidRepositoryService: FdroidRepositoryService,
   ) {
     this.setLocal(this.storageService.get(LocalizationService.STORAGE_KEY));
   }
@@ -72,7 +71,12 @@ export class LocalizationService {
       newLocal = LocalizationService.DEFAULT_LOCAL;
     }
 
-    this.local$.next(LocalizationService.languages[newLocal]);
+    if (!(newLocal in LocalizationService.languages)) {
+      console.warn(`Could not set local ${newLocal} as it is not supported.`);
+      return ;
+    }
+
+    this.locale$.next(LocalizationService.languages[newLocal]);
     this.storageService.set(LocalizationService.STORAGE_KEY, newLocal);
   }
 
@@ -88,7 +92,7 @@ export class LocalizationService {
    * @param languageReference
    */
   getLanguageIcon(
-    languageReference: Local
+    languageReference: Locale
   ): string {
     if (languageReference.icon) {
       return `./assets/icons/flags/${languageReference.code}.svg`;
@@ -109,8 +113,8 @@ export class LocalizationService {
       return <T> 'Unknown'
     }
 
-    if (this.local$.value.code in record) {
-      return record[this.local$.value.code];
+    if (this.locale$.value.code in record) {
+      return record[this.locale$.value.code];
     }
 
     return record[LocalizationService.DEFAULT_LOCAL];
@@ -119,12 +123,12 @@ export class LocalizationService {
   /**
    * Observe any changes to the preferred local.
    */
-  observeLocal(): Observable<Local> {
-    return this.local$;
+  observeLocal(): Observable<Locale> {
+    return this.locale$;
   }
 
-  observeLocalChanges(): Observable<Local> {
-    const currentLocal = this.local$.value;
+  observeLocalChanges(): Observable<Locale> {
+    const currentLocal = this.locale$.value;
 
     return this.observeLocal()
       .pipe(
@@ -134,7 +138,7 @@ export class LocalizationService {
   /**
    * Get the default local.
    */
-  getDefault(): Local {
+  getDefault(): Locale {
     return LocalizationService.languages[LocalizationService.DEFAULT_LOCAL];
   }
 
@@ -160,7 +164,7 @@ export class LocalizationService {
 /**
  * Represents a local.
  */
-export interface Local {
+export interface Locale {
   name: string
   code: string
   icon: boolean
