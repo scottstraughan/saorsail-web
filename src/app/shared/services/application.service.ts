@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { from, map, Observable } from 'rxjs';
+import { from, map, Observable, of, switchMap } from 'rxjs';
 import { Application, ApplicationVersion, Category } from '../models/repository.model';
 import { DatabaseService } from './database.service';
 import { ModelFilters, ModelOrder, OrderBy, OrderDirection } from '../models/filters.model';
@@ -64,6 +64,8 @@ export class ApplicationService {
     return this.getApplications(filters);
   }
 
+
+
   /**
    * Get an array of applications and filter them using the provided filters.
    * Note: this function uses a web worker for performance but will fall back to direct indexDB access on failure.
@@ -97,7 +99,9 @@ export class ApplicationService {
         worker.postMessage(JSON.stringify(workerData));
       });
 
-      return from(promise);
+      // Verify we are in a valid state, return promise to worker if we are
+      return from(this.databaseService.verifyValidState('applications'))
+        .pipe(switchMap(() => from(promise)))
     }
 
     this.loggerService.warn('Web worker not supported, fetching applications directly...');
