@@ -2,13 +2,13 @@
 
 <div class="content">
   <div class="details">
-    <h1 i18n>Pair New Device</h1>
+    <h1>Pair New Device</h1>
 
-    <p i18n>Install apps directly to your device from the marketplace by pairing with the
+    <p>Install apps directly to your device from the marketplace by pairing with the
       <a href="https://github.com/scottstraughan/saorsail-assistant-android/releases" target="_blank">Saorsail
         for Android</a> app.</p>
 
-    <p i18n>To pair, open the Saorsail App on your Android device and click "Pair via QR" code, and then scan the QR code
+    <p>To pair, open the Saorsail App on your Android device and click "Pair via QR" code, and then scan the QR code
     shown.</p>
 
     <div class="pair">
@@ -25,7 +25,6 @@
 
       <swc-icon-input
           #nameInput
-          i18n-title
           title="Name your paired device"
           class="name"
           icon="general/name"
@@ -36,7 +35,6 @@
 
   <div class="actions">
     <swc-icon-button
-        i18n-label
         icon="general/add"
         label="Pair Device"
         [disabled]="!isValid()"

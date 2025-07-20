@@ -1,22 +1,16 @@
 <swc-settings-block-item
-    i18n-title
     class="overview"
-    title="Overview">
+    [title]="'SETTINGS_ABOUT_OVERVIEW_TITLE' | translate">
   <img class="logo"
        [src]="darkTheme() ? './assets/img/logo-white.svg' : '../assets/img/logo-black.svg'"
        alt="Saorsail Icon" />
-  <p i18n>Saorsail ("Free" in Gaelic) is a web-based storefront for all apps that are free and/or open source. Built upon
-    the incredible work of the <a href="https://github.com/f-droid/" target="_blank" rel="noopener">F-Droid team</a>,
-    Saorsail uses the F-Droid public database to give you access to huge collection of public domain apps.</p>
-
-  <p i18n>Saorsail has also been designed to make it super easy to install apps from the web, directly to your devices.</p>
+  <p>{{ 'SETTINGS_ABOUT_P1' | translate }}</p>
+  <p>{{ 'SETTINGS_ABOUT_P2' | translate }}</p>
 </swc-settings-block-item>
 
 <swc-settings-block-item
-    i18n-title
-    i18n-subTitle
-    title="Credits"
-    subTitle="All the humans that have helped create the marketplace">
+    [title]="'SETTINGS_ABOUT_CREDITS_TITLE' | translate"
+    [subTitle]="'SETTINGS_ABOUT_CREDITS_SUBTITLE' | translate">
   <div class="credits">
     <a href="https://github.com/scottstraughan" target="_blank" rel="noopener">
       <img src="https://avatars.githubusercontent.com/u/42965777?v=4" alt="Scott's Avatar">

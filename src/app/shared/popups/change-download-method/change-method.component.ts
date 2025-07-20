@@ -5,13 +5,15 @@ import { MaskableIconComponent } from '../../components/maskable-icon/maskable-i
 import { IconButtonComponent } from '../../components/icon-button/icon-button.component';
 import { DownloadMethod, DownloadMethodService } from '../../services/download-method.service';
 import { PopupInstance, PopupService } from '../../components/popup/popup.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-change-method',
   standalone: true,
   imports: [
     MaskableIconComponent,
-    IconButtonComponent
+    IconButtonComponent,
+    TranslatePipe
   ],
   templateUrl: './change-method.component.html',
   styleUrls: [

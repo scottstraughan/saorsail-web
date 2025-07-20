@@ -9,6 +9,7 @@ import { FdroidRepositoryService } from '../shared/services/repository/fdroid-re
 import { Title } from '@angular/platform-browser';
 import { appTitle } from '../app.config';
 import { LoadingIndicatorComponent } from '../shared/components/loading-indicator/loading-indicator.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-latest',
@@ -16,7 +17,8 @@ import { LoadingIndicatorComponent } from '../shared/components/loading-indicato
   imports: [
     ApplicationWidgetComponent,
     ShowMoreButtonComponent,
-    LoadingIndicatorComponent
+    LoadingIndicatorComponent,
+    TranslatePipe
   ],
   templateUrl: './latest.component.html',
   styleUrl: './latest.component.scss'

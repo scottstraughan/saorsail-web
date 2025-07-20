@@ -16,6 +16,7 @@ import { IconComponent } from '../shared/components/icon/icon.component';
 import { IconButtonComponent } from '../shared/components/icon-button/icon-button.component';
 import { TitleCasePipe } from '@angular/common';
 import { LoggerService } from '../shared/services/logger.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-browse',
@@ -30,6 +31,7 @@ import { LoggerService } from '../shared/services/logger.service';
     IconComponent,
     IconButtonComponent,
     TitleCasePipe,
+    TranslatePipe,
   ],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.scss'

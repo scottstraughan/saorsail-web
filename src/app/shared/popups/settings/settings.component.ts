@@ -17,6 +17,7 @@ import { PopupInstance } from '../../components/popup/popup.service';
 import { AboutSettingsComponent } from './settings-panes/about/about-settings.component';
 import { SettingsHeaderComponent } from './components/setting-header/settings-header.component';
 import { SettingsContentComponent } from './components/setting-content/settings-content.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   imports: [
@@ -32,53 +33,56 @@ import { SettingsContentComponent } from './components/setting-content/settings-
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsComponent {
-  readonly panels: WritableSignal<SettingPanel[]> = signal([
-    {
-      id: SettingPanelId.DISPLAY,
-      name: DisplaySettingsComponent.title,
-      icon: DisplaySettingsComponent.icon,
-      component: DisplaySettingsComponent
-    },
-    {
-      id: SettingPanelId.PAIRED_DEVICES,
-      name: PairedDevicesSettingsComponent.title,
-      icon: PairedDevicesSettingsComponent.icon,
-      component: PairedDevicesSettingsComponent
-    },
-    {
-      id: SettingPanelId.LOCALIZATION,
-      name: LocalizationSettingsComponent.title,
-      icon: LocalizationSettingsComponent.icon,
-      component: LocalizationSettingsComponent
-    },
-    {
-      id: SettingPanelId.STORAGE,
-      name: StorageSettingsComponent.title,
-      icon: StorageSettingsComponent.icon,
-      component: StorageSettingsComponent
-    },
-    {
-      id: SettingPanelId.NOTIFICATIONS,
-      name: NotificationsSettingsComponent.title,
-      icon: NotificationsSettingsComponent.icon,
-      component: NotificationsSettingsComponent
-    },
-    {
-      id: SettingPanelId.ABOUT,
-      name: AboutSettingsComponent.title,
-      icon: AboutSettingsComponent.icon,
-      component: AboutSettingsComponent
-    },
-  ]);
-
-  readonly selectedPanel: WritableSignal<SettingPanel> = signal(this.panels()[0])
+  readonly panels: WritableSignal<SettingPanel[]> = signal([]);
+  readonly selectedPanel: WritableSignal<SettingPanel | undefined> = signal(undefined)
 
   /**
    * Constructor.
    */
   constructor(
     @Inject('FDM_POPUP') private popupInstance: PopupInstance<SettingsComponent>,
+    private translateService: TranslateService,
   ) {
+    this.panels.set([
+      {
+        id: SettingPanelId.DISPLAY,
+        name: this.translateService.instant('SETTINGS_DISPLAY_TITLE'),
+        icon: DisplaySettingsComponent.icon,
+        component: DisplaySettingsComponent
+      },
+      {
+        id: SettingPanelId.PAIRED_DEVICES,
+        name: this.translateService.instant('SETTINGS_PAIRED_DEVICES_TITLE'),
+        icon: PairedDevicesSettingsComponent.icon,
+        component: PairedDevicesSettingsComponent
+      },
+      {
+        id: SettingPanelId.LOCALIZATION,
+        name: this.translateService.instant('SETTINGS_LOCALIZATION_TITLE'),
+        icon: LocalizationSettingsComponent.icon,
+        component: LocalizationSettingsComponent
+      },
+      {
+        id: SettingPanelId.STORAGE,
+        name: this.translateService.instant('SETTINGS_STORAGE_TITLE'),
+        icon: StorageSettingsComponent.icon,
+        component: StorageSettingsComponent
+      },
+      {
+        id: SettingPanelId.NOTIFICATIONS,
+        name: this.translateService.instant('SETTINGS_NOTIFICATIONS_TITLE'),
+        icon: NotificationsSettingsComponent.icon,
+        component: NotificationsSettingsComponent
+      },
+      {
+        id: SettingPanelId.ABOUT,
+        name: this.translateService.instant('SETTINGS_ABOUT_TITLE'),
+        icon: AboutSettingsComponent.icon,
+        component: AboutSettingsComponent
+      },
+    ]);
+    this.selectedPanel.set(this.panels()[0]);
+
     if (this.popupInstance.getPopupData()) {
       this.onSelectSettingsByName(this.popupInstance.getPopupData())
     }

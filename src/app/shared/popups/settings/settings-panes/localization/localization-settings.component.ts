@@ -27,7 +27,7 @@ import { Router } from '@angular/router';
 })
 export class LocalizationSettingsComponent implements OnInit {
   static icon: string = 'general/language';
-  static title: string = $localize`Localization`;
+  static title: string = `Localization`;
 
   readonly languages: WritableSignal<Local[]> = signal([]);
   readonly filteredLanguages: Signal<Local[]> = signal([]);
@@ -73,13 +73,6 @@ export class LocalizationSettingsComponent implements OnInit {
 
     setTimeout(() =>
       this.searchElement?.focusInput());
-
-    this.localizationService.observeLocalChanges()
-      .pipe(
-        tap(local => console.log(`Navigating to local: ${local.code}.`)),
-        tap(local => this.router.navigate([`./${local.code}`]))
-      )
-      .subscribe();
   }
 
   @HostListener('keydown', ['$event'])

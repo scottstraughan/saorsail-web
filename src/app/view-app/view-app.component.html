@@ -5,8 +5,7 @@
       <header>
         <div class="wrapper">
           <div class="icon">
-            <img [src]="localizationService.localizeImageRecord(application.metadata.icon)"
-                 alt="App Icon" />
+            <img [src]="localizationService.localizeImageRecord(application.metadata.icon)" alt="App Icon" />
           </div>
           <div class="title">
             <div>
@@ -16,9 +15,7 @@
           </div>
           <div class="actions">
             @if (selectedVersion(); as latestVersion) {
-              <swc-install-button
-                  [application]="application"
-                  [version]="latestVersion"></swc-install-button>
+              <swc-install-button [application]="application" [version]="latestVersion"></swc-install-button>
             }
           </div>
         </div>
@@ -27,7 +24,7 @@
       <div class="overview">
         @if (application.metadata.authorName; as authorName) {
           <div class="item">
-            <h1 i18n>Author</h1>
+            <h1>{{ 'VIEW_APP_AUTHOR' | translate }}</h1>
             <h2><a [href]="application.metadata.authorWebSite"
                    target="_blank" rel="noopener">{{ authorName | truncate: 15 }}</a></h2>
           </div>
@@ -35,21 +32,21 @@
         }
 
         <div class="item">
-          <h1 i18n>License</h1>
+          <h1>{{ 'VIEW_APP_LICENSE' | translate }}</h1>
           <h2>{{ application.metadata.license }}</h2>
         </div>
 
         <div class="sep"></div>
 
         <div class="item">
-          <h1 i18n>Added</h1>
+          <h1>{{ 'VIEW_APP_ADDED' | translate }}</h1>
           <h2>{{ application.metadata.added | date: 'MMM d, y' }}</h2>
         </div>
 
         <div class="sep"></div>
 
         <div class="item">
-          <h1 i18n>Updated</h1>
+          <h1>{{ 'VIEW_APP_UPDATED' | translate }}</h1>
           <h2>{{ application.metadata.lastUpdated | date: 'MMM d, y' }}</h2>
         </div>
       </div>
@@ -70,7 +67,7 @@
     <article class="contents">
       @if (latestVersion() !== selectedVersion()) {
         <div class="old-version-message" (click)="onGoToLatest(application)">
-          You are looking at an older version of this app, click here to view the latest.
+          {{ 'VIEW_APP_OLD_VERSION_WARNING' | translate }}
         </div>
       }
 
@@ -80,13 +77,13 @@
 
       @if (selectedVersion(); as selectedVersion) {
         @if (getLocalizedFormattedContents(selectedVersion.whatsNew)) {
-          <h2>What's New</h2>
+          <h2>{{ 'VIEW_APP_WHATS_NEW' | translate }}</h2>
           <div class="whats-new" [innerHTML]="getLocalizedFormattedContents(selectedVersion.whatsNew)"></div>
         }
 
         <section class="information">
           <header>
-            <h1>Information</h1>
+            <h1>{{ 'VIEW_APP_INFORMATION' | translate }}</h1>
           </header>
 
           <div class="panels">
@@ -94,52 +91,52 @@
               <a class="panel action"
                  title="Go to the author website"
                  [href]="authorWebsite" target="_blank">
-                <h1 i18n>Author</h1>
+                <h1>Author</h1>
                 <h2>{{ getDecentAuthorName(application.metadata.authorName) }}</h2>
               </a>
             } @else {
               <div class="panel">
-                <h1 i18n>Author</h1>
+                <h1>{{ 'VIEW_APP_AUTHOR' | translate }}</h1>
                 <h2>{{ getDecentAuthorName(application.metadata.authorName) }}</h2>
               </div>
             }
 
             @if (selectedVersion.manifest.usesPermission; as permissions) {
               <div class="panel action" (click)="onShowPermissions()" title="Click to view permissions">
-                <h1 i18n>Permissions</h1>
+                <h1>{{ 'VIEW_APP_PERMISSION' | translate }}</h1>
                 <h2>Uses {{ permissions.length }} permissions</h2>
               </div>
             }
 
             <div class="panel action" (click)="onShowAllVersions()" title="Click to view available versions">
-              <h1 i18n>Available Versions</h1>
+              <h1>{{ 'VIEW_APP_AVAILABLE_VERSIONS' | translate }}</h1>
               <h2>{{ Object.values(application.versions).length }}</h2>
             </div>
 
             <div class="panel action" (click)="onShowAllVersions()" title="Click to view available versions">
-              <h1 i18n>Selected Version</h1>
+              <h1>{{ 'VIEW_APP_SELECTED_VERSION' | translate }}</h1>
               <h2>{{ selectedVersion.manifest.versionName }}</h2>
             </div>
 
             @if (latestVersion(); as latestVersion) {
               <div class="panel action" (click)="onShowAllVersions()" title="Click to view available versions">
-                <h1 i18n>Latest Version</h1>
+                <h1>{{ 'VIEW_APP_LATEST_VERSION' | translate }}</h1>
                 <h2>{{ latestVersion.manifest.versionName }}</h2>
               </div>
             }
 
             <div class="panel">
-              <h1 i18n>APK Size</h1>
+              <h1>{{ 'VIEW_APP_APK_SIZE' | translate }}</h1>
               <h2>{{ getUsefulFileSize(selectedVersion.file.size) }}</h2>
             </div>
 
             <div class="panel">
-              <h1 i18n>Android SDK Target</h1>
+              <h1>{{ 'VIEW_APP_SDK_TARGET' | translate }}</h1>
               <h2>{{ selectedVersion.manifest.usesSdk.targetSdkVersion }}</h2>
             </div>
 
             <div class="panel">
-              <h1 i18n>Android SDK Minimum</h1>
+              <h1>{{ 'VIEW_APP_SDK_MIN' | translate }}</h1>
               <h2>{{ selectedVersion.manifest.usesSdk.minSdkVersion }}</h2>
             </div>
           </div>

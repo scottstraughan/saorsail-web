@@ -13,6 +13,7 @@ import { PopupService } from '../shared/components/popup/popup.service';
 import { appTitle } from '../app.config';
 import { Title } from '@angular/platform-browser';
 import { TruncatePipe } from '../shared/pipes/truncate.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-view-app',
@@ -22,6 +23,7 @@ import { TruncatePipe } from '../shared/pipes/truncate.pipe';
     DatePipe,
     InstallButtonComponent,
     TruncatePipe,
+    TranslatePipe,
   ],
   styleUrl: './view-app.component.scss'
 })

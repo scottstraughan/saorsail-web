@@ -11,6 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { PopupService } from './shared/components/popup/popup.service';
 import { SettingsComponent, SettingPanelId } from './shared/popups/settings/settings.component';
 import { IconComponent } from './shared/components/icon/icon.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-app',
@@ -25,6 +26,7 @@ import { IconComponent } from './shared/components/icon/icon.component';
     LoadingIndicatorComponent,
     NgOptimizedImage,
     IconComponent,
+    TranslatePipe,
   ],
   styleUrl: './app.component.scss'
 })
@@ -33,6 +35,7 @@ export class AppComponent {
   readonly darkTheme: WritableSignal<boolean> = signal(false);
 
   constructor(
+    private translate: TranslateService,
     protected localizationService: LocalizationService,
     private syncService: SyncService,
     private popupService: PopupService,
@@ -41,10 +44,20 @@ export class AppComponent {
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document
   ) {
+    this.translate.addLangs(Object.keys(LocalizationService.languages));
+    this.translate.setDefaultLang('en-US');
+
     this.syncing = toSignal(this.syncService.syncing(), { initialValue: false });
 
     this.displayThemeService.observe()
       .pipe(tap(theme => this.setTheme(theme)))
+      .subscribe();
+
+    this.localizationService.observeLocal()
+      .pipe(
+        tap(local => alert(local.code)),
+        tap(local => this.translate.use(local.code))
+      )
       .subscribe();
   }
 

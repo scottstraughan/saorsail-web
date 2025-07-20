@@ -1,24 +1,21 @@
 <swc-settings-block-item
-    i18n-title i18n-subTitle
-    title="Theme"
-    subTitle="Customize the look and feel of the marketplace.">
+    [title]="'SETTINGS_ABOUT_THEME_TITLE' | translate"
+    [subTitle]="'SETTINGS_DISPLAY_THEME_SUBTITLE' | translate">
   <div class="themes">
     @for (theme of themes(); track theme.name) {
       <div class="theme" [class.selected]="theme.name == selectedTheme().name" (click)="onSelectTheme(theme)">
         <div>
           <img [ngSrc]="theme.icon" [alt]="theme.name" height="374" width="471" />
         </div>
-        <div i18n>{{ theme.name }}</div>
+        <div>{{ theme.name }}</div>
       </div>
     }
   </div>
 </swc-settings-block-item>
 
 <swc-settings-block-item
-    i18n-title i18n-subTitle
-    title="Colour Scheme"
-    subTitle="Change the color scheme used on the marketplace.">
-
+    [title]="'SETTINGS_DISPLAY_COLOR_SCHEME_TITLE' | translate"
+    [subTitle]="'SETTINGS_DISPLAY_COLOR_SCHEME_SUBTITLE' | translate">
   <div class="pallet">
     @for (color of getPallets(); track color) {
       <div class="choice"
