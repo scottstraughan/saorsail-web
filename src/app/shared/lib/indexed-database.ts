@@ -17,7 +17,10 @@ export class IndexedDatabase {
           .transaction(request.table, 'readonly')
           .objectStore(request.table);
 
-        resolve(store);
+        resolve({
+          db: db,
+          store: store
+        });
       }
 
       db.onerror = () => reject(db.error)
@@ -27,15 +30,16 @@ export class IndexedDatabase {
   static getAll(
     request: IndexedDBRequest
   ): Promise<any> {
-
     return new Promise((resolve, reject) => {
       IndexedDatabase.getObjectStore(request)
-        .then(store => {
-          const getRequest = store.getAll();
+        .then(accessor => {
+          const getRequest = accessor.store.getAll();
 
           // Success
-          getRequest.onsuccess = () =>
+          getRequest.onsuccess = function() {
             resolve(ApplicationService.restrict(request.filters, getRequest.result));
+            accessor.dv.close();
+          }
 
           // Error
           getRequest.onerror = () =>
