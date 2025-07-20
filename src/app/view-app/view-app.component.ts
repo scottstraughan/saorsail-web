@@ -1,10 +1,10 @@
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ApplicationService } from '../shared/services/application.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, Observable, of, switchMap, take, tap } from 'rxjs';
+import { of, take, tap } from 'rxjs';
 import { Application, ApplicationVersion } from '../shared/models/repository.model';
 import { LocalizationService } from '../shared/services/localization.service';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { InstallButtonComponent } from '../shared/components/install-button/install-button.component';
 import { VersionListComponent } from './popups/version-list-popup/version-list.component';
 import { FdroidRepositoryService } from '../shared/services/repository/fdroid-repository.service';
@@ -13,16 +13,17 @@ import { PopupService } from '../shared/components/popup/popup.service';
 import { appTitle } from '../app.config';
 import { Title } from '@angular/platform-browser';
 import { TruncatePipe } from '../shared/pipes/truncate.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-view-app',
   standalone: true,
   templateUrl: './view-app.component.html',
   imports: [
-    AsyncPipe,
     DatePipe,
     InstallButtonComponent,
     TruncatePipe,
+    TranslatePipe,
   ],
   styleUrl: './view-app.component.scss'
 })
@@ -73,13 +74,8 @@ export class ViewAppComponent implements OnInit {
     return this.databaseService.getApplication(packageName)
       .pipe(
         tap(application => {
-          this.localizationService.getLocalized(application.metadata.name)
-            .pipe(
-              tap(localizedName =>
-                this.title.setTitle(`${localizedName} - ${appTitle}`)),
-              take(1)
-            )
-            .subscribe();
+          const appName = this.localizationService.localizeRecord(application.metadata.name);
+          this.title.setTitle(`${appName} - ${appTitle}`);
         }),
         tap(application =>
           this.application.set(application)),
@@ -91,13 +87,10 @@ export class ViewAppComponent implements OnInit {
               .then();
           }
         }),
-        switchMap(application =>
-          this.getScreenshots(application).pipe(
-            tap(screenshots => this.screenshots.set(screenshots)),
-            take(1)
-          )),
+        tap(application =>
+            this.screenshots.set(this.getScreenshots(application))),
         take(1)
-      );
+      )
   }
 
   setVersion(
@@ -117,7 +110,7 @@ export class ViewAppComponent implements OnInit {
 
   getScreenshots(
     application: Application
-  ): Observable<any> {
+  ): any {
     if (!application.metadata.screenshots) {
       return of([]);
     }
@@ -126,26 +119,21 @@ export class ViewAppComponent implements OnInit {
       return of([]);
     }
 
-    return this.localizationService.getLocalized(application.metadata.screenshots['phone'])
-      .pipe(
-        map(items =>
-          Object.values(items).map(screenshot =>
-            this.fdroidRepositoryService.resolveImageUrl(screenshot)))
-      )
+    const screenshots = this.localizationService.localizeRecord(application.metadata.screenshots['phone']);
+
+    return Object.values(screenshots).map(screenshot =>
+      this.fdroidRepositoryService.resolveImageUrl(screenshot))
   }
 
   getLocalizedFormattedContents(
     contents: Record<string, any> | undefined
-  ): Observable<string> {
+  ): string {
     if (contents == undefined) {
-      return of('');
+      return ''
     }
 
-    return this.localizationService.getLocalized(contents)
-      .pipe(
-        map(description =>
-          description.replaceAll('\n', '<br>'))
-      )
+    return this.localizationService.localizeRecord(contents)
+      .replaceAll('\n', '<br>');
   }
 
   onShowAllVersions() {

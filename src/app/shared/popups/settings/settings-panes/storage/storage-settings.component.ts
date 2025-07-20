@@ -29,7 +29,7 @@ import { PairedDevicesSettingsComponent } from '../paired-devices/paired-devices
 })
 export class StorageSettingsComponent {
   static icon: string = 'general/sync';
-  static title: string = 'Storage / Sync';
+  static title: string = `Storage / Sync`;
 
   readonly loading: Signal<boolean>;
   readonly currentUpdateInterval: Signal<string>;

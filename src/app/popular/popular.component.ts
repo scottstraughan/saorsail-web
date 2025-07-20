@@ -8,6 +8,7 @@ import { ShowMoreButtonComponent } from '../shared/components/show-more-button/s
 import { appTitle } from '../app.config';
 import { Title } from '@angular/platform-browser';
 import { LoadingIndicatorComponent } from '../shared/components/loading-indicator/loading-indicator.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-popular',
@@ -16,6 +17,7 @@ import { LoadingIndicatorComponent } from '../shared/components/loading-indicato
     ApplicationWidgetComponent,
     ShowMoreButtonComponent,
     LoadingIndicatorComponent,
+    TranslatePipe,
   ],
   templateUrl: './popular.component.html',
   styleUrls: [

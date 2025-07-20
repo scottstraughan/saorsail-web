@@ -132,7 +132,7 @@ h2 {
 
 .content-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
   @media screen and (min-width: $mobile-breakpoint) {
     max-width: 1000px;

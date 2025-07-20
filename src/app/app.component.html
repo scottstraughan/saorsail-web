@@ -10,35 +10,35 @@
   <div class="main">
     @if (isInAppView(); as backUrl) {
       <a [routerLink]="backUrl" class="nav-item active back">
-        <swc-icon icon="menu/back"></swc-icon><span i18n>Back</span>
+        <swc-icon icon="menu/back"></swc-icon><span>{{ 'BACK' | translate}}</span>
       </a>
     }
 
     <a routerLink="./browse" routerLinkActive="active" class="nav-item browse">
-      <swc-icon icon="menu/categories"></swc-icon><span i18n>Browse</span>
+      <swc-icon icon="menu/categories"></swc-icon><span>{{ 'BROWSE' | translate }}</span>
     </a>
     <a routerLink="./latest" routerLinkActive="active" class="nav-item latest">
-      <swc-icon icon="menu/latest"></swc-icon><span i18n>Latest</span>
+      <swc-icon icon="menu/latest"></swc-icon><span>{{ 'LATEST' | translate }}</span>
     </a>
     <a routerLink="./popular" routerLinkActive="active" class="nav-item nearby">
-      <swc-icon icon="menu/popular"></swc-icon><span i18n>Popular</span>
+      <swc-icon icon="menu/popular"></swc-icon><span>{{ 'POPULAR' | translate }}</span>
     </a>
   </div>
 
   <div class="settings">
-    <a (click)="onPairDevice()" class="item" title="Pair a new device">
+    <a (click)="onPairDevice()" class="item" [title]="'PAIR_NEW_DEVICE' | translate">
       <swc-maskable-icon icon="general/phone"></swc-maskable-icon>
     </a>
 
-    <a (click)="onSync()" class="item" [class.disabled]="syncing()" title="Sync the database">
+    <a (click)="onSync()" class="item" [class.disabled]="syncing()" [title]="'SYNC_THE_DATABASE' | translate">
       <swc-loading-indicator [loading]="syncing()"></swc-loading-indicator>
     </a>
 
-    <a (click)="onShowSettings()" class="item" title="Show the settings">
+    <a (click)="onShowSettings()" class="item" [title]="'SHOW_THE_SETTINGS' | translate">
       <swc-maskable-icon icon="general/system"></swc-maskable-icon>
     </a>
 
-    <a (click)="onChangeLang()" class="item language" title="Change the language">
+    <a (click)="onChangeLang()" class="item language" [title]="'CHANGE_THE_LANGUAGE' | translate">
       @if (this.localizationService.observeLocal() | async; as languageReference) {
         <img [ngSrc]="localizationService.getLanguageIcon(languageReference)"
              alt="{{ languageReference.name }} Icon"

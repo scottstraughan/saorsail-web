@@ -23,7 +23,7 @@ import { ChangeEndpointComponent } from './popups/change-endpoint/change-endpoin
 })
 export class PairedDevicesSettingsComponent {
   public static icon: string = 'general/phone';
-  public static title: string = 'Paired Devices';
+  public static title: string = `Paired Devices`;
 
   readonly pairedDevices: Signal<PairedDevice[]> = signal([]);
 

@@ -2,10 +2,5 @@
 
 :host {
   @include flex-center;
-
   display: inline-flex;
-
-  img {
-    width: 100%;
-  }
 }

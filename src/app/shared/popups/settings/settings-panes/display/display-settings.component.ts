@@ -3,11 +3,13 @@ import { SettingsBlockItemComponent } from '../../components/setting-block-item/
 import { NgOptimizedImage } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DisplayTheme, DisplayThemeService, ThemeColor } from '../../../../services/display-theme.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   imports: [
     SettingsBlockItemComponent,
     NgOptimizedImage,
+    TranslatePipe,
   ],
   selector: 'swc-settings-display',
   standalone: true,
@@ -16,8 +18,8 @@ import { DisplayTheme, DisplayThemeService, ThemeColor } from '../../../../servi
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DisplaySettingsComponent {
-  static icon: string = 'general/phone';
-  static title: string = 'Display';
+  static icon: string = 'general/display';
+  static title: string = `Display`;
 
   /**
    * A signal of available themes.

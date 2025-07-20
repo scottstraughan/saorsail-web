@@ -1,18 +1,17 @@
-<swc-settings-block-item title="Notifications" subTitle="Enable or disable notificaitons">
+<swc-settings-block-item
+    [title]="'SETTINGS_NOTIFICATIONS_TITLE' | translate"
+    [subTitle]="'SETTINGS_NOTIFICATIONS_SUBTITLE' | translate">
   <div>
     @if (notificationsState() == UserNotificationState.NOT_SPECIFIED) {
-      <div class="state">
-        You have not yet provided permission (or denied) notifications. Click the "Change Permission" button to provide
-        permission.
-      </div>
+      <div class="state">{{ 'SETTINGS_NOTIFICATIONS_NOT_ENABLED' | translate }}</div>
 
       <swc-icon-button
-          label="Change Permission"
+          [label]="'SETTINGS_NOTIFICATIONS_CHANGE_PERMISSION' | translate"
           (click)="onAskPermission()"></swc-icon-button>
     } @else if (notificationsState() == UserNotificationState.GRANTED) {
       <div class="state granted">
         <swc-maskable-icon icon="general/checked"></swc-maskable-icon>
-        You have granted permission for alerts to be shown.
+        <span>{{ 'SETTINGS_NOTIFICATIONS_PERMISSION_GRANTED' | translate }}</span>
       </div>
 
       <swc-icon-button
@@ -21,7 +20,7 @@
     } @else if (notificationsState() == UserNotificationState.DENIED) {
       <div class="state denied">
         <swc-maskable-icon icon="general/off"></swc-maskable-icon>
-        You have denied permission for alerts to be shown. To change, check your browser settings.
+        <span>{{ 'SETTINGS_NOTIFICATIONS_PERMISSION_DENIED' | translate }}</span>
       </div>
     }
   </div>

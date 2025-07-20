@@ -47,7 +47,7 @@ export class InstallButtonComponent {
       this.installService.getDownloadApkUrl(this.version()));
 
     this.title = computed(() =>
-      this.method().type == DownloadMethodType.INSTALL ? 'Install' : 'Download');
+      this.method().type == DownloadMethodType.INSTALL ? `Install` : `Download`);
   }
 
   /**

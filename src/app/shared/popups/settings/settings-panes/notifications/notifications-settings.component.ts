@@ -4,12 +4,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { IconButtonComponent } from '../../../../components/icon-button/icon-button.component';
 import { MaskableIconComponent } from '../../../../components/maskable-icon/maskable-icon.component';
 import { NotificationService, UserNotificationState } from '../../../../services/notification.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   imports: [
     SettingsBlockItemComponent,
     IconButtonComponent,
     MaskableIconComponent,
+    TranslatePipe,
   ],
   selector: 'swc-settings-notifications',
   standalone: true,
@@ -19,7 +21,7 @@ import { NotificationService, UserNotificationState } from '../../../../services
 })
 export class NotificationsSettingsComponent {
   static icon: string = 'general/notification';
-  static title: string = 'Notifications';
+  static title: string = `Notifications`;
 
   protected readonly notificationsState: Signal<UserNotificationState>;
 

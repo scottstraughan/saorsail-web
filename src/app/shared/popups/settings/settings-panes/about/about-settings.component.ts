@@ -2,10 +2,12 @@ import { ChangeDetectionStrategy, Component, signal, WritableSignal } from '@ang
 import { SettingsBlockItemComponent } from '../../components/setting-block-item/settings-block-item.component';
 import { tap } from 'rxjs';
 import { DisplayThemeService } from '../../../../services/display-theme.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   imports: [
     SettingsBlockItemComponent,
+    TranslatePipe,
   ],
   selector: 'swc-settings-about',
   standalone: true,
@@ -15,7 +17,7 @@ import { DisplayThemeService } from '../../../../services/display-theme.service'
 })
 export class AboutSettingsComponent {
   static icon: string = 'general/info';
-  static title: string = 'About';
+  static title: string = `About`;
 
   readonly darkTheme: WritableSignal<boolean> = signal(false);
 

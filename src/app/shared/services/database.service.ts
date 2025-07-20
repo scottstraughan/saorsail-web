@@ -98,6 +98,18 @@ export class DatabaseService extends Dexie {
   }
 
   /**
+   * Verify if the database is in a correct state to work with. If not, redirect to the welcome page to re-setup.
+   */
+  async verifyValidState(
+    storeName: string
+  ) {
+    if (!await this.inValidState(storeName)) {
+      window.location.href = '/welcome';
+      return ;
+    }
+  }
+
+  /**
    * Initialize the database.
    */
   private initialize() {
@@ -110,17 +122,5 @@ export class DatabaseService extends Dexie {
     });
 
     this.open();
-  }
-
-  /**
-   * Verify if the database is in a correct state to work with. If not, redirect to the welcome page to re-setup.
-   */
-  private async verifyValidState(
-    storeName: string
-  ) {
-    if (!await this.inValidState(storeName)) {
-      window.location.href = '/welcome';
-      return ;
-    }
   }
 }

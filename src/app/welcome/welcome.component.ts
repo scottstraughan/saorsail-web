@@ -8,6 +8,7 @@ import { SyncService } from '../shared/services/sync.service';
 import { take, tap } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { appTitle } from '../app.config';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-welcome',
@@ -15,7 +16,8 @@ import { appTitle } from '../app.config';
   imports: [
     LoadingIndicatorComponent,
     IconButtonComponent,
-    NgOptimizedImage
+    NgOptimizedImage,
+    TranslatePipe
   ],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.scss'

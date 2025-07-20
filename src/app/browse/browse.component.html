@@ -4,14 +4,14 @@
   </div>
 
   <div class="block">
-    <div class="title">Search</div>
+    <div class="title">{{ 'SEARCH' | translate }}</div>
     @if (filters().getFilter('keywords'); as filter) {
       <swc-icon-input [value]="filter.value" (valueChange)="keywordSubject$.next($event)" icon="general/search" />
     }
   </div>
 
   <div class="block">
-    <div class="title">Categories</div>
+    <div class="title">{{ 'CATEGORIES' | translate }}</div>
     @if (filters().getFilter('categories'); as booleanFilterGroup) {
       <swc-multi-select
           [items]="getCategorySelectItems(booleanFilterGroup)"
@@ -20,7 +20,7 @@
   </div>
 
   <div class="block">
-    <div class="title">Stars</div>
+    <div class="title">{{ 'STARS' | translate }}</div>
     @if (filters().getFilter('stars'); as booleanFilterGroup) {
       <swc-multi-select
           [items]="getCategorySelectItems(booleanFilterGroup)"
@@ -29,7 +29,7 @@
   </div>
 
   <div class="block">
-    <div class="title">License</div>
+    <div class="title">{{ 'LICENSE' | translate }}</div>
     @if (filters().getFilter('license'); as booleanFilterGroup) {
       <swc-multi-select
           [items]="getCategorySelectItems(booleanFilterGroup)"
@@ -38,7 +38,7 @@
   </div>
 
   <div class="block">
-    <div class="title">Sort</div>
+    <div class="title">{{ 'SORT' | translate }}</div>
     <select
         name="order"
         [ngModel]="selectedOrder()"
@@ -55,8 +55,8 @@
 <div class="container content-container">
   <header class="splash">
     <div class="title">
-      <h1>Browse Apps</h1>
-      <h2>Get involved and download the most popular apps from the store</h2>
+      <h1>{{ 'BROWSE_APPS_TITLE' | translate }}</h1>
+      <h2>{{ 'BROWS_APP_SUBTITLE' | translate }}</h2>
     </div>
     <div class="header-icon">
       <img class="header-icon" src="/assets/icons/menu/popular.svg" alt="Popular" />
@@ -69,10 +69,11 @@
 
   <div class="info">
     <div class="message">
-      Showing {{ apps().length }} apps, matched {{ filtererAppCount() }} of {{ totalAppsCount() }} total
+      {{ 'APPLIED_FILTERS_DESCRIPTION'
+        | translate: { "showing": apps().length, "filtered": filtererAppCount(), "total": totalAppsCount() } }}
     </div>
     <div class="action">
-      <swc-icon-button (click)="onShowFilters()" label="Change Filters" />
+      <swc-icon-button (click)="onShowFilters()" [label]="'CHANGE_FILTERS' | translate" />
     </div>
   </div>
 

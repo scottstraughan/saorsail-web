@@ -11,6 +11,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MaskableIconComponent } from '../../../../components/maskable-icon/maskable-icon.component';
 import { IconInputComponent } from '../../../../components/icon-input/icon-input.component';
 import { Local, LocalizationService } from '../../../../services/localization.service';
+import { tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [
@@ -25,7 +27,7 @@ import { Local, LocalizationService } from '../../../../services/localization.se
 })
 export class LocalizationSettingsComponent implements OnInit {
   static icon: string = 'general/language';
-  static title: string = 'Localization';
+  static title: string = `Localization`;
 
   readonly languages: WritableSignal<Local[]> = signal([]);
   readonly filteredLanguages: Signal<Local[]> = signal([]);
@@ -37,6 +39,7 @@ export class LocalizationSettingsComponent implements OnInit {
 
   constructor(
     protected localizationService: LocalizationService,
+    protected router: Router
   ) {
     this.selectedLanguage = toSignal(
       this.localizationService.observeLocal(),
@@ -52,7 +55,7 @@ export class LocalizationSettingsComponent implements OnInit {
       }
 
       return allLanguages;
-    })
+    });
   }
 
   /**

@@ -2,9 +2,7 @@
   <div class="icon">
     <swc-maskable-icon class="icon" icon="general/search"></swc-maskable-icon>
   </div>
-  <div class="title">
-    Default Download Method
-  </div>
+  <div class="title">{{ 'CHANGE_DOWNLOAD_METHOD_TITLE' | translate }}</div>
 </header>
 
 <div class="container">
@@ -30,6 +28,6 @@
 <div class="actions">
   <swc-icon-button
       icon="general/add"
-      label="Add New Paired Device"
+      [label]="'CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE' | translate"
       (click)="onAddPairedDevice()"></swc-icon-button>
 </div>
