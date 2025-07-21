@@ -11,7 +11,7 @@
 
   <div class="app-list-container">
     <div>
-      @if (loading()) {
+      @if (loading() && apps().length == 0) {
         <swc-loading-indicator class="dimmed"></swc-loading-indicator>
       } @else {
         <div class="app-list">
