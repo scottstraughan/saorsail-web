@@ -13,11 +13,13 @@ import { IconInputComponent } from '../../../../components/icon-input/icon-input
 import { Locale, LocalizationService } from '../../../../services/localization.service';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   imports: [
     IconInputComponent,
     MaskableIconComponent,
+    TranslatePipe,
   ],
   selector: 'swc-settings-localization',
   standalone: true,

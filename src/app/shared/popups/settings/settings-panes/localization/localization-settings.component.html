@@ -1,5 +1,9 @@
 <div class="search">
-  <swc-icon-input [(value)]="searchFilterString" #searchElement icon="general/search"></swc-icon-input>
+  <swc-icon-input
+      #searchElement
+      [(value)]="searchFilterString"
+      [placeholder]="'BROWSE_TYPE_TO_SEARCH' | translate"
+      icon="general/search"></swc-icon-input>
 </div>
 
 <div class="languages">
