@@ -113,14 +113,13 @@ h2 {
   padding: 1rem 0;
 
   swc-application-widget {
-    flex: 1 1 130px;
-    min-width: 230px;
-    max-width: 300px;
+    flex: 1 1 180px;
   }
 
   @media screen and (min-width: $mobile-breakpoint) {
     swc-application-widget {
       flex: 1 1 230px;
+      max-width: 300px;
     }
   }
 }

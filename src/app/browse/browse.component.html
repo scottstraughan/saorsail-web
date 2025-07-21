@@ -67,29 +67,31 @@
       </div>
     </header>
 
-    @if (loading()) {
-      <div class="loading">
-        <swc-loading-indicator class="dimmed"></swc-loading-indicator>
-      </div>
-    } @else {
-      <div class="info">
-        <div class="message">
-          {{ 'BROWSE_APPLIED_FILTERS_DESCRIPTION'
-            | translate: { "showing": apps().length, "filtered": filtererAppCount(), "total": totalAppsCount() } }}
+    <div class="app-list-container">
+      @if (loading()) {
+        <div class="loading">
+          <swc-loading-indicator class="dimmed"></swc-loading-indicator>
         </div>
-        <div class="action">
-          <swc-icon-button (click)="onShowFilters()" [label]="'BROWSE_CHANGE_FILTERS' | translate" />
+      } @else {
+        <div class="info">
+          <div class="message">
+            {{ 'BROWSE_APPLIED_FILTERS_DESCRIPTION'
+              | translate: { "showing": apps().length, "filtered": filtererAppCount(), "total": totalAppsCount() } }}
+          </div>
+          <div class="action">
+            <swc-icon-button (click)="onShowFilters()" [label]="'BROWSE_CHANGE_FILTERS' | translate" />
+          </div>
         </div>
-      </div>
 
-      <div class="app-list">
-        @for (app of apps(); track app.namespace) {
-          <swc-application-widget [application]="app"></swc-application-widget>
-        }
-        @if (apps().length < filtererAppCount()) {
-          <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
-        }
-      </div>
-    }
+        <div class="app-list">
+          @for (app of apps(); track app.namespace) {
+            <swc-application-widget [application]="app"></swc-application-widget>
+          }
+          @if (apps().length < filtererAppCount()) {
+            <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
+          }
+        </div>
+      }
+    </div>
   </div>
 </div>

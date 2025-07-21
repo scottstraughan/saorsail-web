@@ -12,13 +12,15 @@ export class IndexedDatabase {
     return new Promise((resolve, reject) => {
       const db = indexedDB.open(request.databaseName);
 
-      db.onsuccess = () => {
+      db.onsuccess = function (event: any) {
+        const handle = event.target.result
+
         const store = db.result
           .transaction(request.table, 'readonly')
           .objectStore(request.table);
 
         resolve({
-          db: db,
+          db: handle,
           store: store
         });
       }
@@ -38,7 +40,7 @@ export class IndexedDatabase {
           // Success
           getRequest.onsuccess = function() {
             resolve(ApplicationService.restrict(request.filters, getRequest.result));
-            accessor.dv.close();
+            accessor.db.close();
           }
 
           // Error

@@ -156,12 +156,14 @@
     max-height: 100vh;
     overflow: auto;
     container: main-container / inline-size;
-    padding: 0 1rem $mobile-menu-height 1rem;
+    padding: 0 1rem;
     position: relative;
+    height: calc(100vh - $mobile-menu-height);
 
     @media screen and (min-width: $mobile-breakpoint) {
       padding: 0;
       margin-left: $desktop-menu-width;
+      height: auto;
     }
   }
 }
