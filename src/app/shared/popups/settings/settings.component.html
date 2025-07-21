@@ -1,20 +1,23 @@
-@if (selectedPanel(); as selectedPanel) {
+@if (panels(); as panels) {
   <div class="toc">
-    @for (panel of panels(); track panel.name) {
-      <div class="item" [class.active]="panel.id == selectedPanel.id" (click)="onSelectSettings(panel)">
+    @for (panel of panels; track panel.name) {
+      <div class="item" [class.active]="isPanelSelected(panel)" (click)="onSelectSettings(panel)">
         <swc-maskable-icon [icon]="panel.icon"></swc-maskable-icon>
-        <div>{{ panel.name }}</div>
+        <div>{{ panel.name | async }}</div>
       </div>
     }
   </div>
 
   <div class="content">
-    <swc-settings-header [name]="selectedPanel.name"></swc-settings-header>
+    @if (selectedPanel(); as selectedPanel) {
+      <swc-settings-header [name]="selectedPanel.name | async"></swc-settings-header>
 
-    <swc-settings-content>
-      @if (selectedPanel; as settingPanel) {
-        <ng-container *ngComponentOutlet="settingPanel.component"></ng-container>
-      }
-    </swc-settings-content>
+      <swc-settings-content>
+        @if (selectedPanel; as settingPanel) {
+          <ng-container *ngComponentOutlet="settingPanel.component"></ng-container>
+        }
+      </swc-settings-content>
+    }
   </div>
+
 }

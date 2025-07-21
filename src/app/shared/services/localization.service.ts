@@ -1,5 +1,5 @@
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { ImageReference } from '../models/repository.model';
 import { FdroidRepositoryService } from './repository/fdroid-repository.service';
@@ -120,6 +120,15 @@ export class LocalizationService {
     return record[LocalizationService.DEFAULT_LOCAL];
   }
 
+  localizeRecord$<T>(
+    record: Record<string, T> | undefined
+  ): Observable<T> {
+    return this.locale$
+      .pipe(
+        map(() => this.localizeRecord(record))
+      )
+  }
+
   /**
    * Observe any changes to the preferred local.
    */
@@ -158,6 +167,22 @@ export class LocalizationService {
 
     return this.fdroidRepositoryService.resolveImageUrl(
       this.localizeRecord(imageReference));
+  }
+
+  /**
+   * Get an image using the preferred local. If no image for the preferred local is available, the function will return
+   * an image for the default local.
+   * @param imageReference
+   * @param fallback
+   */
+  localizeImageRecord$(
+    imageReference: Record<string, ImageReference> | undefined,
+    fallback: string = '/assets/img/missing.webp'
+  ): Observable<string> {
+    return this.locale$
+      .pipe(
+        map(() => this.localizeImageRecord(imageReference, fallback))
+      )
   }
 }
 

@@ -1,12 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  signal,
-  Type,
-  WritableSignal
-} from '@angular/core';
-import { NgComponentOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, signal, Type, WritableSignal } from '@angular/core';
+import { AsyncPipe, NgComponentOutlet } from '@angular/common';
 import { PairedDevicesSettingsComponent } from './settings-panes/paired-devices/paired-devices-settings.component';
 import { DisplaySettingsComponent } from './settings-panes/display/display-settings.component';
 import { LocalizationSettingsComponent } from './settings-panes/localization/localization-settings.component';
@@ -17,8 +10,8 @@ import { PopupInstance } from '../../components/popup/popup.service';
 import { AboutSettingsComponent } from './settings-panes/about/about-settings.component';
 import { SettingsHeaderComponent } from './components/setting-header/settings-header.component';
 import { SettingsContentComponent } from './components/setting-content/settings-content.component';
-import { TranslateService } from '@ngx-translate/core';
-import { take, tap } from 'rxjs';
+import { TranslateService, Translation } from '@ngx-translate/core';
+import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { LocalizationService } from '../../services/localization.service';
 
 @Component({
@@ -27,6 +20,7 @@ import { LocalizationService } from '../../services/localization.service';
     NgComponentOutlet,
     SettingsHeaderComponent,
     SettingsContentComponent,
+    AsyncPipe,
   ],
   selector: 'swc-settings',
   standalone: true,
@@ -34,9 +28,22 @@ import { LocalizationService } from '../../services/localization.service';
   templateUrl: './settings.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SettingsComponent {
-  readonly panels: WritableSignal<SettingPanel[]> = signal([]);
-  readonly selectedPanel: WritableSignal<SettingPanel | undefined> = signal(undefined)
+export class SettingsComponent implements OnDestroy {
+  /**
+   * Settings panels signal.
+   */
+  protected readonly panels: WritableSignal<SettingPanel[]> = signal([]);
+
+  /**
+   * The current selected settings panel.
+   */
+  protected readonly selectedPanel: WritableSignal<SettingPanel | undefined> = signal(undefined);
+
+  /**
+   * Observable to mark the component ready for deletion.
+   * @private
+   */
+  private readonly onDestroy$: Subject<void> = new Subject();
 
   /**
    * Constructor.
@@ -46,61 +53,24 @@ export class SettingsComponent {
     private translateService: TranslateService,
     protected localizationService: LocalizationService,
   ) {
-    this.panels.set([
-      {
-        id: SettingPanelId.DISPLAY,
-        name: this.translateService.instant('SETTINGS_DISPLAY_TITLE'),
-        icon: DisplaySettingsComponent.icon,
-        component: DisplaySettingsComponent
-      },
-      {
-        id: SettingPanelId.PAIRED_DEVICES,
-        name: this.translateService.instant('SETTINGS_PAIRED_DEVICES_TITLE'),
-        icon: PairedDevicesSettingsComponent.icon,
-        component: PairedDevicesSettingsComponent
-      },
-      {
-        id: SettingPanelId.LOCALIZATION,
-        name: this.translateService.instant('SETTINGS_LOCALIZATION_TITLE'),
-        icon: LocalizationSettingsComponent.icon,
-        component: LocalizationSettingsComponent
-      },
-      {
-        id: SettingPanelId.STORAGE,
-        name: this.translateService.instant('SETTINGS_STORAGE_TITLE'),
-        icon: StorageSettingsComponent.icon,
-        component: StorageSettingsComponent
-      },
-      {
-        id: SettingPanelId.NOTIFICATIONS,
-        name: this.translateService.instant('SETTINGS_NOTIFICATIONS_TITLE'),
-        icon: NotificationsSettingsComponent.icon,
-        component: NotificationsSettingsComponent
-      },
-      {
-        id: SettingPanelId.ABOUT,
-        name: this.translateService.instant('SETTINGS_ABOUT_TITLE'),
-        icon: AboutSettingsComponent.icon,
-        component: AboutSettingsComponent
-      },
-    ]);
-    this.selectedPanel.set(this.panels()[0]);
-
-    if (this.popupInstance.getPopupData()) {
-      this.onSelectSettingsByName(this.popupInstance.getPopupData())
-    }
-
-    this.localizationService.observeLocalChanges()
+    this.localizationService.observeLocal()
       .pipe(
-        tap(() => this.popupInstance.close()),
-        take(1)
+        tap(() => this.reload()),
+        takeUntil(this.onDestroy$)
       )
       .subscribe()
   }
 
   /**
+   * @inheritdoc
+   */
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
+
+  /**
    * Set the selected settings panel by name.
-   * @param id
    */
   onSelectSettingsByName(
     id: SettingPanelId
@@ -115,12 +85,83 @@ export class SettingsComponent {
 
   /**
    * Set the selected settings panel.
-   * @param panel
    */
   onSelectSettings(
     panel: SettingPanel
   ) {
     this.selectedPanel.set(panel);
+  }
+
+  /**
+   * Check if a panel is selected or not.
+   */
+  isPanelSelected(
+    panel: SettingPanel
+  ) {
+    const selectedPanel = this.selectedPanel();
+
+    if (selectedPanel == undefined) {
+      return false;
+    }
+
+    return panel.id == selectedPanel.id;
+  }
+
+  /**
+   * Reload the settings panels.
+   */
+  private reload() {
+    this.panels.set(this.getComponents());
+    this.selectedPanel.set(this.panels()[0]);
+
+    if (this.popupInstance.getPopupData()) {
+      this.onSelectSettingsByName(this.popupInstance.getPopupData())
+    }
+  }
+
+  /**
+   * Get the supported settings panels.
+   * @private
+   */
+  private getComponents(): SettingPanel[] {
+    return [
+      {
+        id: SettingPanelId.DISPLAY,
+        name: this.translateService.get('SETTINGS_DISPLAY_TITLE'),
+        icon: DisplaySettingsComponent.icon,
+        component: DisplaySettingsComponent
+      },
+      {
+        id: SettingPanelId.PAIRED_DEVICES,
+        name: this.translateService.get('SETTINGS_PAIRED_DEVICES_TITLE'),
+        icon: PairedDevicesSettingsComponent.icon,
+        component: PairedDevicesSettingsComponent
+      },
+      {
+        id: SettingPanelId.LOCALIZATION,
+        name: this.translateService.get('SETTINGS_LOCALIZATION_TITLE'),
+        icon: LocalizationSettingsComponent.icon,
+        component: LocalizationSettingsComponent
+      },
+      {
+        id: SettingPanelId.STORAGE,
+        name: this.translateService.get('SETTINGS_STORAGE_TITLE'),
+        icon: StorageSettingsComponent.icon,
+        component: StorageSettingsComponent
+      },
+      {
+        id: SettingPanelId.NOTIFICATIONS,
+        name: this.translateService.get('SETTINGS_NOTIFICATIONS_TITLE'),
+        icon: NotificationsSettingsComponent.icon,
+        component: NotificationsSettingsComponent
+      },
+      {
+        id: SettingPanelId.ABOUT,
+        name: this.translateService.get('SETTINGS_ABOUT_TITLE'),
+        icon: AboutSettingsComponent.icon,
+        component: AboutSettingsComponent
+      },
+    ];
   }
 }
 
@@ -129,7 +170,7 @@ export class SettingsComponent {
  */
 interface SettingPanel {
   id: SettingPanelId
-  name: string
+  name: Observable<Translation>
   icon: string
   component: Type<any>
 }
