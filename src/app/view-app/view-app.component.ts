@@ -1,10 +1,10 @@
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ApplicationService } from '../shared/services/application.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of, take, tap } from 'rxjs';
+import { map, Observable, of, take, tap } from 'rxjs';
 import { Application, ApplicationVersion } from '../shared/models/repository.model';
 import { LocalizationService } from '../shared/services/localization.service';
-import { DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { InstallButtonComponent } from '../shared/components/install-button/install-button.component';
 import { VersionListComponent } from './popups/version-list-popup/version-list.component';
 import { FdroidRepositoryService } from '../shared/services/repository/fdroid-repository.service';
@@ -24,6 +24,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     InstallButtonComponent,
     TruncatePipe,
     TranslatePipe,
+    AsyncPipe,
   ],
   styleUrl: './view-app.component.scss'
 })
@@ -127,13 +128,15 @@ export class ViewAppComponent implements OnInit {
 
   getLocalizedFormattedContents(
     contents: Record<string, any> | undefined
-  ): string {
+  ): Observable<string> {
     if (contents == undefined) {
-      return ''
+      return of('')
     }
 
-    return this.localizationService.localizeRecord(contents)
-      .replaceAll('\n', '<br>');
+    return this.localizationService.localizeRecord$(contents)
+      .pipe(
+        map(content => content.replaceAll('\n', '<br>'))
+      )
   }
 
   onShowAllVersions() {

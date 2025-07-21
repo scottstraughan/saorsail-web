@@ -1,11 +1,18 @@
 @use '../../mixins' as *;
 @use '../../variables' as *;
 
-swc-loading-indicator {
-  height: 50%;
-  margin-top: 20%;
-}
-
 .content-container {
+  display: flex;
+  flex-direction: column;
   padding-bottom: 1rem;
+
+  .app-list-container {
+    @include flex-center;
+    width: 100%;
+    flex: 1;
+  }
+
+  swc-loading-indicator {
+    width: 100px;
+  }
 }

@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { InstallButtonComponent } from '../install-button/install-button.component';
 import { ApplicationService } from '../../services/application.service';
 import { MaskableIconComponent } from '../maskable-icon/maskable-icon.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'swc-application-widget',
@@ -12,7 +13,8 @@ import { MaskableIconComponent } from '../maskable-icon/maskable-icon.component'
   imports: [
     RouterLink,
     InstallButtonComponent,
-    MaskableIconComponent
+    MaskableIconComponent,
+    AsyncPipe
   ],
   templateUrl: './application-widget.component.html',
   styleUrl: './application-widget.component.scss',

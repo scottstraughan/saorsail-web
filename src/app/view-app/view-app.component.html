@@ -1,16 +1,16 @@
 @if (application(); as application) {
   <div class="container">
     <div class="header-container"
-         [style.background-image]="'url(' + localizationService.localizeImageRecord(application.metadata.icon) + ')'">
+         [style.background-image]="'url(' + (localizationService.localizeImageRecord$(application.metadata.icon) | async) + ')'">
       <header>
         <div class="wrapper">
           <div class="icon">
-            <img [src]="localizationService.localizeImageRecord(application.metadata.icon)" alt="App Icon" />
+            <img [src]="localizationService.localizeImageRecord$(application.metadata.icon) | async" alt="App Icon" />
           </div>
           <div class="title">
             <div>
-              <h1>{{ localizationService.localizeRecord(application.metadata.name) }}</h1>
-              <p>{{ localizationService.localizeRecord(application.metadata.summary) }}</p>
+              <h1>{{ localizationService.localizeRecord$(application.metadata.name) | async }}</h1>
+              <p>{{ localizationService.localizeRecord$(application.metadata.summary) | async }}</p>
             </div>
           </div>
           <div class="actions">
@@ -73,7 +73,7 @@
 
       <section
           class="description"
-          [innerHTML]="getLocalizedFormattedContents(application.metadata.description)"></section>
+          [innerHTML]="getLocalizedFormattedContents(application.metadata.description) | async"></section>
 
       @if (selectedVersion(); as selectedVersion) {
         @if (getLocalizedFormattedContents(selectedVersion.whatsNew)) {

@@ -46,8 +46,9 @@ export class NotificationsSettingsComponent {
 
   onSendTestNotification() {
     this.notificationService.create({
-      title: 'Test Notification',
-      body: 'This is a test notification!',
+      title: 'Soarsail Says Hi',
+      body: 'Just a quick test of the notification service!',
+      icon: '/assets/img/logo-black.svg'
     })
   }
 

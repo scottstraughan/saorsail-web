@@ -9,15 +9,19 @@
     </div>
   </header>
 
-  @if (loading() && apps().length == 0) {
-    <swc-loading-indicator class="dimmed"></swc-loading-indicator>
-  } @else {
-    <div class="app-list">
-      @for (app of apps(); track app.namespace) {
-        <swc-application-widget [application]="app"></swc-application-widget>
+  <div class="app-list-container">
+    <div>
+      @if (loading() && apps().length == 0) {
+        <swc-loading-indicator class="dimmed"></swc-loading-indicator>
+      } @else {
+        <div class="app-list">
+          @for (app of apps(); track app.namespace) {
+            <swc-application-widget [application]="app"></swc-application-widget>
+          }
+        </div>
+
+        <swc-show-more-button [loading]="loading()" (click)="onShowMore()"></swc-show-more-button>
       }
     </div>
-
-    <swc-show-more-button [loading]="loading()" (click)="onShowMore()"></swc-show-more-button>
-  }
+  </div>
 </div>
