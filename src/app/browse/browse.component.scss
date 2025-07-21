@@ -1,6 +1,8 @@
 @use '../../variables' as *;
 
 :host {
+  --filters-menu-width: 350px;
+
   height: 100vh;
   display: flex;
   flex-direction: row;
@@ -8,11 +10,12 @@
 
   .filters {
     position: fixed;
-    top: 0;
     left: 0;
-    z-index: 999;
+    top: 0;
     background-color: var(--ui-bg-color-secondary);
     height: 100vh;
+    overflow: auto;
+    z-index: 99999999;
 
     &.closed {
       display: none;
@@ -29,9 +32,9 @@
     }
 
     @media screen and (min-width: $mobile-breakpoint) {
-      position: static;
+      left: $desktop-menu-width;
       display: block;
-      width: 350px;
+      width: var(--filters-menu-width);
       height: 100vh;
       border-right: var(--ui-border-color) 1px solid;
       overflow: auto;
@@ -66,15 +69,19 @@
 
   .container {
     flex: 1;
-    overflow: auto;
     position: relative;
 
     @media screen and (min-width: $mobile-breakpoint) {
       padding: 0 1rem;
+      margin-left: var(--filters-menu-width);
 
       .splash {
         display: none;
       }
+    }
+
+    .loading {
+      height: 100vh;
     }
   }
 

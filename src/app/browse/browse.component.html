@@ -55,38 +55,41 @@
 
 </div>
 
-<div class="container content-container">
-  <header class="splash">
-    <div class="title">
-      <h1>{{ 'BROWSE_APPS_TITLE' | translate }}</h1>
-      <h2>{{ 'BROWSE_APPS_SUBTITLE' | translate }}</h2>
-    </div>
-    <div class="header-icon">
-      <img class="header-icon" src="/assets/icons/menu/popular.svg" alt="Popular" />
-    </div>
-  </header>
+<div class="container">
+  <div class="content-container">
+    <header class="splash">
+      <div class="title">
+        <h1>{{ 'BROWSE_APPS_TITLE' | translate }}</h1>
+        <h2>{{ 'BROWSE_APPS_SUBTITLE' | translate }}</h2>
+      </div>
+      <div class="header-icon">
+        <img class="header-icon" src="/assets/icons/menu/popular.svg" alt="Popular" />
+      </div>
+    </header>
 
-  @if (loading()) {
-    <swc-loading-indicator class="dimmed"></swc-loading-indicator>
-  }
+    @if (loading()) {
+      <div class="loading">
+        <swc-loading-indicator class="dimmed"></swc-loading-indicator>
+      </div>
+    } @else {
+      <div class="info">
+        <div class="message">
+          {{ 'BROWSE_APPLIED_FILTERS_DESCRIPTION'
+            | translate: { "showing": apps().length, "filtered": filtererAppCount(), "total": totalAppsCount() } }}
+        </div>
+        <div class="action">
+          <swc-icon-button (click)="onShowFilters()" [label]="'BROWSE_CHANGE_FILTERS' | translate" />
+        </div>
+      </div>
 
-  <div class="info">
-    <div class="message">
-      {{ 'BROWSE_APPLIED_FILTERS_DESCRIPTION'
-        | translate: { "showing": apps().length, "filtered": filtererAppCount(), "total": totalAppsCount() } }}
-    </div>
-    <div class="action">
-      <swc-icon-button (click)="onShowFilters()" [label]="'BROWSE_CHANGE_FILTERS' | translate" />
-    </div>
-  </div>
-
-  <div class="app-list">
-    @for (app of apps(); track app.namespace) {
-      <swc-application-widget [application]="app"></swc-application-widget>
+      <div class="app-list">
+        @for (app of apps(); track app.namespace) {
+          <swc-application-widget [application]="app"></swc-application-widget>
+        }
+        @if (apps().length < filtererAppCount()) {
+          <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
+        }
+      </div>
     }
-    @if (apps().length < filtererAppCount()) {
-      <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
-    }
   </div>
-
 </div>
