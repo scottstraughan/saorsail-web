@@ -12,6 +12,7 @@ import { PopupService } from './shared/components/popup/popup.service';
 import { SettingsComponent, SettingPanelId } from './shared/popups/settings/settings.component';
 import { IconComponent } from './shared/components/icon/icon.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { RouteTrackingService } from './shared/services/route-tracking.service';
 
 @Component({
   selector: 'swc-app',
@@ -42,6 +43,7 @@ export class AppComponent {
     private router: Router,
     private displayThemeService: DisplayThemeService,
     private renderer: Renderer2,
+    private routeTrackingService: RouteTrackingService,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.translate.addLangs(Object.keys(LocalizationService.languages));
@@ -112,5 +114,14 @@ export class AppComponent {
   onShowSettings() {
     this.popupService.show(
       SettingsComponent, undefined);
+  }
+
+  onGoBack() {
+    const url = this.routeTrackingService.getPreviousUrl()
+      ? this.routeTrackingService.getPreviousUrl()
+      : '/latest';
+
+    this.router.navigate([url])
+      .then();
   }
 }
