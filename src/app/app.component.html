@@ -8,8 +8,8 @@
   </a>
 
   <div class="main">
-    @if (isInAppView(); as backUrl) {
-      <a [routerLink]="backUrl" class="nav-item active back">
+    @if (isInAppView()) {
+      <a (click)="onGoBack()" class="nav-item active back">
         <swc-icon icon="menu/back"></swc-icon><span>{{ 'BACK' | translate}}</span>
       </a>
     }
