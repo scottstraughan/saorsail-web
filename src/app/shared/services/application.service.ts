@@ -87,6 +87,7 @@ export class ApplicationService {
 
         // Handle errors
         worker.onerror = (err: any) => {
+          alert(err.message)
           worker.terminate();
           console.log(err);
           reject(err);
