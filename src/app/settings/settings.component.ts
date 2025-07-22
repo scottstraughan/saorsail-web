@@ -112,7 +112,7 @@ export class SettingsComponent implements OnDestroy {
    */
   private reload() {
     this.panels.set(this.getComponents());
-    this.selectedPanel.set(this.panels()[0]);
+    this.selectedPanel.set(this.selectedPanel() ? this.selectedPanel() : this.panels()[0]);
 
     if (this.popupInstance.getPopupData()) {
       this.onSelectSettingsByName(this.popupInstance.getPopupData())
