@@ -64,8 +64,6 @@ export class ApplicationService {
     return this.getApplications(filters);
   }
 
-
-
   /**
    * Get an array of applications and filter them using the provided filters.
    * Note: this function uses a web worker for performance but will fall back to direct indexDB access on failure.

@@ -18,6 +18,11 @@ export const routes: Routes = [
     canDeactivate: [AppRouteGuard],
   },
   {
+    path: 'latest/:sort',
+    component: LatestComponent,
+    canDeactivate: [AppRouteGuard],
+  },
+  {
     path: 'browse',
     component: BrowseComponent,
     canDeactivate: [AppRouteGuard],
