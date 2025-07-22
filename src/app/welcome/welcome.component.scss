@@ -15,6 +15,10 @@
   left: 0;
   z-index: 9999999999;
 
+  @media screen and (min-width: $mobile-breakpoint) {
+    display: flex;
+  }
+
   .popup {
     display: flex;
     flex-direction: column;
