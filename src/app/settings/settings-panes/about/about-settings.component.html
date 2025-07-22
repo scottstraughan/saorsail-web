@@ -4,8 +4,8 @@
   <img class="logo"
        [src]="darkTheme() ? './assets/img/logo-white.svg' : '../assets/img/logo-black.svg'"
        alt="Saorsail Icon" />
-  <p>{{ 'SETTINGS_ABOUT_P1' | translate }}</p>
-  <p>{{ 'SETTINGS_ABOUT_P2' | translate }}</p>
+  <p [innerHTML]="'SETTINGS_ABOUT_P1' | translate"></p>
+  <p [innerHTML]="'SETTINGS_ABOUT_P2' | translate"></p>
 </swc-settings-block-item>
 
 <swc-settings-block-item

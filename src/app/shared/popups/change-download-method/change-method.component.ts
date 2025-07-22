@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { SettingsComponent, SettingPanelId } from '../settings/settings.component';
 import { MaskableIconComponent } from '../../components/maskable-icon/maskable-icon.component';
 import { IconButtonComponent } from '../../components/icon-button/icon-button.component';
 import { DownloadMethod, DownloadMethodService } from '../../services/download-method.service';
 import { PopupInstance, PopupService } from '../../components/popup/popup.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { SettingPanelId, SettingsComponent } from '../../../settings/settings.component';
 
 @Component({
   selector: 'swc-change-method',

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 import { SettingsBlockItemComponent } from '../../components/setting-block-item/settings-block-item.component';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { IconButtonComponent } from '../../../../components/icon-button/icon-button.component';
-import { MaskableIconComponent } from '../../../../components/maskable-icon/maskable-icon.component';
-import { NotificationService, UserNotificationState } from '../../../../services/notification.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { IconButtonComponent } from '../../../shared/components/icon-button/icon-button.component';
+import { MaskableIconComponent } from '../../../shared/components/maskable-icon/maskable-icon.component';
+import { NotificationService, UserNotificationState } from '../../../shared/services/notification.service';
 
 @Component({
   imports: [
