@@ -3,12 +3,14 @@ import { Application, ApplicationVersion } from '../../../shared/models/reposito
 import { InstallButtonComponent } from '../../../shared/components/install-button/install-button.component';
 import { Router } from '@angular/router';
 import { PopupInstance } from '../../../shared/components/popup/popup.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-version-list',
   standalone: true,
   imports: [
     InstallButtonComponent,
+    TranslatePipe,
   ],
   templateUrl: './version-list.component.html',
   styleUrls: [
