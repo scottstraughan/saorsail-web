@@ -12,8 +12,12 @@
   <div class="type">
     <div class="bg"></div>
     <div class="chooser">
-      <a class="added" [class.selected]="orderBy == OrderBy.DATE_ADDED" (click)="onOrderAdded()">Added</a>
-      <a class="added" [class.selected]="orderBy == OrderBy.DATE_UPDATED" (click)="onOrderUpdated()">Updated</a>
+      <a class="added"
+         [class.selected]="orderBy == OrderBy.DATE_ADDED"
+         (click)="onOrderAdded()">{{ 'LATEST_ADDED' | translate }}</a>
+      <a class="added"
+         [class.selected]="orderBy == OrderBy.DATE_UPDATED"
+         (click)="onOrderUpdated()">{{ 'LATEST_UPDATED' | translate }}</a>
     </div>
   </div>
 
