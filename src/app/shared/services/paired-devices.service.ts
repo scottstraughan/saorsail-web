@@ -10,7 +10,7 @@ export class PairedDevicesService {
   protected pairedDevices: BehaviorSubject<PairedDevice[]> = new BehaviorSubject<PairedDevice[]>([]);
 
   constructor(
-    @Inject(LOCAL_STORAGE) private storageService: StorageService
+    @Inject(LOCAL_STORAGE) private storageService: StorageService,
   ) {
     this.pairedDevices.next(this.fromStorage());
   }

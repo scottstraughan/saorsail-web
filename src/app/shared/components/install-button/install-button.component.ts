@@ -60,8 +60,15 @@ export class InstallButtonComponent {
     this.href = computed(() =>
       this.installService.getDownloadApkUrl(this.version()));
 
-    this.title = computed(() =>
-      this.method().type == DownloadMethodType.INSTALL ? `Install` : `Download`)
+    this.title = computed(() => {
+      const method = this.method();
+
+      if (method.type == DownloadMethodType.INSTALL) {
+        return method.pairedDevice ? method.pairedDevice.name : 'Install';
+      }
+
+      return 'Download';
+    })
   }
 
   /**
@@ -70,10 +77,6 @@ export class InstallButtonComponent {
   onOptionsClicked() {
     this.popupService.show(ChangeMethodComponent, undefined)
       .onClose()
-      .pipe(
-        tap(() =>
-          this.onInstall(undefined))
-      )
       .subscribe()
   }
 

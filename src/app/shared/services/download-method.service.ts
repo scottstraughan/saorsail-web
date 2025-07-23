@@ -32,6 +32,7 @@ export class DownloadMethodService {
           name: `Install to ${device.name}`,
           pairedDevice: device
         }))),
+        tap(() => this.resetSelected()),
         tap(() => this.methods$.next(this.methods))
       )
       .subscribe();
@@ -40,6 +41,19 @@ export class DownloadMethodService {
 
     if (savedMethod) {
       this.method$.next(savedMethod);
+    }
+  }
+
+  resetSelected() {
+    let found = false;
+    for (const [key, method] of Object.entries(this.methods)) {
+      if (method.pairedDevice?.code == this.method$.value.pairedDevice?.code) {
+        found = true;
+      }
+
+      if (!found) {
+        this.setMethod(this.defaultMethod);
+      }
     }
   }
 
