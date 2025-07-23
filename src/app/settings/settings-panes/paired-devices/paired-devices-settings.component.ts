@@ -8,6 +8,7 @@ import { MaskableIconComponent } from '../../../shared/components/maskable-icon/
 import { CopyInputComponent } from '../../../shared/components/copy-to-clipboard/copy-input.component';
 import { PairedDevice, PairedDevicesService } from '../../../shared/services/paired-devices.service';
 import { PopupService } from '../../../shared/components/popup/popup.service';
+import { ShowQrCodeComponent } from './popups/show-qr-code/show-qr-code.component';
 
 @Component({
   imports: [
@@ -70,5 +71,15 @@ export class PairedDevicesSettingsComponent {
   onChangeEndpoint() {
     this.popupService.show(
       ChangeEndpointComponent, undefined);
+  }
+
+  /**
+   * Show a device QR code.
+   */
+  onShowQrCode(
+    device: PairedDevice
+  ) {
+    this.popupService.show(
+      ShowQrCodeComponent, device);
   }
 }

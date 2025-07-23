@@ -1,0 +1,12 @@
+@if (pairCode(); as pairCode) {
+  <div class="content">
+    <qrcode
+        class="qr-code"
+        colorDark="#000"
+        colorLight="#efefef"
+        [qrdata]="pairCode"
+        [width]="200"
+        [margin]="0"
+        [errorCorrectionLevel]="'M'"></qrcode>
+  </div>
+}
