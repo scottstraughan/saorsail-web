@@ -1,0 +1,9 @@
+@use '../../../../../../mixins' as *;
+
+:host {
+  @include flex-center(true);
+  background-color: var(--ui-bg-color-secondary);
+
+  max-width: 300px;
+  max-height: 400px;
+}

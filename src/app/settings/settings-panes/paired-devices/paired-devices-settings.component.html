@@ -27,6 +27,10 @@
           <h2 class="device-code"><b>Pair Code:</b> {{ device.code }}</h2>
         </div>
         <div class="device-actions">
+          <swc-maskable-icon
+              class="action qr"
+              icon="general/qr"
+              (click)="onShowQrCode(device)"></swc-maskable-icon>
           <swc-copy-input
               class="action"
               [content]="device.code"></swc-copy-input>
