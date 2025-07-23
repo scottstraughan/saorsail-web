@@ -1,6 +1,4 @@
-<header>
-  App Permissions ({{ version().manifest.versionName }})
-</header>
+<header>{{ 'VIEW_APP_PERMISSIONS_TITLE' | translate }}</header>
 
 <div class="permissions">
   @for (permission of version().manifest.usesPermission; track permission.name) {

@@ -9,10 +9,10 @@ import { SyncService } from './shared/services/sync.service';
 import { take, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { PopupService } from './shared/components/popup/popup.service';
-import { SettingsComponent, SettingPanelId } from './shared/popups/settings/settings.component';
 import { IconComponent } from './shared/components/icon/icon.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RouteTrackingService } from './shared/services/route-tracking.service';
+import { SettingPanelId, SettingsComponent } from './settings/settings.component';
 
 @Component({
   selector: 'swc-app',

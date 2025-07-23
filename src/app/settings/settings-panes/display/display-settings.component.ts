@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 import { SettingsBlockItemComponent } from '../../components/setting-block-item/settings-block-item.component';
 import { NgOptimizedImage } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { DisplayTheme, DisplayThemeService, ThemeColor } from '../../../../services/display-theme.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DisplayTheme, DisplayThemeService, ThemeColor } from '../../../shared/services/display-theme.service';
 
 @Component({
   imports: [

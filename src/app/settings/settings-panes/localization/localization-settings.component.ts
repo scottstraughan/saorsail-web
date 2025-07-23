@@ -8,12 +8,11 @@ import {
   WritableSignal
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MaskableIconComponent } from '../../../../components/maskable-icon/maskable-icon.component';
-import { IconInputComponent } from '../../../../components/icon-input/icon-input.component';
-import { Locale, LocalizationService } from '../../../../services/localization.service';
-import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { IconInputComponent } from '../../../shared/components/icon-input/icon-input.component';
+import { MaskableIconComponent } from '../../../shared/components/maskable-icon/maskable-icon.component';
+import { Locale, LocalizationService } from '../../../shared/services/localization.service';
 
 @Component({
   imports: [
@@ -61,10 +60,15 @@ export class LocalizationSettingsComponent implements OnInit {
   }
 
   /**
-   * Get the title of this settings component.
+   * Called when a suer presses the enter key.
    */
-  get title() {
-    return LocalizationSettingsComponent.title;
+  @HostListener('keydown', ['$event'])
+  onGlobalKeyPress(event: KeyboardEvent) {
+    const filteredLanguages = this.filteredLanguages();
+
+    if (event.key === 'Enter' && filteredLanguages.length > 0) {
+      this.onSelectLanguage(filteredLanguages[0]);
+    }
   }
 
   /**
@@ -77,16 +81,19 @@ export class LocalizationSettingsComponent implements OnInit {
       this.searchElement?.focusInput());
   }
 
-  @HostListener('keydown', ['$event'])
-  onGlobalKeyPress(event: KeyboardEvent) {
-    const filteredLanguages = this.filteredLanguages();
-
-    if (event.key === 'Enter' && filteredLanguages.length > 0) {
-      this.onSelectLanguage(filteredLanguages[0]);
-    }
+  /**
+   * Get the title of this settings component.
+   */
+  get title() {
+    return LocalizationSettingsComponent.title;
   }
 
-  onSelectLanguage(lang: Locale) {
-    this.localizationService.setLocal(lang.code);
+  /**
+   * Called when the user has selected a new locale.
+   */
+  onSelectLanguage(
+    locale: Locale
+  ) {
+    this.localizationService.setLocal(locale.code);
   }
 }

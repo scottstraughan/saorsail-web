@@ -67,6 +67,12 @@
 	"VIEW_APP_SDK_TARGET": "Android SDK Target",
 	"VIEW_APP_SDK_MIN": "Android SDK Minimum",
 
+	"VIEW_APP_VERSION_LIST_TITLE": "Change Selected Version",
+	"VIEW_APP_VERSION_LIST_VERSION": "Version",
+	"VIEW_APP_VERSION_LIST_FILE_SIZE": "Version",
+
+	"VIEW_APP_PERMISSIONS_TITLE": "Required Permissions",
+
 	"CHANGE_DOWNLOAD_METHOD_TITLE": "Default Download Method",
 	"CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE": "Add New Paired Device"
 }

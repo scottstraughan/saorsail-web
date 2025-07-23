@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal, WritableSignal } from '@angular/core';
 import { SettingsBlockItemComponent } from '../../components/setting-block-item/settings-block-item.component';
 import { tap } from 'rxjs';
-import { DisplayThemeService } from '../../../../services/display-theme.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DisplayThemeService } from '../../../shared/services/display-theme.service';
 
 @Component({
   imports: [

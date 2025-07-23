@@ -6,11 +6,11 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingIndicatorComponent } from '../../../../components/loading-indicator/loading-indicator.component';
-import { IconButtonComponent } from '../../../../components/icon-button/icon-button.component';
-import { DatabaseService } from '../../../../services/database.service';
-import { SyncService } from '../../../../services/sync.service';
 import { PairedDevicesSettingsComponent } from '../paired-devices/paired-devices-settings.component';
+import { IconButtonComponent } from '../../../shared/components/icon-button/icon-button.component';
+import { LoadingIndicatorComponent } from '../../../shared/components/loading-indicator/loading-indicator.component';
+import { SyncService } from '../../../shared/services/sync.service';
+import { DatabaseService } from '../../../shared/services/database.service';
 
 @Component({
   imports: [

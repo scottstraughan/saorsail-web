@@ -5,14 +5,14 @@ import { DisplaySettingsComponent } from './settings-panes/display/display-setti
 import { LocalizationSettingsComponent } from './settings-panes/localization/localization-settings.component';
 import { StorageSettingsComponent } from './settings-panes/storage/storage-settings.component';
 import { NotificationsSettingsComponent } from './settings-panes/notifications/notifications-settings.component';
-import { MaskableIconComponent } from '../../components/maskable-icon/maskable-icon.component';
-import { PopupInstance } from '../../components/popup/popup.service';
 import { AboutSettingsComponent } from './settings-panes/about/about-settings.component';
 import { SettingsHeaderComponent } from './components/setting-header/settings-header.component';
 import { SettingsContentComponent } from './components/setting-content/settings-content.component';
 import { TranslateService, Translation } from '@ngx-translate/core';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
-import { LocalizationService } from '../../services/localization.service';
+import { MaskableIconComponent } from '../shared/components/maskable-icon/maskable-icon.component';
+import { PopupInstance } from '../shared/components/popup/popup.service';
+import { LocalizationService } from '../shared/services/localization.service';
 
 @Component({
   imports: [
@@ -112,7 +112,7 @@ export class SettingsComponent implements OnDestroy {
    */
   private reload() {
     this.panels.set(this.getComponents());
-    this.selectedPanel.set(this.panels()[0]);
+    this.selectedPanel.set(this.selectedPanel() ? this.selectedPanel() : this.panels()[0]);
 
     if (this.popupInstance.getPopupData()) {
       this.onSelectSettingsByName(this.popupInstance.getPopupData())

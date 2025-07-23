@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, Inject, Signal } from '@angular/core';
 import { ApplicationDevicePermission, ApplicationVersion } from '../../../shared/models/repository.model';
 import { PopupInstance } from '../../../shared/components/popup/popup.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'swc-permissions',
   standalone: true,
   imports: [
+    TranslatePipe
   ],
   templateUrl: './permissions.component.html',
   styleUrls: [

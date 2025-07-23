@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Signal, signal }
 import { toSignal } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { PairNewDeviceComponent } from './popups/pair-new-device/pair-new-device.component';
-import { MaskableIconComponent } from '../../../../components/maskable-icon/maskable-icon.component';
-import { IconButtonComponent } from '../../../../components/icon-button/icon-button.component';
-import { PairedDevice, PairedDevicesService } from '../../../../services/paired-devices.service';
-import { PopupService } from '../../../../components/popup/popup.service';
-import { CopyInputComponent } from '../../../../components/copy-to-clipboard/copy-input.component';
 import { ChangeEndpointComponent } from './popups/change-endpoint/change-endpoint.component';
+import { IconButtonComponent } from '../../../shared/components/icon-button/icon-button.component';
+import { MaskableIconComponent } from '../../../shared/components/maskable-icon/maskable-icon.component';
+import { CopyInputComponent } from '../../../shared/components/copy-to-clipboard/copy-input.component';
+import { PairedDevice, PairedDevicesService } from '../../../shared/services/paired-devices.service';
+import { PopupService } from '../../../shared/components/popup/popup.service';
 
 @Component({
   imports: [

@@ -118,9 +118,9 @@
       .screenshot {
         background-color: #ccc;
         border-radius: var(--border-radius-medium);
-        display: inline-block;
+        display: inline-flex;
         flex: 1;
-        height: 649px;
+        max-height: 649px;
         margin: .5rem;
         overflow: hidden;
         width: 300px;

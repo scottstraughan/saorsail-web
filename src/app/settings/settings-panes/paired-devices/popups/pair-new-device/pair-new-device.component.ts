@@ -1,10 +1,10 @@
 import {
   ChangeDetectionStrategy, Component, Inject, OnInit, Signal, signal, ViewChild, WritableSignal } from '@angular/core';
 import { QRCodeComponent } from 'angularx-qrcode';
-import { IconButtonComponent } from '../../../../../../components/icon-button/icon-button.component';
-import { IconInputComponent } from '../../../../../../components/icon-input/icon-input.component';
-import { PairedDevicesService } from '../../../../../../services/paired-devices.service';
-import { PopupInstance } from '../../../../../../components/popup/popup.service';
+import { IconButtonComponent } from '../../../../../shared/components/icon-button/icon-button.component';
+import { IconInputComponent } from '../../../../../shared/components/icon-input/icon-input.component';
+import { PairedDevicesService } from '../../../../../shared/services/paired-devices.service';
+import { PopupInstance } from '../../../../../shared/components/popup/popup.service';
 
 @Component({
   selector: 'swc-pair-new-device',

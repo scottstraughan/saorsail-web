@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, tap, throwError } from 'rxjs';
 import { Application, ApplicationVersion } from '../models/repository.model';
 import { DownloadMethod } from './download-method.service';
 import { LocalizationService } from './localization.service';
@@ -89,7 +89,7 @@ export class InstallService {
               icon: 'general/error'
             });
 
-          return of(e);
+          return throwError(() => e);
         })
       );
   }

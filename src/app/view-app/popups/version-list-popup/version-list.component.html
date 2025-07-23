@@ -1,14 +1,12 @@
-<header>
-  Browse Older Versions
-</header>
+<header>{{ 'VIEW_APP_VERSION_LIST_TITLE' | translate }}</header>
 
 <div class="versions">
   @for (version of versions(); track version.file.sha256) {
     <a class="version" (click)="onVersionChange(version)">
       <div class="name">
         <div>
-          <h1>Version {{ version.manifest.versionName }}</h1>
-          <h2>File Size: {{ fileSizeInMb(version.file.size) }}MB</h2>
+          <h1>{{ 'VIEW_APP_VERSION_LIST_VERSION' | translate }} {{ version.manifest.versionName }}</h1>
+          <h2>{{ 'VIEW_APP_VERSION_LIST_FILE_SIZE' | translate }}: {{ fileSizeInMb(version.file.size) }}MB</h2>
         </div>
       </div>
       <div class="actions">
