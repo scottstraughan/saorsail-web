@@ -136,14 +136,6 @@ export class LocalizationService {
     return this.locale$;
   }
 
-  observeLocalChanges(): Observable<Locale> {
-    const currentLocal = this.locale$.value;
-
-    return this.observeLocal()
-      .pipe(
-        filter(local => currentLocal != local));
-  }
-
   /**
    * Get the default local.
    */

@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { from, map, Observable, of, switchMap } from 'rxjs';
+import { from, map, Observable, switchMap } from 'rxjs';
 import { Application, ApplicationVersion, Category } from '../models/repository.model';
 import { DatabaseService } from './database.service';
 import { ModelFilters, ModelOrder, OrderBy, OrderDirection } from '../models/filters.model';
@@ -30,22 +30,6 @@ export class ApplicationService {
     namespace: string
   ): Observable<Application> {
     return this.databaseService.getByID<Application>('applications', namespace);
-  }
-
-  /**
-   * Get the latest apps.
-   */
-  getLatest(
-    limit: number = 20,
-    offset: number = 0
-  ): Observable<PartialResult<Application>> {
-    const filters: ModelFilters = new ModelFilters(
-      <ModelOrder> { by: OrderBy.DATE_ADDED, direction: OrderDirection.DESC },
-      limit,
-      offset
-    );
-
-    return this.getApplications(filters);
   }
 
   /**

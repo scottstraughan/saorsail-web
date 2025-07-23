@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed, effect,
+  computed,
   HostBinding,
   input,
   signal,
