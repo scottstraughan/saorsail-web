@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal, Signal, WritableSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed, effect,
+  HostBinding,
+  input,
+  signal,
+  Signal,
+  WritableSignal
+} from '@angular/core';
 import { MaskableIconComponent } from '../maskable-icon/maskable-icon.component';
 import { DownloadMethod, DownloadMethodService, DownloadMethodType } from '../../services/download-method.service';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -7,7 +16,7 @@ import { InstallService } from '../../services/install.service';
 import { PopupService } from '../popup/popup.service';
 import { ChangeMethodComponent } from '../../popups/change-download-method/change-method.component';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
-import { take, tap } from 'rxjs';
+import { catchError, take, tap, throwError } from 'rxjs';
 
 @Component({
   selector: 'swc-install-button',
@@ -29,6 +38,11 @@ export class InstallButtonComponent {
   readonly title: Signal<string> = signal('');
   readonly href: Signal<string | undefined> = signal(undefined);
 
+  @HostBinding('class.loading2')
+  get isLoadingAnimated() {
+    return this.loading();
+  }
+
   /**
    * Constructor.
    * @param downloadMethodService
@@ -47,7 +61,7 @@ export class InstallButtonComponent {
       this.installService.getDownloadApkUrl(this.version()));
 
     this.title = computed(() =>
-      this.method().type == DownloadMethodType.INSTALL ? `Install` : `Download`);
+      this.method().type == DownloadMethodType.INSTALL ? `Install` : `Download`)
   }
 
   /**
@@ -80,13 +94,20 @@ export class InstallButtonComponent {
 
       this.installService.install(this.application(), this.method(), this.version())
         .pipe(
-          tap(() =>
-            this.loading.set(false)),
+          tap(() => this.resetLoading()),
+          catchError(e => {
+            this.resetLoading();
+            return throwError(() => e);
+          }),
           take(1)
         )
         .subscribe();
 
       return;
     }
+  }
+
+  private resetLoading() {
+    this.loading.set(false);
   }
 }
