@@ -27,6 +27,12 @@
         background-color: rgba(24, 118, 210, .2);
         color: var(--color-white);
 
+        .favorite {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
         .wrapper {
           @include flex-center(false);
 
@@ -59,6 +65,7 @@
           .actions {
             align-items: flex-end;
             display: flex;
+            flex-direction: column;
 
             swc-install-button {
               transform: scale(1.4);

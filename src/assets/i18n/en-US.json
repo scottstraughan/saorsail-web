@@ -76,5 +76,8 @@
 	"VIEW_APP_PERMISSIONS_TITLE": "Required Permissions",
 
 	"CHANGE_DOWNLOAD_METHOD_TITLE": "Default Download Method",
-	"CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE": "Add New Paired Device"
+	"CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE": "Add New Paired Device",
+
+	"FAVORITES_TITLE": "My Favorites",
+	"FAVORITES_SUB_TITLE": "Save your favorite apps for quick and easy access"
 }

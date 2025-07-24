@@ -1,0 +1,37 @@
+@use '../../mixins' as *;
+@use '../../variables' as *;
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  position: relative;
+
+  .app-list-container {
+    display: flex;
+    width: 100%;
+    flex: 1;
+  }
+
+  swc-loading-indicator {
+    width: 100px;
+  }
+
+  .splash {
+    z-index: 2;
+  }
+}
+
+.notice {
+  @include flex-center(true);
+
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  text-align: center;
+
+  swc-icon {
+    opacity: .2;
+  }
+}

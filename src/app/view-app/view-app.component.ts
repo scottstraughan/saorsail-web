@@ -14,6 +14,7 @@ import { appTitle } from '../app.config';
 import { Title } from '@angular/platform-browser';
 import { TruncatePipe } from '../shared/pipes/truncate.pipe';
 import { TranslatePipe } from '@ngx-translate/core';
+import { FavoriteWidgetComponent } from '../shared/components/favorite-widget/favorite-widget.component';
 
 @Component({
   selector: 'swc-view-app',
@@ -25,6 +26,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TruncatePipe,
     TranslatePipe,
     AsyncPipe,
+    FavoriteWidgetComponent,
   ],
   styleUrl: './view-app.component.scss'
 })
@@ -53,7 +55,7 @@ export class ViewAppComponent implements OnInit {
     protected popupService: PopupService,
     protected fdroidRepositoryService: FdroidRepositoryService,
     private router: Router,
-    private title: Title
+    private title: Title,
   ) { }
 
   /**
