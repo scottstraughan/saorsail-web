@@ -70,5 +70,8 @@
 	"VIEW_APP_SDK_MIN": "SDK mínimo de Android",
 
 	"CHANGE_DOWNLOAD_METHOD_TITLE": "Método de descarga predeterminado",
-	"CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE": "Agregar nuevo dispositivo emparejado"
+	"CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE": "Agregar nuevo dispositivo emparejado",
+
+	"FAVORITES_TITLE": "Mis favoritos",
+	"FAVORITES_SUB_TITLE": "Guarda tus aplicaciones favoritas para un acceso rápido y fácil"
 }

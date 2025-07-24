@@ -4,6 +4,8 @@
          [style.background-image]="'url(' + (localizationService.localizeImageRecord$(application.metadata.icon) | async) + ')'">
       <header>
         <div class="wrapper">
+          <swc-favorite-widget class="favorite" [application]="application"></swc-favorite-widget>
+
           <div class="icon">
             <img [src]="localizationService.localizeImageRecord$(application.metadata.icon) | async" alt="App Icon" />
           </div>

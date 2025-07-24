@@ -1,0 +1,7 @@
+@if (application(); as application) {
+  @if (isFavorite()) {
+    <swc-icon icon="menu/favorite"></swc-icon>
+  } @else {
+    <swc-icon icon="general/unpinned"></swc-icon>
+  }
+}

@@ -1,0 +1,29 @@
+<div class="content-container">
+  <header class="splash">
+    <div class="title">
+      <h1>{{ 'FAVORITES_TITLE' | translate }}</h1>
+      <h2>{{ 'FAVORITES_SUB_TITLE' | translate }}</h2>
+    </div>
+    <div class="header-icon">
+      <img class="header-icon" src="/assets/icons/menu/favorite.svg" alt="Favorites" />
+    </div>
+  </header>
+
+  @if (loading()) {
+    <swc-loading-indicator class="dimmed"></swc-loading-indicator>
+  } @else if (apps().length == 0) {
+    <div class="notice">
+      <swc-icon [size]="100" icon="general/empty" />
+    </div>
+  } @else {
+    <div class="app-list-container">
+      <div>
+        <div class="app-list">
+          @for (app of apps(); track app.namespace) {
+            <swc-application-widget [application]="app"></swc-application-widget>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

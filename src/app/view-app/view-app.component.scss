@@ -1,4 +1,5 @@
 @use '../../mixins' as *;
+@use '../../variables' as *;
 
 :host {
   display: block;
@@ -27,12 +28,27 @@
         background-color: rgba(24, 118, 210, .2);
         color: var(--color-white);
 
+        .favorite {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
         .wrapper {
           @include flex-center(false);
 
-          gap: 2rem;
+          flex-direction: column;
+          text-align: center;
+          gap: 1rem;
           height: 320px;
-          padding: 0 var(--side-padding);
+          padding: 2rem var(--side-padding);
+
+          @media screen and (min-width: $mobile-breakpoint) {
+            flex-direction: row;
+            gap: 2rem;
+            padding: 0 var(--side-padding);
+            text-align: left;
+          }
 
           .icon,
           .title {
@@ -59,6 +75,7 @@
           .actions {
             align-items: flex-end;
             display: flex;
+            flex-direction: column;
 
             swc-install-button {
               transform: scale(1.4);
@@ -75,6 +92,13 @@
         cursor: default;
         display: flex;
         padding: 1.5rem var(--side-padding);
+        flex-direction: column;
+        gap: 1rem;
+
+        @media screen and (min-width: $mobile-breakpoint) {
+          flex-direction: row;
+          gap: 0;
+        }
 
         .item {
           flex: 1;

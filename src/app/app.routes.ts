@@ -5,6 +5,7 @@ import { PopularComponent } from './popular/popular.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRouteGuard } from './app.route-guard';
 import { BrowseComponent } from './browse/browse.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,11 @@ export const routes: Routes = [
   {
     path: 'popular',
     component: PopularComponent,
+    canDeactivate: [AppRouteGuard],
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
     canDeactivate: [AppRouteGuard],
   },
   {
