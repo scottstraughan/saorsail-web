@@ -11,6 +11,7 @@ import { LoadingIndicatorComponent } from '../shared/components/loading-indicato
 import { TranslatePipe } from '@ngx-translate/core';
 import { ModelFilters, OrderBy, OrderDirection } from '../shared/models/filters.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IconComponent } from '../shared/components/icon/icon.component';
 
 @Component({
   selector: 'swc-latest',
@@ -19,7 +20,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     ApplicationWidgetComponent,
     ShowMoreButtonComponent,
     LoadingIndicatorComponent,
-    TranslatePipe
+    TranslatePipe,
+    IconComponent
   ],
   templateUrl: './latest.component.html',
   styleUrl: './latest.component.scss'

@@ -57,6 +57,10 @@
         cursor: pointer;
         transition: .2s all;
 
+        swc-icon {
+          vertical-align: middle;
+        }
+
         &.selected {
           background-color: var(--hint-color);
           opacity: 1;

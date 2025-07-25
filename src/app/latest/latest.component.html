@@ -14,10 +14,14 @@
     <div class="chooser">
       <a class="added"
          [class.selected]="orderBy == OrderBy.DATE_ADDED"
-         (click)="onOrderAdded()">{{ 'LATEST_ADDED' | translate }}</a>
+         (click)="onOrderAdded()">
+        <swc-icon icon="general/added" alt="Added Icon" /> {{ 'LATEST_ADDED' | translate }}
+      </a>
       <a class="added"
          [class.selected]="orderBy == OrderBy.DATE_UPDATED"
-         (click)="onOrderUpdated()">{{ 'LATEST_UPDATED' | translate }}</a>
+         (click)="onOrderUpdated()">
+        <swc-icon icon="general/updated" alt="Updated Icon" /> {{ 'LATEST_UPDATED' | translate }}
+      </a>
     </div>
   </div>
 
