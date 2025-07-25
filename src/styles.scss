@@ -107,20 +107,13 @@ h2 {
 }
 
 .app-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
   padding: 1rem 0;
 
-  swc-application-widget {
-    flex: 1 1 180px;
-  }
-
   @media screen and (min-width: $mobile-breakpoint) {
-    swc-application-widget {
-      flex: 1 1 230px;
-      max-width: 300px;
-    }
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -133,7 +126,8 @@ h2 {
   min-height: 100vh;
 
   @media screen and (min-width: $mobile-breakpoint) {
-    max-width: 1000px;
+    max-width: calc(1000px + 2rem);
+    padding: 0 1rem;
     margin: 0 auto;
   }
 }
