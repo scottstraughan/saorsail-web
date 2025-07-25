@@ -40,7 +40,6 @@ h2 {
   }
 }
 
-
 .message {
   height: 100%;
   display: flex;
@@ -108,11 +107,16 @@ h2 {
 
 .app-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
-  padding: 1rem 0;
+  padding: 1rem;
+
+  @media screen and (min-width: 650px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
   @media screen and (min-width: $mobile-breakpoint) {
+    padding: 1rem 0;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
