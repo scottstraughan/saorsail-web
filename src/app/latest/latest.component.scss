@@ -9,12 +9,9 @@
 
   .app-list-container {
     @include flex-center;
+
     width: 100%;
     flex: 1;
-  }
-
-  swc-loading-indicator {
-    width: 100px;
   }
 
   .splash {
@@ -56,6 +53,10 @@
         opacity: .5;
         cursor: pointer;
         transition: .2s all;
+
+        swc-icon {
+          vertical-align: middle;
+        }
 
         &.selected {
           background-color: var(--hint-color);

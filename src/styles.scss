@@ -40,7 +40,6 @@ h2 {
   }
 }
 
-
 .message {
   height: 100%;
   display: flex;
@@ -107,20 +106,18 @@ h2 {
 }
 
 .app-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  padding: 1rem;
 
-  swc-application-widget {
-    flex: 1 1 180px;
+  @media screen and (min-width: 650px) {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   @media screen and (min-width: $mobile-breakpoint) {
-    swc-application-widget {
-      flex: 1 1 230px;
-      max-width: 300px;
-    }
+    padding: 1rem 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -131,9 +128,22 @@ h2 {
 .content-container {
   width: 100%;
   min-height: 100vh;
+  height: auto;
 
   @media screen and (min-width: $mobile-breakpoint) {
-    max-width: 1000px;
+    max-width: calc(1000px + 2rem);
+    padding: 0 1rem;
     margin: 0 auto;
+  }
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - var(--nav-space-taken));
+
+  swc-loading-indicator {
+    width: 100px;
   }
 }

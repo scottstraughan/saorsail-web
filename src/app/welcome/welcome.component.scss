@@ -41,12 +41,14 @@
       grid-gap: 2rem;
       padding: 4rem;
       flex: 1;
-      background-color: var(--ui-bg-color-secondary);
+      background-color: #12141c;
+      border-radius: 0;
 
       .item {
         @include flex-center;
 
-        height: var(--icon-size);
+        height: 100%;
+        width: var(--icon-size);
         position: relative;
 
         &.item:nth-of-type(1n + 1) img {
@@ -74,20 +76,17 @@
         }
       }
 
-      .row4, .row5 {
+      .row3, .row4, .row5 {
         display: none;
       }
 
       @media screen and (min-width: $mobile-breakpoint) {
         .row4, .row5 {
-          display: block;
+          display: flex;
         }
       }
 
       img {
-        top: 0;
-        left: 0;
-        position: absolute;
         width: var(--icon-size);
         height: auto;
         border-radius: var(--border-radius-large);
