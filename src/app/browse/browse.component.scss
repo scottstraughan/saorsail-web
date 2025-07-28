@@ -96,6 +96,17 @@
 
       .app-list {
         padding: 1rem 0;
+        grid-template-columns: 1fr 1fr;
+
+        @media screen and (min-width: 1100px) {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media screen and (min-width: 1300px) {
+          padding: 1rem 0;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
       }
 
       @media screen and (min-width: $mobile-breakpoint) {
