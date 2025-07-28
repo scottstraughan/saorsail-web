@@ -95,7 +95,7 @@
       padding: 1rem;
 
       .app-list {
-        padding: 0 0 1rem 0;
+        padding: 1rem 0;
       }
 
       @media screen and (min-width: $mobile-breakpoint) {
@@ -111,7 +111,6 @@
   .info {
     text-align: center;
     width: 100%;
-    margin-top: 1rem;
     display: flex;
     gap: 1rem;
 
@@ -120,6 +119,10 @@
       background-color: var(--ui-bg-color-secondary);
       border-radius: var(--border-radius-medium);
       flex: 1;
+    }
+
+    swc-icon-button {
+      height: 100%;
     }
 
     @media screen and (min-width: $mobile-breakpoint) {
