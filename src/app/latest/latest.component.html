@@ -28,7 +28,9 @@
   <div class="app-list-container">
     <div>
       @if (loading() && apps().length == 0) {
-        <swc-loading-indicator class="dimmed"></swc-loading-indicator>
+        <div class="loading-container">
+          <swc-loading-indicator class="dimmed"></swc-loading-indicator>
+        </div>
       } @else {
         <div class="app-list">
           @for (app of apps(); track app.namespace) {

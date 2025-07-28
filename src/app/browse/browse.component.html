@@ -69,7 +69,7 @@
 
     <div class="app-list-container">
       @if (loading()) {
-        <div class="loading">
+        <div class="loading-container">
           <swc-loading-indicator class="dimmed"></swc-loading-indicator>
         </div>
       } @else {
@@ -87,10 +87,11 @@
           @for (app of apps(); track app.namespace) {
             <swc-application-widget [application]="app"></swc-application-widget>
           }
-          @if (apps().length < filtererAppCount()) {
-            <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
-          }
         </div>
+
+        @if (apps().length < filtererAppCount()) {
+          <swc-show-more-button (click)="onShowMore()"></swc-show-more-button>
+        }
       }
     </div>
   </div>

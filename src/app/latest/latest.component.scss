@@ -9,12 +9,9 @@
 
   .app-list-container {
     @include flex-center;
+
     width: 100%;
     flex: 1;
-  }
-
-  swc-loading-indicator {
-    width: 100px;
   }
 
   .splash {

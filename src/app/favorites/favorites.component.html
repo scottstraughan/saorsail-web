@@ -10,7 +10,9 @@
   </header>
 
   @if (loading()) {
-    <swc-loading-indicator class="dimmed"></swc-loading-indicator>
+    <div class="loading-container">
+      <swc-loading-indicator class="dimmed"></swc-loading-indicator>
+    </div>
   } @else if (apps().length == 0) {
     <div class="notice">
       <swc-icon [size]="100" icon="general/empty" />

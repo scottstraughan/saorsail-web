@@ -30,7 +30,7 @@
     }
 
     @media screen and (min-width: $mobile-breakpoint) {
-      left: $desktop-menu-width;
+      left: var(--nav-desktop-width);
       display: block;
       width: var(--filters-menu-width);
       height: 100vh;
@@ -87,19 +87,23 @@
     .content-container {
       display: flex;
       flex-direction: column;
-      height: 100vh;
-    }
-
-    .loading {
-      @include flex-center;
-      height: 100%;
     }
 
     .app-list-container {
       flex: 1;
+      min-height: 100vh;
+      padding: 1rem;
+
+      .app-list {
+        padding: 0 0 1rem 0;
+      }
 
       @media screen and (min-width: $mobile-breakpoint) {
         display: block;
+      }
+
+      .loading-container {
+        height: calc(100vh - var(--nav-space-taken));
       }
     }
   }
