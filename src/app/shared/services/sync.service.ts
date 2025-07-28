@@ -83,12 +83,7 @@ export class SyncService {
         tap(() =>
           this.syncing$.next(false)),
         tap(() =>
-          this.popupReference?.close()),
-        tap(() =>
-          this.notificationService.create({
-            title: 'Database Updates',
-            body: `Saorsail database has been updated to the latest available from F-Droid.`,
-        }))
+          this.popupReference?.close())
       );
   }
 
