@@ -15,7 +15,9 @@
     </div>
   } @else if (apps().length == 0) {
     <div class="notice">
-      <swc-icon [size]="100" icon="general/empty" />
+      <a routerLink="/browse">
+        <swc-icon-button icon="general/empty" label="Browse for Apps"></swc-icon-button>
+      </a>
     </div>
   } @else {
     <div class="app-list-container">
