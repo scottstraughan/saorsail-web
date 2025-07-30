@@ -17,16 +17,21 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     { provide: Window, useValue: window },
+
+    // Translation system
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
-    })]), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          })
+    })]),
+
+    // PWA Support
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ]
 };
 
