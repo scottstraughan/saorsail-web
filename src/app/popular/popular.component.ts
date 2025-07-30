@@ -9,6 +9,7 @@ import { appTitle } from '../app.config';
 import { Title } from '@angular/platform-browser';
 import { LoadingIndicatorComponent } from '../shared/components/loading-indicator/loading-indicator.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'swc-popular',
@@ -18,6 +19,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ShowMoreButtonComponent,
     LoadingIndicatorComponent,
     TranslatePipe,
+    NgOptimizedImage,
   ],
   templateUrl: './popular.component.html',
   styleUrls: [

@@ -73,5 +73,6 @@
 	"CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE": "Aggiungi un nuovo dispositivo associato",
 
 	"FAVORITES_TITLE": "I miei preferiti",
-	"FAVORITES_SUB_TITLE": "Salva le tue app preferite per un accesso rapido e semplice"
+	"FAVORITES_SUB_TITLE": "Salva le tue app preferite per un accesso rapido e semplice",
+	"FAVORITES_BROSE_FOR_APPS": "Cerca app"
 }

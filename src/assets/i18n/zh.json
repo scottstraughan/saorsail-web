@@ -73,5 +73,6 @@
   "CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE": "添加新配对设备",
 
   "FAVORITES_TITLE": "我的收藏",
-  "FAVORITES_SUB_TITLE": "保存您喜欢的应用以便快速、轻松访问"
+  "FAVORITES_SUB_TITLE": "保存您喜欢的应用以便快速、轻松访问",
+  "FAVORITES_BROSE_FOR_APPS": "浏览应用程序"
 }

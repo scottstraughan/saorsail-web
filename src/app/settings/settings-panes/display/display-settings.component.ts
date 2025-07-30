@@ -81,4 +81,19 @@ export class DisplaySettingsComponent {
   getPallets(): ThemeColor[] {
     return DisplayThemeService.COLORS;
   }
+
+  /**
+   * Check if a pallet/theme is selected or not.
+   */
+  isPalletSelected(
+    palette: ThemeColor
+  ): boolean {
+    const selectedTheme = this.selectedTheme();
+
+    if (selectedTheme.pallet == undefined && palette.name == 'blue') {
+      return true;
+    }
+
+    return selectedTheme.pallet?.name == palette.name;
+  }
 }

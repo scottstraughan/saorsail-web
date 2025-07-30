@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, of, take, tap } from 'rxjs';
 import { Application, ApplicationVersion } from '../shared/models/repository.model';
 import { LocalizationService } from '../shared/services/localization.service';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe, NgOptimizedImage } from '@angular/common';
 import { InstallButtonComponent } from '../shared/components/install-button/install-button.component';
 import { VersionListComponent } from './popups/version-list-popup/version-list.component';
 import { FdroidRepositoryService } from '../shared/services/repository/fdroid-repository.service';
@@ -27,6 +27,7 @@ import { FavoriteWidgetComponent } from '../shared/components/favorite-widget/fa
     TranslatePipe,
     AsyncPipe,
     FavoriteWidgetComponent,
+    NgOptimizedImage,
   ],
   styleUrl: './view-app.component.scss'
 })

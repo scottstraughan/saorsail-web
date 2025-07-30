@@ -13,12 +13,14 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { IconInputComponent } from '../../../shared/components/icon-input/icon-input.component';
 import { MaskableIconComponent } from '../../../shared/components/maskable-icon/maskable-icon.component';
 import { Locale, LocalizationService } from '../../../shared/services/localization.service';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   imports: [
     IconInputComponent,
     MaskableIconComponent,
     TranslatePipe,
+    NgOptimizedImage,
   ],
   selector: 'swc-settings-localization',
   standalone: true,

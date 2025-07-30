@@ -73,5 +73,6 @@
 	"CHANGE_DOWNLOAD_METHOD_ADD_NEW_PAIRED_DEVICE": "Ajouter un nouvel appareil appairé",
 
 	"FAVORITES_TITLE": "Mes favoris",
-	"FAVORITES_SUB_TITLE": "Enregistrez vos applications favorites pour un accès rapide et facile"
+	"FAVORITES_SUB_TITLE": "Enregistrez vos applications favorites pour un accès rapide et facile",
+	"FAVORITES_BROSE_FOR_APPS": "Rechercher des applications"
 }

@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ShowMoreButtonComponent } from '../shared/components/show-more-button/show-more-button.component';
 import { IconComponent } from '../shared/components/icon/icon.component';
 import { IconButtonComponent } from '../shared/components/icon-button/icon-button.component';
-import { TitleCasePipe } from '@angular/common';
+import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
 import { LoggerService } from '../shared/services/logger.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -32,6 +32,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     IconButtonComponent,
     TitleCasePipe,
     TranslatePipe,
+    NgOptimizedImage,
   ],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.scss'

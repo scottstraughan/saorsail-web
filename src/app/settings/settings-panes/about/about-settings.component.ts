@@ -3,11 +3,13 @@ import { SettingsBlockItemComponent } from '../../components/setting-block-item/
 import { tap } from 'rxjs';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DisplayThemeService } from '../../../shared/services/display-theme.service';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   imports: [
     SettingsBlockItemComponent,
     TranslatePipe,
+    NgOptimizedImage,
   ],
   selector: 'swc-settings-about',
   standalone: true,
