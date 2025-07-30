@@ -16,7 +16,7 @@
   } @else if (apps().length == 0) {
     <div class="notice">
       <a routerLink="/browse">
-        <swc-icon-button icon="general/empty" label="Browse for Apps"></swc-icon-button>
+        <swc-icon-button icon="general/empty" [label]="'FAVORITES_BROSE_FOR_APPS' | translate"></swc-icon-button>
       </a>
     </div>
   } @else {
