@@ -10,7 +10,7 @@
   @for (lang of filteredLanguages(); track lang) {
     <div class="language" [class.selected]="selectedLanguage().name == lang.name" (click)="onSelectLanguage(lang)">
       <div class="flag">
-        <img [src]="localizationService.getLanguageIcon(lang)" alt="{{ lang.name }} Flag" />
+        <img [ngSrc]="localizationService.getLanguageIcon(lang)" alt="{{ lang.name }} Flag" width="512" height="512" />
       </div>
       <div class="name">{{ lang.name }}</div>
       <div class="selected">

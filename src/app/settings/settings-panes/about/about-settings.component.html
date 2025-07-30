@@ -2,8 +2,8 @@
     class="overview"
     [title]="'SETTINGS_ABOUT_OVERVIEW_TITLE' | translate">
   <img class="logo"
-       [src]="darkTheme() ? './assets/img/logo-white.svg' : '../assets/img/logo-black.svg'"
-       alt="Saorsail Icon" />
+       [ngSrc]="darkTheme() ? './assets/img/logo-white.svg' : '../assets/img/logo-black.svg'"
+       alt="Saorsail Icon" width="120" height="36" />
   <p [innerHTML]="'SETTINGS_ABOUT_P1' | translate"></p>
   <p [innerHTML]="'SETTINGS_ABOUT_P2' | translate"></p>
 </swc-settings-block-item>
@@ -13,7 +13,10 @@
     [subTitle]="'SETTINGS_ABOUT_CREDITS_SUBTITLE' | translate">
   <div class="credits">
     <a href="https://github.com/scottstraughan" target="_blank" rel="noopener">
-      <img src="https://avatars.githubusercontent.com/u/42965777?v=4" alt="Scott's Avatar">
+      <div class="ng-icon-container avatar-wrapper">
+        <img ngSrc="https://avatars.githubusercontent.com/u/42965777?v=4" alt="Scott's Avatar" fill />
+      </div>
+
       <h1>Scott Straughan</h1>
       <h2>Creator &amp; Lead Engineer</h2>
     </a>

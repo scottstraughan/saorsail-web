@@ -46,7 +46,7 @@ export class DownloadMethodService {
 
   resetSelected() {
     let found = false;
-    for (const [key, method] of Object.entries(this.methods)) {
+    for (const method of Object.values(this.methods)) {
       if (method.pairedDevice?.code == this.method$.value.pairedDevice?.code) {
         found = true;
       }
