@@ -42,6 +42,22 @@
       background-position: center;
       background-size: cover;
       background-color: var(--ui-bg-color-tierary);
+      overflow: hidden;
+
+      .pinned {
+        @include flex-center;
+
+        opacity: 0;
+        transition: var(--transition);
+        background-color: rgba(0, 0, 0, .7);
+        height: 100%;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+      }
+
+      &:hover .pinned {
+        opacity: 1;
+      }
     }
 
     h1, h2 {

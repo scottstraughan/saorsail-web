@@ -6,6 +6,7 @@ import { InstallButtonComponent } from '../install-button/install-button.compone
 import { ApplicationService } from '../../services/application.service';
 import { MaskableIconComponent } from '../maskable-icon/maskable-icon.component';
 import { AsyncPipe } from '@angular/common';
+import { FavoriteWidgetComponent } from '../favorite-widget/favorite-widget.component';
 
 @Component({
   selector: 'swc-application-widget',
@@ -14,7 +15,8 @@ import { AsyncPipe } from '@angular/common';
     RouterLink,
     InstallButtonComponent,
     MaskableIconComponent,
-    AsyncPipe
+    AsyncPipe,
+    FavoriteWidgetComponent
   ],
   templateUrl: './application-widget.component.html',
   styleUrl: './application-widget.component.scss',
@@ -24,8 +26,19 @@ export class ApplicationWidgetComponent {
   readonly application = input.required<Application>();
   readonly clicked = output<void>();
 
+  /**
+   * Constructor.
+   */
   constructor(
     protected localizationService: LocalizationService,
     protected applicationService: ApplicationService,
   ) { }
+
+  /**
+   * Disables visiting the app page if the pinned icon is clicked.
+   */
+  onIconClicked($event: MouseEvent) {
+    $event.preventDefault();
+    $event.stopPropagation()
+  }
 }
