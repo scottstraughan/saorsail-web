@@ -11,7 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { PopupService } from './shared/components/popup/popup.service';
 import { IconComponent } from './shared/components/icon/icon.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { RouteTrackingService } from './shared/services/route-tracking.service';
+import { BackButtonUrlTrackingService } from './shared/services/back-button-url-tracking.service';
 import { SettingPanelId, SettingsComponent } from './settings/settings.component';
 
 @Component({
@@ -43,7 +43,7 @@ export class AppComponent {
     private router: Router,
     private displayThemeService: DisplayThemeService,
     private renderer: Renderer2,
-    private routeTrackingService: RouteTrackingService,
+    private routeTrackingService: BackButtonUrlTrackingService,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.translate.addLangs(Object.keys(LocalizationService.languages));
