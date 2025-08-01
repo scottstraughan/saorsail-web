@@ -38,7 +38,11 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './browse.component.scss'
 })
 export class BrowseComponent implements OnInit, OnDestroy {
-  static ITEMS_PER_PAGE = 20;
+  /**
+   * Number of results to show per "page".
+   * @private
+   */
+  private static ITEMS_PER_PAGE = 20;
 
   /**
    * Show or hide the filters panel. Only works on mobile.
@@ -51,6 +55,7 @@ export class BrowseComponent implements OnInit, OnDestroy {
     by: OrderBy.NAME,
     direction: OrderDirection.DESC
   });
+
   readonly filters: WritableSignal<Filters> = signal(new Filters([
     new KeywordFilter(),
     new MultiFilterGroup('categories', []),
@@ -72,8 +77,7 @@ export class BrowseComponent implements OnInit, OnDestroy {
   readonly totalAppsCount: WritableSignal<number> = signal(0);
   readonly filtererAppCount: WritableSignal<number> = signal(0);
 
-  keywords: string = '';
-
+  protected keywords: string = '';
   protected keywordSubject$ = new Subject<string>();
   private cleanup$ = new Subject<any>();
 
@@ -92,8 +96,12 @@ export class BrowseComponent implements OnInit, OnDestroy {
    * @inheritdoc
    */
   ngOnInit(): void {
-    this.addCategoriesToFilters()
+
+    this.localizationService.observeLocal()
       .pipe(
+        // Get the categories
+        switchMap(() => this.addCategoriesToFilters()),
+
         // Tidy on cleanup
         takeUntil(this.cleanup$),
 
@@ -109,6 +117,10 @@ export class BrowseComponent implements OnInit, OnDestroy {
         tap(() => this.reload())
       )
       .subscribe();
+
+    this.localizationService.observeLocal()
+      .pipe()
+      .subscribe()
 
     this.keywordSubject$.pipe(
       takeUntil(this.cleanup$),
