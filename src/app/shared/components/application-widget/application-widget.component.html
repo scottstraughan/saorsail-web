@@ -7,7 +7,11 @@
     }
 
     @if (localizationService.localizeImageRecord$(application.metadata.icon) | async; as icon) {
-      <div class="icon" [style.background-image]="'url(' + icon + ')'"></div>
+      <div (click)="onIconClicked($event)" class="icon" [style.background-image]="'url(' + icon + ')'">
+        <div class="pinned" title="Click to pin or unpin this app to your favorites">
+          <swc-favorite-widget [application]="application"></swc-favorite-widget>
+        </div>
+      </div>
     }
 
     <h1>{{ localizationService.localizeRecord$(application.metadata.name) | async }}</h1>
