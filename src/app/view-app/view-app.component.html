@@ -80,7 +80,7 @@
       @if (selectedVersion(); as selectedVersion) {
         @if (getLocalizedFormattedContents(selectedVersion.whatsNew)) {
           <h2>{{ 'VIEW_APP_WHATS_NEW' | translate }}</h2>
-          <div class="whats-new" [innerHTML]="getLocalizedFormattedContents(selectedVersion.whatsNew)"></div>
+          <div class="whats-new" [innerHTML]="getLocalizedFormattedContents(selectedVersion.whatsNew) | async"></div>
         }
 
         <section class="information">
