@@ -5,8 +5,8 @@ import { filter } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class RouteTrackingService {
-  private previousUrl: string | null = null;
+export class BackButtonUrlTrackingService {
+  private previousUrl: string | null = '/browse/';
   private currentUrl: string | null = null;
 
   constructor(
@@ -15,7 +15,10 @@ export class RouteTrackingService {
     this.currentUrl = this.router.url;
 
     router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        filter(event => !event.urlAfterRedirects.includes('/app/')),
+      )
       .subscribe((event: NavigationEnd) => {
         this.previousUrl = this.currentUrl;
         this.currentUrl = event.urlAfterRedirects;
