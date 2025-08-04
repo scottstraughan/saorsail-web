@@ -49,7 +49,7 @@ export class MultiSelectComponent implements OnChanges {
   }
 }
 
-export interface SelectItem {
+export type SelectItem = {
   id: string
   title: string
   selected: boolean

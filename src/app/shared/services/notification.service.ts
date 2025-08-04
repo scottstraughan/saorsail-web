@@ -92,7 +92,7 @@ export class NotificationService {
 /**
  * Represents a notification.
  */
-export interface Notification {
+export type Notification = {
   title: string
   body?: string
   icon?: string

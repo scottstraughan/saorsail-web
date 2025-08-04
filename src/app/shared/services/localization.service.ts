@@ -181,7 +181,7 @@ export class LocalizationService {
 /**
  * Represents a local.
  */
-export interface Locale {
+export type Locale = {
   name: string
   code: string
   icon: boolean

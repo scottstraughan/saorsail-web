@@ -82,7 +82,7 @@ export enum DownloadMethodType {
   INSTALL
 }
 
-export interface DownloadMethod {
+export type DownloadMethod = {
   type: DownloadMethodType
   name: string
   icon: string

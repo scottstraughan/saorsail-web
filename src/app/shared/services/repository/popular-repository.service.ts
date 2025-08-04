@@ -81,7 +81,10 @@ export class PopularRepositoryService {
   }
 }
 
-export interface PopularDatabaseItem {
+/**
+ * Type for a popular db item.
+ */
+export type PopularDatabaseItem = {
   namespace: string
   stars: number
 }
