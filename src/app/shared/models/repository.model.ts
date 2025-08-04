@@ -48,7 +48,7 @@ export interface Application {
     lastUpdated: number
     license: string
     sourceCode: string
-    screenshots: Record<string, Record<string, ImageReference>>
+    screenshots: Record<string, Record<string, ImageReference[]>>
     authorName: string
     authorWebSite?: string
     icon?: Record<string, ImageReference>
