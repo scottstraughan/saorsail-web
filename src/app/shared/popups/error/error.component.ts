@@ -29,7 +29,7 @@ export class ErrorComponent {
   }
 }
 
-export interface ErrorPopupData {
+export type ErrorPopupData = {
   title: string
   message: string
   icon: string

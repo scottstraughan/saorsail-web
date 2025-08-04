@@ -1,7 +1,7 @@
 /**
  * Represents a repository.
  */
-export interface Repository {
+export type Repository = {
   repo: {
     name: Record<string, string>
     description: string
@@ -20,7 +20,7 @@ export interface Repository {
 /**
  * Represents a repository category.
  */
-export interface Category {
+export type Category = {
   id: string
   icon?: Record<string, ImageReference>
   name: Record<string, string>
@@ -29,7 +29,7 @@ export interface Category {
 /**
  * Represents a image.
  */
-export interface ImageReference {
+export type ImageReference = {
   name: string
   sha256: string
   size: number
@@ -38,7 +38,7 @@ export interface ImageReference {
 /**
  * Represents an application.
  */
-export interface Application {
+export type Application = {
   namespace: string
   metadata: {
     added: number
@@ -64,7 +64,7 @@ export interface Application {
 /**
  * Represents a package version.
  */
-export interface ApplicationVersion {
+export type ApplicationVersion = {
   added: number
   file: {
     name: string
@@ -96,6 +96,6 @@ export interface ApplicationVersion {
 /**
  * Represents a device permission.
  */
-export interface ApplicationDevicePermission {
+export type ApplicationDevicePermission = {
   name: string
 }

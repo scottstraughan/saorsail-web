@@ -285,7 +285,7 @@ export class ApplicationService {
  * A partial result. Since we can apply filters and limit apps per request, we want to provide information about the
  * full request and also the returned request.
  */
-export interface PartialResult<T> {
+export type PartialResult<T> = {
   totalResultsCount: number
   filteredResultsCount: number
   currentResultsCount: number

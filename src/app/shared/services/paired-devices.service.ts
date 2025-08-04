@@ -62,7 +62,7 @@ export class PairedDevicesService {
   }
 }
 
-export interface PairedDevice {
+export type PairedDevice = {
   name: string
   code: string
   added: number

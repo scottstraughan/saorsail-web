@@ -2,11 +2,6 @@ import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 
-export interface ThemeColor {
-  name: string
-  color: string
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -84,10 +79,21 @@ export class DisplayThemeService {
   }
 }
 
-export interface DisplayTheme {
+/**
+ * Type that represents a theme.
+ */
+export type DisplayTheme = {
   name: string
   icon: string
   class: string
   isDark: boolean
   pallet?: ThemeColor
+}
+
+/**
+ * Type that represents a theme colour.
+ */
+export type ThemeColor = {
+  name: string
+  color: string
 }

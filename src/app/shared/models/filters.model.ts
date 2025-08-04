@@ -35,7 +35,7 @@ export class ModelFilters implements IJSONSerializable {
   }
 }
 
-export interface ModelOrder {
+export type ModelOrder = {
   by: OrderBy | undefined
   direction: OrderDirection | undefined
 }
