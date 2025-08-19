@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, take, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class ChatbotService {
     this.messages.push(message);
     this.notify();
 
-    return this.httpClient.post<Response>("http://localhost:3001/send", {
+    return this.httpClient.post<Response>(`${environment.bobEndpoint}/send`, {
       body: message.body,
       history: this.messages
     })
