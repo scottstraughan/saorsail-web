@@ -1,0 +1,51 @@
+@if (showing()) {
+  <div class="container" (click)="onContainerClicked()">
+    <div class="chatbox"
+         (click)="onChatboxClicked($event)"
+         [class.disabled]="this.sending()">
+
+      <!-- Messages panel -->
+      <ol #scrolled class="messages">
+        @for (message of messages(); track $index) {
+          <li [class]="message.sent ? 'sent' : 'received'">
+            <div class="body" [innerHTML]=" message.body"></div>
+
+            <div class="sender">
+              @if (message.loading) {
+                <swc-loading-indicator class="loading"></swc-loading-indicator>
+              } @else {
+                @if (message.sent) {
+                  <img src="./assets/icons/general/smile.svg" alt="You" />
+                } @else {
+                  <img src="./assets/icons/general/bob.svg" alt="Bob the Bot" />
+                }
+              }
+            </div>
+          </li>
+        }
+      </ol>
+
+      <!-- Creation Panel -->
+      <div class="create" [class.sending]="sending()">
+        @if (sending()) {
+          <swc-loading-indicator class="loading"></swc-loading-indicator>
+        } @else {
+          <textarea
+              #messageTextarea
+              rows="1"
+              [(ngModel)]="message"
+              (ngModelChange)="onMessageChanged()"
+              (keydown.enter)="onSendMessage()"
+              [disabled]="this.sending()"
+              type="text"
+              placeholder="Find me a calculator app"></textarea>
+        }
+      </div>
+
+    </div>
+  </div>
+} @else {
+  <div class="robot" (click)="onShowChat()" title="Ask Bob a Question">
+    <swc-icon [size]="35" icon="general/bob" />
+  </div>
+}

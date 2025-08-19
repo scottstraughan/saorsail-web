@@ -13,6 +13,7 @@ import { IconComponent } from './shared/components/icon/icon.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { BackButtonUrlTrackingService } from './shared/services/back-button-url-tracking.service';
 import { SettingPanelId, SettingsComponent } from './settings/settings.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 @Component({
   selector: 'swc-app',
@@ -28,6 +29,7 @@ import { SettingPanelId, SettingsComponent } from './settings/settings.component
     NgOptimizedImage,
     IconComponent,
     TranslatePipe,
+    ChatbotComponent,
   ],
   styleUrl: './app.component.scss'
 })
