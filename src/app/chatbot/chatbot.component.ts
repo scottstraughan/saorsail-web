@@ -1,17 +1,16 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef, HostListener,
+  ElementRef, HostListener, inject,
   Signal,
   signal,
   ViewChild, WritableSignal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChatbotService, Message } from '../shared/services/chatbot.service';
-import { tap } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LoadingIndicatorComponent } from '../shared/components/loading-indicator/loading-indicator.component';
-import { MaskableIconComponent } from '../shared/components/maskable-icon/maskable-icon.component';
 import { IconComponent } from '../shared/components/icon/icon.component';
 
 @Component({
@@ -19,7 +18,6 @@ import { IconComponent } from '../shared/components/icon/icon.component';
   imports: [
     FormsModule,
     LoadingIndicatorComponent,
-    MaskableIconComponent,
     IconComponent
   ],
   templateUrl: './chatbot.component.html',
@@ -28,30 +26,55 @@ import { IconComponent } from '../shared/components/icon/icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatbotComponent {
-  protected messages: Signal<Message[]> = signal([]);
-  protected sending: WritableSignal<boolean> = signal(false);
-  protected showing: WritableSignal<boolean> = signal(false);
-
-  protected message: string = ''
-
-  @ViewChild('scrolled')
-  private bottomEl!: ElementRef;
-
-  @ViewChild('messageTextarea')
-  private textarea!: ElementRef<HTMLTextAreaElement>;
+  /**
+   * Signal with all the messages.
+   * @protected
+   */
+  protected messages: WritableSignal<Message[]> = signal([]);
 
   /**
-   * Constructor.
+   * If we are sending or not.
+   * @protected
    */
-  constructor(
-    private chatboxService: ChatbotService,
-  ) {
-    this.messages = toSignal(
-      this.chatboxService.getMessages()
-        .pipe(
-          tap(() => this.scrollToBottom())
-        ), { initialValue: [] });
-  }
+  protected sending: WritableSignal<boolean> = signal(false);
+
+  /**
+   * If we are showing Bob or not.
+   * @protected
+   */
+  protected isVisible: WritableSignal<boolean> = signal(false);
+
+  /**
+   * Subject to track when we are closed or not.
+   * @protected
+   */
+  protected onDestroy: Subject<void> = new Subject();
+
+  /**
+   * Service to use.
+   * @protected
+   */
+  protected chatboxService: ChatbotService = inject(ChatbotService);
+
+  /**
+   * New send message
+   * @protected
+   */
+  protected newMessage: string = ''
+
+  /**
+   * Used to scroll.
+   * @protected
+   */
+  @ViewChild('scrolled')
+  protected bottomEl!: ElementRef;
+
+  /**
+   * Textarea reference.
+   * @protected
+   */
+  @ViewChild('messageTextarea')
+  protected textarea!: ElementRef<HTMLTextAreaElement>;
 
   /**
    * Called when a user wishes to send a message.
@@ -60,9 +83,9 @@ export class ChatbotComponent {
     this.sending.set(true);
     this.scrollToBottom();
 
-    this.chatboxService.sendMessage(this.message).pipe(
+    this.chatboxService.sendMessage(this.newMessage).pipe(
       tap(() => this.sending.set(false)),
-      tap(() => this.message = ''),
+      tap(() => this.newMessage = ''),
       tap(() => this.scrollToBottom())
     )
     .subscribe();
@@ -80,16 +103,35 @@ export class ChatbotComponent {
   /**
    * Called when the user has clicked Bob, and we should show the message panel.
    */
-  onShowChat() {
-    this.showing.set(true);
+  onShowBob() {
+    this.isVisible.set(true);
     this.scrollToBottom();
+
+    this.chatboxService.getMessages()
+      .pipe(
+        tap(messages =>
+          this.messages.set(messages)),
+        tap(() =>
+          this.scrollToBottom()),
+        takeUntil(this.onDestroy)
+      )
+      .subscribe();
+  }
+
+  /**
+   * Called when we should close Bob.
+   */
+  onCloseBob() {
+    this.isVisible.set(false);
+    this.onDestroy.next();
+    this.onDestroy.complete();
   }
 
   /**
    * Called when the message panel container has been clicked.
    */
   onContainerClicked() {
-    this.showing.set(false);
+    this.onCloseBob();
   }
 
   /**
@@ -108,7 +150,7 @@ export class ChatbotComponent {
    */
   @HostListener('document:keydown.escape')
   onEscapeKeyPressed() {
-    this.showing.set(false);
+    this.isVisible.set(false);
   }
 
   /**

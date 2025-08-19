@@ -1,4 +1,4 @@
-@if (showing()) {
+@if (isVisible()) {
   <div class="container" (click)="onContainerClicked()">
     <div class="chatbox"
          (click)="onChatboxClicked($event)"
@@ -33,7 +33,7 @@
           <textarea
               #messageTextarea
               rows="1"
-              [(ngModel)]="message"
+              [(ngModel)]="newMessage"
               (ngModelChange)="onMessageChanged()"
               (keydown.enter)="onSendMessage()"
               [disabled]="this.sending()"
@@ -45,7 +45,7 @@
     </div>
   </div>
 } @else {
-  <div class="robot" (click)="onShowChat()" title="Ask Bob a Question">
+  <div class="robot" (click)="onShowBob()" title="Ask Bob a Question">
     <swc-icon [size]="35" icon="general/bob" />
   </div>
 }
