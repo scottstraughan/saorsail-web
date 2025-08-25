@@ -37,6 +37,9 @@ export class AppComponent {
   readonly syncing: Signal<boolean>;
   readonly darkTheme: WritableSignal<boolean> = signal(false);
 
+  /**
+   * Constructor.
+   */
   constructor(
     private translate: TranslateService,
     protected localizationService: LocalizationService,
@@ -64,6 +67,10 @@ export class AppComponent {
       .subscribe();
   }
 
+  /**
+   * Set the current theme using the renderer.
+   * @private
+   */
   private setTheme(
     theme: DisplayTheme
   ) {
@@ -87,12 +94,18 @@ export class AppComponent {
       .subscribe();
   }
 
+  /**
+   * Called when the user presses the sync button.
+   */
   onSync() {
     this.syncService.sync()
       .pipe(take(1))
       .subscribe()
   }
 
+  /**
+   * Check if an app is within view. If it is, we will show a back button.
+   */
   isInAppView(): string | undefined {
     const currentUrl = this.router.url;
 
@@ -103,21 +116,33 @@ export class AppComponent {
     return './categories/';
   }
 
+  /**
+   * Called when the user wishes to change language.
+   */
   onChangeLang() {
     this.popupService.show(
       SettingsComponent, SettingPanelId.LOCALIZATION);
   }
 
+  /**
+   * Called when a user wishes to pair a new device.
+   */
   onPairDevice() {
     this.popupService.show(
       SettingsComponent, SettingPanelId.PAIRED_DEVICES);
   }
 
+  /**
+   * Called when a user wishes to change settings.
+   */
   onShowSettings() {
     this.popupService.show(
       SettingsComponent, undefined);
   }
 
+  /**
+   * Called when the back button is pressed.
+   */
   onGoBack() {
     const url = this.routeTrackingService.getPreviousUrl()
       ? this.routeTrackingService.getPreviousUrl()

@@ -6,15 +6,19 @@
         <div class="wrapper">
           <swc-favorite-widget class="favorite" [application]="application"></swc-favorite-widget>
 
-          <div class="icon">
-            <img [src]="localizationService.localizeImageRecord$(application.metadata.icon) | async" alt="App Icon" />
+          <div class="ng-icon-container icon-container">
+            @if (localizationService.localizeImageRecord$(application.metadata.icon) | async; as icon) {
+              <img [ngSrc]="icon" alt="App Icon" fill />
+            }
           </div>
+
           <div class="title">
             <div>
               <h1>{{ localizationService.localizeRecord$(application.metadata.name) | async }}</h1>
               <p>{{ localizationService.localizeRecord$(application.metadata.summary) | async }}</p>
             </div>
           </div>
+
           <div class="actions">
             @if (selectedVersion(); as latestVersion) {
               <swc-install-button [application]="application" [version]="latestVersion"></swc-install-button>

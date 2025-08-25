@@ -18,10 +18,7 @@
     [subTitle]="'SETTINGS_DISPLAY_COLOR_SCHEME_SUBTITLE' | translate">
   <div class="pallet">
     @for (color of getPallets(); track color) {
-      <div class="choice"
-           [class.selected]="selectedTheme().pallet?.name == color.name
-           || (color.name == 'blue' && selectedTheme().pallet == undefined)"
-           (click)="onChoosePallet(color)">
+      <div class="choice" [class.selected]="isPalletSelected(color)" (click)="onChoosePallet(color)">
         <div class="color {{ color.name }}"></div>
       </div>
     }

@@ -12,6 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { ModelFilters, OrderBy, OrderDirection } from '../shared/models/filters.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IconComponent } from '../shared/components/icon/icon.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'swc-latest',
@@ -21,7 +22,8 @@ import { IconComponent } from '../shared/components/icon/icon.component';
     ShowMoreButtonComponent,
     LoadingIndicatorComponent,
     TranslatePipe,
-    IconComponent
+    IconComponent,
+    NgOptimizedImage
   ],
   templateUrl: './latest.component.html',
   styleUrl: './latest.component.scss'

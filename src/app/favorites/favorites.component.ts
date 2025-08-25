@@ -10,6 +10,7 @@ import { FavoriteService } from '../shared/services/favorite.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { IconButtonComponent } from '../shared/components/icon-button/icon-button.component';
 import { RouterLink } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'swc-latest',
@@ -20,6 +21,7 @@ import { RouterLink } from '@angular/router';
     TranslatePipe,
     IconButtonComponent,
     RouterLink,
+    NgOptimizedImage,
   ],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss'
