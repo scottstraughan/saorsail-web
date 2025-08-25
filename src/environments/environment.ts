@@ -6,5 +6,5 @@ export const environment = {
   fdroidRepositoryUrl: 'https://database.saorsail.com/v1/repository.json',
   popularDatabaseUrl: 'https://database.saorsail.com/v1/popular.json',
   installServiceEndpoint: 'https://saorsail-main-bf294c4.zuplo.app',
-  bobEndpoint: 'http://localhost:3001',
+  bobEndpoint: 'https://bob-backend-chs4.onrender.com',
 };

@@ -168,4 +168,16 @@
       padding-left: calc(var(--nav-desktop-width));
     }
   }
+
+  .bob {
+    --ngx-bob-orb-bg-color: var(--hint-color);
+    --ngx-bob-ui-message-sent-bg-color: var(--hint-color);
+    --ngx-bob-ui-color: var(--ui-bg-color-primary);
+    --ngx-bob-ui-border-color: var(--ui-border-color);
+    --ngx-bob-ui-prompt-bg-color: var(--ui-bg-color-secondary);
+    
+    @media screen and (max-width: $mobile-breakpoint) {
+      --ngx-bob-orb-bottom: 8rem;
+    }
+  }
 }

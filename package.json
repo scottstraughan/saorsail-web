@@ -24,6 +24,7 @@
     "angularx-qrcode": "^19.0.0",
     "dexie": "^4.0.11",
     "js-sha256": "^0.11.0",
+    "ngx-bob": "^0.0.8",
     "ngx-clipboard": "^16.0.0",
     "ngx-indexed-db": "^19.3.3",
     "ngx-webstorage-service": "^5.0.0",
