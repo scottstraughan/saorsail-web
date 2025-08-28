@@ -14,11 +14,13 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: Window, useValue: window },
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimations(),
-    { provide: Window, useValue: window },
+
+    // Import the translation module
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -26,10 +28,14 @@ export const appConfig: ApplicationConfig = {
         deps: [HttpClient],
       },
     })]),
+
+    // Register service worker
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
     }),
+
+    // Register Bob
     provideBob({
       endpointUrl: environment.bobEndpoint,
       welcomeMessage: '👋 Hi! I\'m Bob, an AI assistant. I can find you apps, install apps to devices or even download them.',
