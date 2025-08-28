@@ -56,8 +56,10 @@
             @include flex-center(false);
           }
 
-          .icon img {
+          .icon-container {
             width: 75px;
+            height: 75px;
+            border-radius: 12px;
           }
 
           .title {
